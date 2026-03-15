@@ -1,0 +1,291 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page {
+  min-height: 100vh;
+  background: $background;
+}
+
+// Hero
+.hero { @include hero-section; }
+.heroBgImg { @include hero-bg-img; }
+.heroOverlay { @include hero-overlay; }
+.heroContent { @include hero-content; }
+.heroBadge { @include hero-badge; }
+.badgeDot { width: $space-2; height: $space-2; border-radius: $radius-full; background: $primary; @include pulse; }
+.heroTitle { @include hero-title; span { color: $primary; } }
+.heroSubtitle { color: rgba(255,255,255,0.8); font-size: $text-lg; max-width: $max-w-lg; margin-bottom: $space-8; line-height: 1.625; }
+.heroButtons { display: flex; flex-wrap: wrap; gap: $space-4; }
+.btnPrimary { @include btn-primary; }
+.btnOutline { @include btn-outline-white; }
+
+// Loan sections
+.loansWrapper {
+  & > * + * {
+    border-top: 1px solid $border;
+  }
+}
+
+.loanSection {
+  padding: $space-24 0;
+}
+
+.loanInner {
+  @include container;
+  @include grid(1, $space-12);
+  align-items: start;
+
+  @include lg {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.loanSidebar {
+  @include lg {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+.sectionTag { @include section-tag; }
+
+.loanTitle {
+  font-family: $font-poppins;
+  font-size: $text-2xl;
+  font-weight: 700;
+  color: $foreground;
+  margin-bottom: $space-2;
+
+  @include md {
+    font-size: $text-3xl;
+  }
+}
+
+.underline {
+  @include section-underline;
+  width: 3rem;
+  margin-bottom: $space-4;
+}
+
+.underlineCenter {
+  @include section-underline;
+  margin: 0 auto;
+}
+
+.loanDesc {
+  color: $muted-foreground;
+  font-size: $text-sm;
+  line-height: 1.625;
+}
+
+// Loan cards grid
+.loanGrid {
+  @include grid(1, $space-6);
+
+  @include md {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.loanCard {
+  border-radius: $radius-2xl;
+  padding: $space-8;
+  @include flex-col;
+  justify-content: space-between;
+  min-height: 340px;
+  transition: $transition-shadow;
+
+  &:hover {
+    box-shadow: $shadow-xl;
+  }
+}
+
+.loanCardTitle {
+  font-family: $font-poppins;
+  font-size: $text-xl;
+  font-weight: 700;
+  margin-bottom: $space-3;
+}
+
+.loanCardDesc {
+  opacity: 0.8;
+  font-size: $text-sm;
+  line-height: 1.625;
+  margin-bottom: $space-5;
+}
+
+.loanDetails {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  margin-bottom: $space-5;
+}
+
+.loanDetail {
+  display: flex;
+  justify-content: space-between;
+  font-size: $text-xs;
+}
+
+.detailLabel {
+  opacity: 0.6;
+}
+
+.detailValue {
+  font-weight: 600;
+}
+
+.eligibility {
+  font-size: $text-xs;
+  opacity: 0.7;
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.applyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $text-sm;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-top: $space-6;
+  transition: $transition-opacity;
+  &:hover { opacity: 1; }
+}
+
+.arrowIcon {
+  width: 1rem;
+  height: 1rem;
+  transition: $transition-transform;
+}
+
+.loanCard:hover .arrowIcon {
+  transform: translateX(4px);
+}
+
+// Color variants
+.bgPrimary { background: $primary; color: $primary-foreground; }
+.bgNavy { background: $navy; color: $white; }
+.bgSage { background: $sage; color: $white; }
+.bgOrange { background: $orange; color: $white; }
+.bgLime { background: $lime; color: $navy; }
+
+// Why choose us
+.whySection {
+  padding: $space-24 0;
+  background: $secondary;
+}
+
+.sectionCenter {
+  @include container;
+  text-align: center;
+  margin-bottom: $space-16;
+}
+
+.sectionTitle {
+  @include section-title;
+}
+
+.whyGrid {
+  @include container;
+  @include grid(1, $space-6);
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.whyCard {
+  background: $background;
+  border-radius: $radius-2xl;
+  padding: $space-6;
+  border: 1px solid $border;
+  box-shadow: $shadow-md;
+  text-align: center;
+}
+
+.whyEmoji {
+  font-size: $text-3xl;
+  margin-bottom: $space-3;
+}
+
+.whyTitle {
+  font-family: $font-poppins;
+  font-size: $text-sm;
+  font-weight: 700;
+  color: $foreground;
+  margin-bottom: $space-2;
+}
+
+.whyDesc {
+  color: $muted-foreground;
+  font-size: $text-xs;
+  line-height: 1.625;
+}
+
+// CTA
+.cta {
+  padding: $space-20 0;
+  background: $primary;
+}
+
+.ctaInner {
+  max-width: $max-w-4xl;
+  margin: 0 auto;
+  padding: 0 $space-6;
+  text-align: center;
+
+  h2 {
+    font-family: $font-poppins;
+    font-size: $text-3xl;
+    font-weight: 700;
+    color: $primary-foreground;
+    margin-bottom: $space-4;
+    @include md { font-size: $text-4xl; }
+  }
+
+  p {
+    color: rgba($primary-foreground, 0.8);
+    margin-bottom: $space-8;
+    max-width: $max-w-xl;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-4;
+}
+
+.ctaBtnWhite {
+  padding: 0.875rem 2rem;
+  border-radius: $radius-xl;
+  background: $white;
+  color: $primary;
+  font-weight: 600;
+  font-size: $text-sm;
+  transition: $transition-opacity;
+  &:hover { opacity: 0.9; }
+}
+
+.ctaBtnOutline {
+  padding: 0.875rem 2rem;
+  border-radius: $radius-xl;
+  background: transparent;
+  color: $white;
+  font-weight: 600;
+  font-size: $text-sm;
+  border: 1px solid rgba(255,255,255,0.4);
+  transition: $transition-colors;
+  &:hover { background: rgba(255,255,255,0.1); }
+}

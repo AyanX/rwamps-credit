@@ -1,0 +1,129 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page { min-height: 100vh; background: $background; }
+
+// Hero
+.hero { @include hero-section; }
+.heroBgImg { @include hero-bg-img; }
+.heroOverlay { @include hero-overlay; }
+.heroContent { @include hero-content; }
+.heroBadge { @include hero-badge; }
+.badgeDot { width: $space-2; height: $space-2; border-radius: $radius-full; background: $primary; @include pulse; }
+.heroTitle { @include hero-title; span { color: $primary; } }
+.heroSubtitle { color: rgba(255,255,255,0.8); font-size: $text-lg; max-width: $max-w-lg; margin-bottom: $space-8; line-height: 1.625; }
+.heroButtons { display: flex; flex-wrap: wrap; gap: $space-4; }
+.btnPrimary { @include btn-primary; }
+.btnOutline { @include btn-outline-white; }
+
+.sectionTag { @include section-tag; }
+.sectionTitle { @include section-title; }
+.underline { @include section-underline; margin-bottom: $space-6; }
+
+// Section header — left aligned
+.sectionHeader {
+  @include container;
+  margin-bottom: $space-16;
+}
+
+// Branches
+.branchesSection { padding: $space-24 0; background: $background; }
+
+.branchGrid {
+  @include container;
+  @include grid(1, $space-8);
+  @include md { grid-template-columns: 1fr 1fr; }
+}
+
+.branchCard {
+  background: $secondary;
+  border-radius: $radius-2xl;
+  padding: $space-8;
+  border: 1px solid $border;
+  box-shadow: $shadow-md;
+}
+
+.branchName { font-family: $font-poppins; font-size: $text-xl; font-weight: 700; color: $foreground; margin-bottom: $space-6; }
+.branchDetails { display: flex; flex-direction: column; gap: $space-4; }
+.branchDetail { display: flex; align-items: flex-start; gap: $space-3; }
+.branchIcon { width: $space-5; height: $space-5; color: $primary; flex-shrink: 0; margin-top: 2px; }
+.branchText { color: $muted-foreground; font-size: $text-sm; white-space: pre-line; transition: $transition-colors; &:hover { color: $primary; } }
+
+// Contact form
+.contactSection { padding: $space-24 0; background: $secondary; }
+
+.contactGrid {
+  @include container;
+  @include grid(1, $space-16);
+  @include lg { grid-template-columns: 1fr 1fr; }
+}
+
+.contactInfo {
+  h2 {
+    font-family: $font-poppins;
+    font-size: $text-3xl;
+    font-weight: 700;
+    color: $foreground;
+    margin-bottom: $space-2;
+    @include md { font-size: $text-4xl; }
+    span { color: $primary; }
+  }
+}
+
+.contactDesc { color: $muted-foreground; margin-bottom: $space-8; line-height: 1.625; }
+.contactCards { display: flex; flex-direction: column; gap: $space-6; }
+.contactCard { display: flex; align-items: center; gap: $space-4; padding: $space-4; background: $background; border-radius: $radius-xl; border: 1px solid $border; }
+.contactCardIcon { width: 3rem; height: 3rem; border-radius: $radius-xl; background: rgba($primary, 0.1); @include flex-center; color: $primary; }
+.contactCardTitle { font-size: $text-sm; font-weight: 600; color: $foreground; }
+.contactCardSub { font-size: $text-xs; color: $muted-foreground; }
+
+// Form
+.form {
+  background: $background;
+  border-radius: $radius-2xl;
+  padding: $space-8;
+  border: 1px solid $border;
+  box-shadow: $shadow-md;
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+.formGroup {
+  label { display: block; font-size: $text-sm; font-weight: 500; color: $foreground; margin-bottom: $space-2; }
+}
+
+.formInput {
+  width: 100%;
+  padding: $space-3 $space-4;
+  border-radius: $radius-xl;
+  border: 1px solid $border;
+  background: $secondary;
+  color: $foreground;
+  font-size: $text-sm;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  &:focus { outline: none; border-color: $primary; box-shadow: 0 0 0 3px rgba($primary, 0.15); }
+  &::placeholder { color: $muted-foreground; }
+}
+
+.formTextarea { @extend .formInput; resize: none; }
+.submitBtn { @include btn-primary; width: 100%; gap: $space-2; }
+
+// FAQs
+.faqSection { padding: $space-24 0; background: $background; }
+
+.faqList {
+  max-width: $max-w-4xl;
+  margin: 0 auto;
+  padding: 0 $space-6;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.faqItem { background: $secondary; border-radius: $radius-xl; border: 1px solid $border; overflow: hidden; }
+.faqTrigger { width: 100%; padding: $space-4 $space-6; @include flex-between; font-size: $text-sm; font-weight: 600; color: $foreground; cursor: pointer; text-align: left; }
+.faqChevron { width: 1rem; height: 1rem; color: $muted-foreground; transition: transform 0.2s ease; flex-shrink: 0; }
+.faqItem[data-open="true"] .faqChevron { transform: rotate(180deg); }
+.faqContent { padding: 0 $space-6 $space-4; color: $muted-foreground; font-size: $text-sm; line-height: 1.625; }

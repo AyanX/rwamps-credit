@@ -1,0 +1,114 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page { min-height: 100vh; background: $background; }
+
+// Hero
+.hero { @include hero-section; }
+.heroBgImg { @include hero-bg-img; }
+.heroOverlay { @include hero-overlay; }
+.heroContent { @include hero-content; }
+.heroBadge { @include hero-badge; }
+.badgeDot { width: $space-2; height: $space-2; border-radius: $radius-full; background: $primary; @include pulse; }
+.heroTitle { @include hero-title; span { color: $primary; } }
+.heroSubtitle { color: rgba(255,255,255,0.8); font-size: $text-lg; max-width: $max-w-lg; margin-bottom: $space-8; line-height: 1.625; }
+.heroButtons { display: flex; flex-wrap: wrap; gap: $space-4; }
+.btnPrimary { @include btn-primary; }
+.btnOutline { @include btn-outline-white; }
+
+.sectionTag { @include section-tag; }
+.sectionTitle { @include section-title; }
+.underline { @include section-underline; margin-bottom: $space-6; }
+
+// Section header — left aligned
+.sectionHeader {
+  @include container;
+  margin-bottom: $space-16;
+}
+
+// Agri products masonry
+.agriSection { padding: $space-24 0; background: $background; }
+
+.masonry {
+  @include container;
+  @include masonry(3, $space-6);
+}
+
+.masonryTwo {
+  @include container;
+  @include masonry(2, $space-6);
+}
+
+.productCard {
+  break-inside: avoid;
+  border-radius: $radius-2xl;
+  padding: $space-8;
+  @include flex-col;
+  justify-content: space-between;
+  transition: $transition-shadow;
+  min-height: 360px;
+  &:hover { box-shadow: $shadow-xl; }
+}
+
+.cardIconWrap {
+  margin-bottom: $space-4;
+  opacity: 0.9;
+}
+
+.cardTitle { font-family: $font-poppins; font-size: $text-xl; font-weight: 700; margin-bottom: $space-3; }
+.cardDesc { opacity: 0.8; font-size: $text-sm; line-height: 1.625; margin-bottom: $space-5; }
+
+.featureList { display: flex; flex-direction: column; gap: $space-2; margin-bottom: $space-6; }
+.featureItem { display: flex; align-items: center; gap: $space-2; font-size: $text-xs; opacity: 0.7; }
+.featureDot { width: 6px; height: 6px; border-radius: $radius-full; background: currentColor; flex-shrink: 0; }
+
+.applyLink {
+  display: inline-flex; align-items: center; gap: $space-2;
+  font-size: $text-sm; font-weight: 600; opacity: 0.9; transition: $transition-opacity;
+  &:hover { opacity: 1; }
+}
+
+.arrowIcon { width: 1rem; height: 1rem; transition: $transition-transform; }
+.productCard:hover .arrowIcon { transform: translateX(4px); }
+
+// Color variants
+.bgPrimary { background: $primary; color: $primary-foreground; }
+.bgNavy { background: $navy; color: $white; }
+.bgSage { background: $sage; color: $white; }
+.bgOrange { background: $orange; color: $white; }
+.bgLime { background: $lime; color: $navy; }
+
+// Venture section
+.ventureSection { padding: $space-24 0; background: $secondary; }
+
+.ventureCard {
+  break-inside: avoid;
+  background: $background;
+  border-radius: $radius-2xl;
+  padding: $space-8;
+  border: 1px solid $border;
+  box-shadow: $shadow-md;
+  transition: $transition-shadow;
+  &:hover { box-shadow: $shadow-lg; }
+}
+
+.ventureHeader { @include flex-between; margin-bottom: $space-4; }
+.ventureEmoji { font-size: $text-3xl; }
+.ventureArrow { width: $space-5; height: $space-5; color: $muted-foreground; transition: all 0.15s ease; }
+.ventureCard:hover .ventureArrow { color: $primary; transform: translateX(4px); }
+.ventureTitle { font-family: $font-poppins; font-size: $text-xl; font-weight: 700; color: $foreground; margin-bottom: $space-2; }
+.ventureDesc { color: $muted-foreground; font-size: $text-sm; line-height: 1.625; margin-bottom: $space-4; }
+.ventureLink { color: $primary; font-weight: 600; font-size: $text-sm; &:hover { text-decoration: underline; } }
+
+// CTA
+.cta { padding: $space-20 0; background: $primary; }
+
+.ctaInner {
+  max-width: $max-w-4xl; margin: 0 auto; padding: 0 $space-6; text-align: center;
+  h2 { font-family: $font-poppins; font-size: $text-3xl; font-weight: 700; color: $primary-foreground; margin-bottom: $space-4; @include md { font-size: $text-4xl; } }
+  p { color: rgba($primary-foreground, 0.8); margin-bottom: $space-8; max-width: $max-w-xl; margin-left: auto; margin-right: auto; }
+}
+
+.ctaButtons { display: flex; flex-wrap: wrap; justify-content: center; gap: $space-4; }
+.ctaBtnWhite { padding: 0.875rem 2rem; border-radius: $radius-xl; background: $white; color: $primary; font-weight: 600; font-size: $text-sm; transition: $transition-opacity; &:hover { opacity: 0.9; } }
+.ctaBtnOutline { padding: 0.875rem 2rem; border-radius: $radius-xl; background: transparent; color: $white; font-weight: 600; font-size: $text-sm; border: 1px solid rgba(255,255,255,0.4); transition: $transition-colors; &:hover { background: rgba(255,255,255,0.1); } }

@@ -1,0 +1,32 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.band {
+  background: $secondary;
+  padding: $space-4 0;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin: 0 $space-6;
+  font-size: $text-sm;
+  font-weight: 500;
+  color: rgba($foreground, 0.8);
+  font-family: $font-poppins;
+}
+
+.dot {
+  width: $space-2;
+  height: $space-2;
+  border-radius: $radius-full;
+  background: $primary;
+}

@@ -1,0 +1,35 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page {
+  @include flex-center;
+  min-height: 100vh;
+  background: $muted;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-family: $font-poppins;
+  font-size: $text-4xl;
+  font-weight: 700;
+  margin-bottom: $space-4;
+  color: $foreground;
+}
+
+.text {
+  font-size: $text-xl;
+  color: $muted-foreground;
+  margin-bottom: $space-4;
+}
+
+.link {
+  color: $primary;
+  text-decoration: underline;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}

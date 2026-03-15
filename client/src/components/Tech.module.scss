@@ -1,0 +1,134 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.section {
+  padding: $space-24 0;
+  background: $background;
+}
+
+.inner {
+  @include container;
+}
+
+.grid {
+  @include grid(1, $space-16);
+
+  @include lg {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.textCol {
+  .tag {
+    @include section-tag;
+  }
+
+  .title {
+    @include section-title;
+    margin-bottom: $space-2;
+  }
+
+  .underline {
+    @include section-underline;
+    margin-bottom: $space-6;
+  }
+
+  .desc {
+    color: $muted-foreground;
+    line-height: 1.625;
+    margin-bottom: $space-8;
+  }
+
+  .btn {
+    @include btn-primary;
+    padding: $space-3 $space-6;
+  }
+}
+
+.widgets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-4;
+
+  @include sm {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.widget {
+  background: $white;
+  border-radius: $radius-2xl;
+  padding: $space-5;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border;
+  transition: $transition-shadow;
+  min-width: 0;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.widgetIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: $radius-xl;
+  background: rgba($primary, 0.1);
+  border: 1px solid rgba($primary, 0.2);
+  @include flex-center;
+  font-size: $text-xl;
+  margin-bottom: $space-4;
+}
+
+.widgetTitle {
+  font-family: $font-poppins;
+  font-size: $text-sm;
+  font-weight: 700;
+  color: $foreground;
+  margin-bottom: $space-2;
+}
+
+.widgetDesc {
+  color: $muted-foreground;
+  font-size: $text-xs;
+  line-height: 1.625;
+}
+
+.fullCard {
+  grid-column: 1 / -1;
+  background: $primary;
+  border-radius: $radius-2xl;
+  padding: $space-5;
+  box-shadow: $shadow-md;
+}
+
+.fullCardInner {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-4;
+}
+
+.fullCardIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: $radius-xl;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  @include flex-center;
+  font-size: $text-xl;
+  flex-shrink: 0;
+}
+
+.fullCardTitle {
+  font-family: $font-poppins;
+  font-size: $text-sm;
+  font-weight: 700;
+  color: $primary-foreground;
+  margin-bottom: $space-2;
+}
+
+.fullCardDesc {
+  color: rgba($primary-foreground, 0.7);
+  font-size: $text-xs;
+  line-height: 1.625;
+}

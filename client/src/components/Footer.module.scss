@@ -1,0 +1,141 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.footer {
+  background: $background;
+  color: $foreground;
+  border-top: 1px solid $border;
+}
+
+.topBar {
+  height: $space-1;
+  background: $primary;
+  width: 100%;
+}
+
+.inner {
+  @include container;
+  padding-top: $space-16;
+  padding-bottom: $space-16;
+}
+
+.grid {
+  @include grid(1, $space-10);
+
+  @include md {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.logo {
+  font-family: $font-poppins;
+  font-size: $text-2xl;
+  font-weight: 700;
+  color: $foreground;
+  display: block;
+  margin-bottom: $space-4;
+
+  span {
+    color: $primary;
+  }
+}
+
+.desc {
+  color: $muted-foreground;
+  font-size: $text-sm;
+  line-height: 1.625;
+  margin-bottom: $space-6;
+}
+
+.socials {
+  display: flex;
+  gap: $space-3;
+}
+
+.socialIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-full;
+  background: rgba($foreground, 0.1);
+  @include flex-center;
+  color: $muted-foreground;
+  font-size: $text-sm;
+  transition: $transition-colors;
+
+  &:hover {
+    background: $primary;
+    color: $primary-foreground;
+  }
+}
+
+.colTitle {
+  font-family: $font-poppins;
+  font-size: $text-xs;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: $foreground;
+  margin-bottom: $space-5;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.linkItem {
+  font-size: $text-sm;
+  color: $muted-foreground;
+  transition: $transition-colors;
+  &:hover { color: $primary; }
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  font-size: $text-sm;
+  color: $muted-foreground;
+}
+
+.applyLink {
+  color: $primary;
+  font-weight: 600;
+  &:hover { text-decoration: underline; }
+}
+
+.bottom {
+  border-top: 1px solid $border;
+}
+
+.bottomInner {
+  @include container;
+  padding-top: $space-5;
+  padding-bottom: $space-5;
+  @include flex-col;
+  gap: $space-4;
+
+  @include md {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.copyright {
+  color: $muted-foreground;
+  font-size: $text-sm;
+}
+
+.legalLinks {
+  display: flex;
+  gap: $space-6;
+}
+
+.legalLink {
+  font-size: $text-sm;
+  color: $muted-foreground;
+  transition: $transition-colors;
+  &:hover { color: $primary; }
+}

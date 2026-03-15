@@ -1,0 +1,238 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.section {
+  padding: $space-24 0;
+  background: $secondary;
+}
+
+.inner {
+  @include container;
+}
+
+.header {
+  @include flex-col;
+  gap: $space-6;
+  margin-bottom: $space-16;
+
+  @include md {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.tag {
+  @include section-tag;
+}
+
+.title {
+  @include section-title;
+  margin-bottom: $space-2;
+}
+
+.underline {
+  @include section-underline;
+}
+
+.headerDesc {
+  color: $muted-foreground;
+  max-width: $max-w-md;
+  font-size: $text-sm;
+  line-height: 1.625;
+}
+
+// Bento grid
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-4;
+  grid-auto-rows: auto;
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include lg {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+// Card base
+.card {
+  @include card-base;
+  padding: $space-6;
+  @include flex-col;
+  justify-content: space-between;
+  min-height: 120px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover .arrow {
+    transform: translate(2px, -2px);
+  }
+}
+
+.cardHeader {
+  @include flex-between;
+  margin-bottom: $space-3;
+}
+
+.emoji {
+  font-size: $text-2xl;
+}
+
+.emojiLg {
+  font-size: $text-3xl;
+}
+
+.arrow {
+  font-size: $text-xl;
+  transition: $transition-transform;
+}
+
+.cardTitle {
+  font-family: $font-poppins;
+  font-weight: 700;
+  margin-bottom: $space-2;
+}
+
+.cardTitleLg {
+  font-size: $text-xl;
+}
+
+.cardTitleMd {
+  font-size: $text-lg;
+}
+
+.cardDesc {
+  font-size: $text-sm;
+}
+
+.cardLink {
+  font-size: $text-xs;
+  font-weight: 600;
+}
+
+// Specific cards
+.venture {
+  @extend .card;
+  background: $primary;
+  padding: $space-8;
+  min-height: 280px;
+
+  @include lg {
+    grid-column: span 5;
+    grid-row: span 2;
+  }
+
+  .arrow { color: rgba($primary-foreground, 0.5); }
+  .cardTitle { color: $primary-foreground; }
+  .cardDesc { color: rgba($primary-foreground, 0.7); }
+  .cardLink { color: rgba($primary-foreground, 0.8); }
+}
+
+.agri {
+  @extend .card;
+  padding: 0;
+  min-height: 280px;
+  position: relative;
+
+  @include lg {
+    grid-column: span 4;
+    grid-row: span 2;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.agriOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3), transparent);
+}
+
+.agriContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: $space-6;
+}
+
+.navyCard {
+  @extend .card;
+  background: $navy;
+  min-height: 280px;
+
+  @include lg {
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+
+  .arrow { color: rgba(255, 255, 255, 0.4); }
+  .cardTitle { color: $white; }
+  .cardDesc { color: rgba(255, 255, 255, 0.6); }
+  .cardLink { color: rgba(255, 255, 255, 0.7); }
+}
+
+.growthCard {
+  @extend .card;
+  background: $secondary;
+
+  @include lg {
+    grid-column: span 7;
+  }
+
+  .arrow { color: rgba($foreground, 0.4); }
+  .cardTitle { color: $foreground; }
+  .cardDesc { color: $muted-foreground; }
+  .cardLink { color: $primary; margin-top: $space-2; display: inline-block; }
+}
+
+.impactCard {
+  @extend .card;
+  background: $sage;
+
+  @include lg {
+    grid-column: span 5;
+  }
+
+  .arrow { color: rgba(255, 255, 255, 0.4); }
+  .cardTitle { color: $white; }
+  .cardDesc { color: rgba(255, 255, 255, 0.6); }
+  .cardLink { color: rgba(255, 255, 255, 0.7); margin-top: $space-2; display: inline-block; }
+}
+
+.equipCard {
+  @extend .card;
+  background: $orange;
+
+  @include lg {
+    grid-column: span 8;
+  }
+
+  .arrow { color: rgba(255, 255, 255, 0.4); }
+  .cardTitle { color: $white; }
+  .cardDesc { color: rgba(255, 255, 255, 0.7); }
+  .cardLink { color: rgba(255, 255, 255, 0.8); margin-top: $space-2; display: inline-block; }
+}
+
+.greenCard {
+  @extend .card;
+  background: $lime;
+
+  @include lg {
+    grid-column: span 4;
+  }
+
+  .arrow { color: rgba($navy, 0.4); }
+  .cardTitle { color: $navy; }
+  .cardDesc { color: rgba($navy, 0.6); }
+}

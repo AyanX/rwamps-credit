@@ -1,0 +1,208 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page {
+  min-height: 100vh;
+  background: $background;
+}
+
+// Hero
+.hero { @include hero-section; }
+.heroBgImg { @include hero-bg-img; }
+.heroOverlay { @include hero-overlay; }
+.heroContent { @include hero-content; }
+.heroBadge { @include hero-badge; }
+.badgeDot { width: $space-2; height: $space-2; border-radius: $radius-full; background: $primary; @include pulse; }
+.heroTitle { @include hero-title; span { color: $primary; } }
+.heroSubtitle { color: rgba(255,255,255,0.8); font-size: $text-lg; max-width: $max-w-lg; margin-bottom: $space-8; line-height: 1.625; }
+.heroButtons { display: flex; flex-wrap: wrap; gap: $space-4; }
+.btnPrimary { @include btn-primary; }
+.btnOutline { @include btn-outline-white; }
+
+// Services
+.servicesSection {
+  padding: $space-24 0;
+  background: $background;
+}
+
+.servicesInner {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: $space-20;
+}
+
+.serviceRow {
+  @include grid(1, $space-12);
+  align-items: center;
+
+  @include lg {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.serviceRowReverse {
+  @extend .serviceRow;
+}
+
+.imageCol {
+  position: relative;
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  height: 350px;
+  box-shadow: $shadow-lg;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include lg {
+    .serviceRowReverse & {
+      order: 2;
+    }
+  }
+}
+
+.imageBadge {
+  position: absolute;
+  top: $space-4;
+  left: $space-4;
+  color: $white;
+  padding: $space-1-5 $space-4;
+  border-radius: $radius-full;
+  font-size: $text-xs;
+  font-weight: 600;
+}
+
+.bgPrimary { background: $primary; }
+.bgNavy { background: $navy; }
+.bgSage { background: $sage; }
+.bgOrange { background: $orange; }
+
+.textCol {
+  @include lg {
+    .serviceRowReverse & {
+      order: 1;
+    }
+  }
+}
+
+.emoji {
+  font-size: $text-4xl;
+  margin-bottom: $space-4;
+}
+
+.sectionTag { @include section-tag; }
+
+.serviceTitle {
+  font-family: $font-poppins;
+  font-size: $text-2xl;
+  font-weight: 700;
+  color: $foreground;
+  margin-bottom: $space-2;
+
+  @include md {
+    font-size: $text-3xl;
+  }
+}
+
+.underline {
+  @include section-underline;
+  width: 3rem;
+  margin-bottom: $space-4;
+}
+
+.serviceDesc {
+  color: $muted-foreground;
+  margin-bottom: $space-6;
+  line-height: 1.625;
+}
+
+.featuresGrid {
+  @include grid(2, $space-3);
+  margin-bottom: $space-6;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $text-sm;
+  color: $foreground;
+}
+
+.checkIcon {
+  width: 1rem;
+  height: 1rem;
+  color: $primary;
+  flex-shrink: 0;
+}
+
+.serviceBtn {
+  @include btn-primary;
+  display: inline-flex;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+}
+
+// CTA
+.cta {
+  padding: $space-20 0;
+  background: $primary;
+}
+
+.ctaInner {
+  max-width: $max-w-4xl;
+  margin: 0 auto;
+  padding: 0 $space-6;
+  text-align: center;
+
+  h2 {
+    font-family: $font-poppins;
+    font-size: $text-3xl;
+    font-weight: 700;
+    color: $primary-foreground;
+    margin-bottom: $space-4;
+    @include md { font-size: $text-4xl; }
+  }
+
+  p {
+    color: rgba($primary-foreground, 0.8);
+    margin-bottom: $space-8;
+    max-width: $max-w-xl;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-4;
+}
+
+.ctaBtnWhite {
+  padding: 0.875rem 2rem;
+  border-radius: $radius-xl;
+  background: $white;
+  color: $primary;
+  font-weight: 600;
+  font-size: $text-sm;
+  transition: $transition-opacity;
+  &:hover { opacity: 0.9; }
+}
+
+.ctaBtnOutline {
+  padding: 0.875rem 2rem;
+  border-radius: $radius-xl;
+  background: transparent;
+  color: $white;
+  font-weight: 600;
+  font-size: $text-sm;
+  border: 1px solid rgba(255,255,255,0.4);
+  transition: $transition-colors;
+  &:hover { background: rgba(255,255,255,0.1); }
+}

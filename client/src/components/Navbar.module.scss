@@ -1,0 +1,126 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba($background, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $border;
+}
+
+.inner {
+  @include container;
+  @include flex-between;
+  height: 4rem;
+}
+
+.logo {
+  position: relative;
+  div{
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    width: 60px;
+    img{
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      z-index: 10;
+    }
+  }
+}
+
+.links {
+  display: none;
+  align-items: center;
+  gap: $space-8;
+
+  @include lg {
+    display: flex;
+  }
+}
+
+.link {
+  font-size: $text-sm;
+  font-weight: 500;
+  color: rgba($foreground, 0.8);
+  transition: $transition-colors;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+.cta {
+  padding: $space-2 $space-4;
+  font-size: $text-sm;
+  font-weight: 600;
+  border-radius: $radius-lg;
+  background: $primary;
+  color: $primary-foreground;
+  transition: $transition-opacity;
+  display: none;
+
+  @include sm {
+    display: inline-flex;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $foreground;
+  padding: $space-1;
+
+  @include lg {
+    display: none;
+  }
+}
+
+// Mobile menu
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  padding: $space-4 $space-6 $space-6;
+  background: $background;
+  border-bottom: 1px solid $border;
+
+  @include lg {
+    display: none;
+  }
+}
+
+.mobileLink {
+  padding: $space-3 0;
+  font-size: $text-base;
+  font-weight: 500;
+  color: $foreground;
+  border-bottom: 1px solid $border;
+  transition: $transition-colors;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.mobileCta {
+  margin-top: $space-4;
+  @include btn-primary;
+  text-align: center;
+}

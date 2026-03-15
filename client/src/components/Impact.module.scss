@@ -1,0 +1,130 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.section {
+  padding: $space-24 0;
+  background: $background;
+}
+
+.inner {
+  @include container;
+}
+
+.header {
+  @include flex-col;
+  gap: $space-6;
+  margin-bottom: $space-16;
+
+  @include md {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.tagRow {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  @include section-tag;
+}
+
+.tagLine {
+  width: $space-5;
+  height: 2px;
+  background: $primary;
+  border-radius: $radius-full;
+}
+
+.title {
+  @include section-title;
+
+  em {
+    color: $primary;
+    font-style: normal;
+  }
+}
+
+.underline {
+  @include section-underline;
+}
+
+.headerDesc {
+  color: $muted-foreground;
+  max-width: $max-w-md;
+  font-size: $text-sm;
+  line-height: 1.625;
+}
+
+.grid {
+  @include grid(2, $space-4);
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  border-radius: $radius-2xl;
+  padding: $space-6;
+  box-shadow: $shadow-md;
+}
+
+.cardEmoji {
+  font-size: $text-2xl;
+  margin-bottom: $space-3;
+}
+
+.cardNum {
+  font-family: $font-poppins;
+  font-weight: 700;
+  font-size: $text-2xl;
+}
+
+.cardLabel {
+  font-size: $text-xs;
+  margin-top: $space-1;
+}
+
+// Color variants
+.cardPrimary {
+  @extend .card;
+  background: $primary;
+  .cardNum { color: $primary-foreground; }
+  .cardLabel { color: rgba($primary-foreground, 0.7); }
+}
+
+.cardNavy {
+  @extend .card;
+  background: $navy;
+  .cardNum { color: $white; }
+  .cardLabel { color: rgba(255, 255, 255, 0.6); }
+}
+
+.cardSage {
+  @extend .card;
+  background: $sage;
+  .cardNum { color: $white; }
+  .cardLabel { color: rgba(255, 255, 255, 0.6); }
+}
+
+.cardOrange {
+  @extend .card;
+  background: $orange;
+  .cardNum { color: $white; }
+  .cardLabel { color: rgba(255, 255, 255, 0.7); }
+}
+
+.cardLime {
+  @extend .card;
+  background: $lime;
+  .cardNum { color: $navy; }
+  .cardLabel { color: rgba($navy, 0.6); }
+}
+
+.cardSecondary {
+  @extend .card;
+  background: $secondary;
+  .cardNum { color: $foreground; }
+  .cardLabel { color: $muted-foreground; }
+}
