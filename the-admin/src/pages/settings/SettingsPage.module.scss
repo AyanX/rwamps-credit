@@ -1,0 +1,14 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page { max-width: 600px; }
+.pageTitle { font-family: $font-display; font-size: 1.5rem; font-weight: 700; color: $text-primary; margin-bottom: 4px; }
+.pageDescription { font-size: 0.875rem; color: $text-muted; margin-bottom: 32px; }
+.card { @include card; padding: 32px; margin-bottom: 20px;
+  h2 { font-family: $font-display; font-size: 1.1rem; font-weight: 700; color: $text-primary; margin-bottom: 16px; }
+}
+.form { @include flex-col; gap: 16px; input { @include input-base; } }
+.fieldGroup { @include flex-col; gap: 6px;
+  label { font-size: 0.8rem; font-weight: 600; color: $text-muted; text-transform: uppercase; letter-spacing: 0.5px; }
+}
+.saveBtn { @include btn-success; align-self: flex-start; }

@@ -1,0 +1,23 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.message {
+  font-size: 0.9rem;
+  color: $text-muted;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.cancelBtn {
+  @include btn-outline;
+}
+
+.deleteBtn {
+  @include btn-danger;
+}

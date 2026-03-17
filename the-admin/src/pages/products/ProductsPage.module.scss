@@ -1,0 +1,47 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// keep existing styles, just fix import paths
+.page { max-width: 1100px; }
+.header { @include flex-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+.pageTitle { font-family: $font-display; font-size: 1.5rem; font-weight: 700; color: $text-primary; }
+.pageDescription { font-size: 0.875rem; color: $text-muted; }
+.addBtn { @include btn-primary; padding: 8px 16px; font-size: 0.8rem; background: $green-brand; &:hover:not(:disabled) { background: darken($green-brand, 8%); } }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; @include mobile { grid-template-columns: 1fr; } }
+
+.card {
+  position: relative; border-radius: $radius; padding: 28px; color: white; @include flex-col; min-height: 320px; transition: transform $transition-fast;
+  &:hover { transform: translateY(-2px); }
+}
+.cardInner { @include flex-col; gap: 12px; flex: 1; }
+.cardIcon { @include flex-center; width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.15); }
+.cardTitle { font-family: $font-display; font-size: 1.1rem; font-weight: 700; }
+.cardDesc { font-size: 0.85rem; opacity: 0.85; line-height: 1.6; }
+.pointsList { list-style: none; padding: 0; @include flex-col; gap: 6px;
+  li { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; opacity: 0.85; }
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); flex-shrink: 0; }
+.applyLink { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; margin-top: auto; padding-top: 12px; opacity: 0.9; }
+
+.actions { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; opacity: 0; transition: opacity $transition-fast; .card:hover & { opacity: 1; } }
+.editBtn, .deleteBtn { @include flex-center; width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer; transition: all $transition-fast; }
+.editBtn { background: rgba(255,255,255,0.25); color: white; &:hover { background: rgba(255,255,255,0.4); } }
+.deleteBtn { background: rgba(255,255,255,0.25); color: white; &:hover { background: rgba($danger, 0.8); } }
+
+// Modal form
+.form { @include flex-col; gap: 16px;
+  input, textarea, select { @include input-base; }
+  textarea { resize: vertical; min-height: 80px; }
+}
+.fieldGroup { @include flex-col; gap: 6px;
+  label { font-size: 0.8rem; font-weight: 600; color: $text-muted; text-transform: uppercase; letter-spacing: 0.5px; }
+}
+.colorRow { display: flex; align-items: center; gap: 12px;
+  input[type="color"] { width: 40px; height: 40px; border: none; border-radius: 8px; cursor: pointer; padding: 0; }
+  span { font-size: 0.85rem; color: $text-muted; font-family: monospace; }
+}
+.pointRow { display: flex; gap: 8px; align-items: center; input { flex: 1; } }
+.removePointBtn { @include flex-center; width: 28px; height: 28px; border-radius: 6px; border: none; background: $danger-light; color: $danger; font-size: 1.1rem; cursor: pointer; }
+.addPointBtn { align-self: flex-start; background: none; border: none; color: $secondary; font-size: 0.85rem; font-weight: 500; cursor: pointer; padding: 4px 0; &:hover { text-decoration: underline; } }
+.saveBtn { @include btn-success; }

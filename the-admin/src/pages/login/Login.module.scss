@@ -1,0 +1,90 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page {
+  @include flex-center;
+  min-height: 100vh;
+  background: $primary;
+  padding: 20px;
+}
+
+.card {
+  @include card;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 32px;
+  @include mobile { padding: 32px 20px; }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+  p { color: $text-muted; font-size: 0.9rem; margin-top: 4px; }
+}
+
+.logo {
+  height: 48px;
+  width: auto;
+  margin: 0 auto 8px;
+}
+
+.form { @include flex-col; gap: 20px; }
+
+.field {
+  @include flex-col;
+  gap: 6px;
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  input { @include input-base; padding-left: 42px; padding-right: 42px; }
+}
+
+.inputIcon {
+  position: absolute;
+  left: 14px;
+  color: $text-light;
+  pointer-events: none;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: 10px;
+  @include flex-center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  color: $text-light;
+  border-radius: 6px;
+  &:hover { color: $text-primary; }
+}
+
+.submitBtn {
+  @include btn-primary;
+  width: 100%;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 8px;
+  background: $green-brand;
+  &:hover:not(:disabled) { background: darken($green-brand, 8%); }
+  &:disabled { @include flex-center; }
+}
+
+.forgotLink {
+  text-align: center;
+  font-size: 0.85rem;
+  color: $secondary;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}

@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page { max-width: 1100px; }
+.pageTitle { font-family: $font-display; font-size: 1.5rem; font-weight: 700; color: $text-primary; margin-bottom: 4px; }
+.pageDescription { font-size: 0.875rem; color: $text-muted; margin-bottom: 32px; }
+.section { @include card; padding: 24px; margin-bottom: 24px; }
+.sectionHeader { @include flex-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+  h2 { font-family: $font-display; font-size: 1.1rem; font-weight: 700; color: $text-primary; }
+}
+.addBtn { @include btn-primary; padding: 8px 16px; font-size: 0.8rem; background: $green-brand; &:hover:not(:disabled) { background: darken($green-brand, 8%); } }
+
+// Branches
+.branchGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; @include mobile { grid-template-columns: 1fr; } }
+.branchCard { @include card; padding: 20px; position: relative; }
+.branchName { font-family: $font-display; font-size: 1rem; font-weight: 700; color: $text-primary; margin-bottom: 16px; }
+.branchDetails { @include flex-col; gap: 10px; }
+.branchDetail { display: flex; gap: 10px; align-items: flex-start; color: $text-muted;
+  svg { flex-shrink: 0; color: $green-brand; margin-top: 2px; }
+  p { font-size: 0.85rem; line-height: 1.5; white-space: pre-line; }
+}
+.branchActions { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px;
+  button { @include flex-center; width: 28px; height: 28px; border-radius: 6px; border: none; background: $bg-main; color: $text-muted; cursor: pointer; &:hover { color: $secondary; } }
+  .dangerIcon { color: $danger; &:hover { color: darken($danger, 10%); } }
+}
+
+// FAQs
+.faqList { @include flex-col; gap: 4px; }
+.faqItem { border: 1px solid $border-light; border-radius: $radius-sm; overflow: hidden;
+  &[data-open="true"] { .chevron { transform: rotate(180deg); } }
+}
+.faqTrigger { @include flex-between; width: 100%; padding: 14px 16px; border: none; background: none; text-align: left; font-size: 0.9rem; font-weight: 500; color: $text-primary; cursor: pointer;
+  span { flex: 1; }
+}
+.faqActions { display: flex; align-items: center; gap: 4px;
+  button { @include flex-center; width: 26px; height: 26px; border-radius: 6px; border: none; background: transparent; color: $text-light; cursor: pointer; &:hover { color: $secondary; background: $bg-main; } }
+  button:last-of-type:hover { color: $danger; }
+}
+.chevron { transition: transform $transition-fast; color: $text-light; }
+.faqContent { padding: 0 16px 16px; p { font-size: 0.85rem; color: $text-muted; line-height: 1.6; } }
+
+// Modal forms
+.form { @include flex-col; gap: 16px;
+  input, textarea, select { @include input-base; }
+  textarea { resize: vertical; min-height: 80px; }
+}
+.fieldGroup { @include flex-col; gap: 6px;
+  label { font-size: 0.8rem; font-weight: 600; color: $text-muted; text-transform: uppercase; letter-spacing: 0.5px; }
+}
+.timeRow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; @include mobile { grid-template-columns: 1fr; } }
+.saveBtn { @include btn-success; }

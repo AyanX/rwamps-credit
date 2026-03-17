@@ -1,0 +1,13 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page { @include flex-center; min-height: 100vh; background: $bg-main; padding: 20px; }
+.content {
+  text-align: center;
+  h2 { font-family: $font-display; font-size: 1.5rem; color: $text-primary; margin-bottom: 8px; }
+  p { color: $text-muted; margin-bottom: 32px; }
+}
+.code { font-family: $font-display; font-size: 6rem; font-weight: 700; color: $green-brand; line-height: 1; margin-bottom: 16px; }
+.actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.homeBtn { @include btn-primary; background: $green-brand; text-decoration: none; &:hover { background: darken($green-brand, 8%); } }
+.backBtn { @include btn-outline; }

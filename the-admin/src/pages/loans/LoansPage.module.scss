@@ -1,0 +1,30 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page { max-width: 1100px; }
+.header { @include flex-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+.pageTitle { font-family: $font-display; font-size: 1.5rem; font-weight: 700; color: $text-primary; }
+.pageDescription { font-size: 0.875rem; color: $text-muted; }
+.addBtn { @include btn-primary; padding: 8px 16px; font-size: 0.8rem; background: $green-brand; &:hover:not(:disabled) { background: darken($green-brand, 8%); } }
+.loanSection { @include card; display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; margin-bottom: 24px; overflow: hidden; @include tablet { grid-template-columns: 1fr; } }
+.loanSidebar { padding: 32px; @include flex-col; gap: 12px; border-right: 1px solid $border-light; @include tablet { border-right: none; border-bottom: 1px solid $border-light; }
+  h2 { font-family: $font-display; font-size: 1.15rem; font-weight: 700; color: $text-primary; }
+  p { font-size: 0.85rem; color: $text-muted; line-height: 1.6; }
+}
+.tag { display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba($green-brand, 0.1); color: $green-brand; font-size: 0.75rem; font-weight: 600; align-self: flex-start; }
+.sectionActions { display: flex; gap: 8px; margin-top: auto; }
+.editSectionBtn { @include btn-outline; padding: 6px 14px; font-size: 0.8rem; }
+.deleteSectionBtn { @include btn-danger; padding: 6px 14px; font-size: 0.8rem; }
+.loanGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 24px; @include mobile { grid-template-columns: 1fr; } }
+.loanCard { border-radius: $radius; padding: 24px; @include flex-col; gap: 12px; h4 { font-family: $font-display; font-size: 1rem; font-weight: 700; } }
+.loanCardDesc { font-size: 0.8rem; opacity: 0.85; line-height: 1.5; }
+.loanDetails { @include flex-col; gap: 6px; font-size: 0.8rem; > div { display: flex; gap: 8px; } }
+.detailLabel { font-weight: 600; opacity: 0.7; }
+.eligibility { font-size: 0.8rem; opacity: 0.85; strong { font-weight: 600; } }
+.applyLink { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; margin-top: auto; opacity: 0.9; }
+.form { @include flex-col; gap: 14px; input, textarea { @include input-base; } textarea { resize: vertical; min-height: 60px; } }
+.formSection { font-family: $font-display; font-weight: 700; color: $text-primary; margin-top: 8px; padding-top: 12px; border-top: 1px solid $border-light; }
+.fieldGroup { @include flex-col; gap: 4px; label { font-size: 0.75rem; font-weight: 600; color: $text-muted; text-transform: uppercase; letter-spacing: 0.5px; } }
+.twoCol { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; @include mobile { grid-template-columns: 1fr; } }
+.colorRow { display: flex; align-items: center; gap: 10px; input[type="color"] { width: 36px; height: 36px; border: none; border-radius: 6px; cursor: pointer; padding: 0; } span { font-size: 0.8rem; color: $text-muted; font-family: monospace; } }
+.saveBtn { @include btn-success; }

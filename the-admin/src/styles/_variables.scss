@@ -1,0 +1,47 @@
+// === Colors ===
+$primary: #0F172A;
+$primary-light: #1E293B;
+$secondary: #2563EB;
+$secondary-light: #3B82F6;
+$bg-main: #F8FAFC;
+$bg-surface: #FFFFFF;
+$success: #10B981;
+$success-light: #D1FAE5;
+$danger: #EF4444;
+$danger-light: #FEE2E2;
+$warning: #F59E0B;
+$warning-light: #FEF3C7;
+$text-primary: #1E293B;
+$text-muted: #64748B;
+$text-light: #94A3B8;
+$border: #E2E8F0;
+$border-light: #F1F5F9;
+$green-brand: #22C55E;
+
+// === Fonts ===
+$font-display: 'Ubuntu', sans-serif;
+$font-body: 'Poppins', sans-serif;
+
+// === Breakpoints ===
+$bp-xs: 480px;
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// === Spacing ===
+$sidebar-width: 260px;
+$sidebar-collapsed: 70px;
+$header-height: 64px;
+$radius: 12px;
+$radius-sm: 8px;
+$radius-xs: 6px;
+
+// === Shadows ===
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+// === Transitions ===
+$transition-fast: 150ms ease;
+$transition-normal: 250ms ease;

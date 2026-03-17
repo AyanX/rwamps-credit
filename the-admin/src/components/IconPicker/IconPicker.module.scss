@@ -1,0 +1,61 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.picker { position: relative; }
+
+.selected {
+  @include input-base;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.placeholder { color: $text-light; font-size: 0.85rem; }
+.iconName { font-size: 0.85rem; color: $text-muted; }
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: $bg-surface;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  box-shadow: $shadow-lg;
+  margin-top: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.search {
+  @include input-base;
+  border: none;
+  border-bottom: 1px solid $border-light;
+  border-radius: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+  gap: 4px;
+  padding: 8px;
+
+  @include mobile { grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); }
+}
+
+.iconBtn {
+  @include flex-center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: $text-muted;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover { background: $bg-main; color: $text-primary; }
+  &.active { background: rgba($green-brand, 0.15); color: $green-brand; }
+}

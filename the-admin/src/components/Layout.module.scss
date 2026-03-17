@@ -1,0 +1,21 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  margin-left: $sidebar-width;
+  padding: 32px;
+  background: $bg-main;
+  min-height: 100vh;
+
+  @include tablet {
+    margin-left: 0;
+    padding: 24px 16px;
+    padding-top: 72px; // space for hamburger
+  }
+}
