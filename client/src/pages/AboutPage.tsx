@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Users, Clock, Shield, Lightbulb, Heart, Award } from "lucide-react";
 import { siteStats, aboutMissionVision } from "@/data/siteData";
 import s from "./AboutPage.module.scss";
+import { Link } from "react-router-dom";
 
 const values = [
   { icon: Users, title: "Team Work", desc: "Collaborative approach to solving financial challenges together." },
@@ -44,7 +45,7 @@ const AboutPage = () => (
           Transforming the financial landscape for MSMEs and farmers in Western Uganda since inception.
         </p>
         <div className={s.heroButtons}>
-          <a href="/contact" className={s.btnPrimary}>Get Started →</a>
+          <Link to="/contact" className={s.btnPrimary}> Contact Us</Link>
           <a href="#about-content" className={s.btnOutline}>Learn More</a>
         </div>
         <div className={s.heroStats}>
