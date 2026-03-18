@@ -6,7 +6,7 @@ import { useData } from '../context/DataContext';
 import { getInitials } from '../utils/getInitials';
 import { useState } from 'react';
 import styles from './Sidebar.module.scss';
-
+import logo from "../assets/logo.png"
 const navItems = [
   { path: '/', label: 'Home', icon: Home },
   { path: '/products', label: 'Products', icon: Package },
@@ -40,7 +40,7 @@ const Sidebar = () => {
 
       <aside className={`${styles.sidebar} ${mobileOpen ? styles.open : ''}`}>
         <div className={styles.brand}>
-          <img src="/placeholder.svg" alt="Logo" className={styles.logo} />
+          <img src={logo} alt="Logo" className={styles.logo} />
           <button className={styles.closeBtn} onClick={() => setMobileOpen(false)}>
             <X size={20} />
           </button>
