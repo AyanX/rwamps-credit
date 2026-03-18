@@ -66,11 +66,11 @@ const ContactsPage = () => {
     try {
       if (faqEdit) {
         const res = await api.put.faq(faqEdit.id, faqForm);
-        setFaqs((prev) => prev.map((f) => (f.id === faqEdit.id ? (res.data || { ...f, ...faqForm }) : f)));
+        setFaqs((prev) => prev.map((f) => (f.id === faqEdit.id ? (res.data.data || { ...f, ...faqForm }) : f)));
         toast.success(res.data?.message || 'FAQ updated!');
       } else {
         const res = await api.post.faq(faqForm);
-        setFaqs((prev) => [...prev, res.data || { id: Date.now(), ...faqForm }]);
+        setFaqs((prev) => [...prev, res.data.data || { id: Date.now(), ...faqForm }]);
         toast.success(res.data?.message || 'FAQ added!');
       }
       setFaqModal(false);
@@ -105,7 +105,9 @@ const ContactsPage = () => {
     }
   };
 
-  if (dataLoading) return <SkeletonLoader count={3} height="200px" />;
+  const DummyLoader = () => <SkeletonLoader count={3} height="200px" />;
+
+  if (dataLoading) return <DummyLoader />;
 
   return (
     <div className={styles.page}>
@@ -123,7 +125,7 @@ const ContactsPage = () => {
           )}
         </div>
         <div className={styles.branchGrid}>
-          {branches.map((branch) => (
+          {branches?.map((branch) => (
             <div key={branch.id} className={styles.branchCard}>
               <h3 className={styles.branchName}>{branch.branch_name}</h3>
               <div className={styles.branchDetails}>
@@ -154,8 +156,9 @@ const ContactsPage = () => {
             </button>
           )}
         </div>
+        {dataLoading || faqs.length < 1 ? <DummyLoader /> : null}
         <div className={styles.faqList}>
-          {faqs.map((faq) => (
+          {faqs?.map((faq) => (
             <div key={faq.id} className={styles.faqItem} data-open={openFaqId === faq.id}>
               <button className={styles.faqTrigger} onClick={() => setOpenFaqId(openFaqId === faq.id ? null : faq.id)}>
                 <span>{faq.title}</span>

@@ -64,14 +64,14 @@
   @include btn-base;
   background: $secondary;
   color: white;
-  &:hover:not(:disabled) { background: darken($secondary, 8%); }
+  &:hover:not(:disabled) { background: $secondary-hover; }
 }
 
 @mixin btn-danger {
   @include btn-base;
   background: $danger;
   color: white;
-  &:hover:not(:disabled) { background: darken($danger, 8%); }
+  &:hover:not(:disabled) { background: $danger-hover; }
 }
 
 @mixin btn-outline {
@@ -86,7 +86,7 @@
   @include btn-base;
   background: $success;
   color: white;
-  &:hover:not(:disabled) { background: darken($success, 8%); }
+  &:hover:not(:disabled) { background: $success-hover; }
 }
 
 // input style

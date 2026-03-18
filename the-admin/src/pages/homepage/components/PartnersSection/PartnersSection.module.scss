@@ -1,0 +1,78 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.section {
+  @include card;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.sectionHeader {
+  @include flex-between;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-family: $font-display;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.addBtn {
+  @include btn-primary;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  background: $green-brand;
+  &:hover:not(:disabled) { background: $green-brand-hover; }
+}
+
+.partnerGrid { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.partnerCard {
+  @include flex-between;
+  gap: 16px;
+  padding: 12px 20px;
+  border-radius: $radius-sm;
+  background: $bg-main;
+  border: 1px solid $border-light;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.partnerActions {
+  display: flex;
+  gap: 6px;
+
+  button {
+    @include flex-center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: $text-muted;
+    cursor: pointer;
+    transition: all $transition-fast;
+    &:hover { background: $border-light; color: $secondary; }
+  }
+
+  .deleteIcon { color: $danger; &:hover { color: $danger-hover; } }
+}
+
+// Modal form
+.modalForm { @include flex-col; gap: 16px; }
+.fieldGroup {
+  @include flex-col;
+  gap: 6px;
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+.input { @include input-base; }
+.saveBtn { @include btn-success; }

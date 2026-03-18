@@ -8,7 +8,7 @@
 .sectionHeader { @include flex-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
   h2 { font-family: $font-display; font-size: 1.1rem; font-weight: 700; color: $text-primary; }
 }
-.addBtn { @include btn-primary; padding: 8px 16px; font-size: 0.8rem; background: $green-brand; &:hover:not(:disabled) { background: darken($green-brand, 8%); } }
+.addBtn { @include btn-primary; padding: 8px 16px; font-size: 0.8rem; background: $green-brand; &:hover:not(:disabled) { background: $green-brand-hover; } }
 
 // Branches
 .branchGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; @include mobile { grid-template-columns: 1fr; } }
@@ -21,7 +21,7 @@
 }
 .branchActions { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px;
   button { @include flex-center; width: 28px; height: 28px; border-radius: 6px; border: none; background: $bg-main; color: $text-muted; cursor: pointer; &:hover { color: $secondary; } }
-  .dangerIcon { color: $danger; &:hover { color: darken($danger, 10%); } }
+  .dangerIcon { color: $danger; &:hover { color: $danger-hover; } }
 }
 
 // FAQs

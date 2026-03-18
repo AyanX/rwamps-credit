@@ -1,12 +1,11 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
-// keep existing styles, just fix import paths
 .page { max-width: 1100px; }
 .header { @include flex-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
 .pageTitle { font-family: $font-display; font-size: 1.5rem; font-weight: 700; color: $text-primary; }
 .pageDescription { font-size: 0.875rem; color: $text-muted; }
-.addBtn { @include btn-primary; padding: 8px 16px; font-size: 0.8rem; background: $green-brand; &:hover:not(:disabled) { background: darken($green-brand, 8%); } }
+.addBtn { @include btn-primary; padding: 8px 16px; font-size: 0.8rem; background: $green-brand; &:hover:not(:disabled) { background: $green-brand-hover; } }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; @include mobile { grid-template-columns: 1fr; } }
 
@@ -15,7 +14,7 @@
   &:hover { transform: translateY(-2px); }
 }
 .cardInner { @include flex-col; gap: 12px; flex: 1; }
-.cardIcon { @include flex-center; width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.15); }
+.cardIcon { @include flex-center; width: 48px; height: 48px; border-radius: 12px; background: black; }
 .cardTitle { font-family: $font-display; font-size: 1.1rem; font-weight: 700; }
 .cardDesc { font-size: 0.85rem; opacity: 0.85; line-height: 1.6; }
 .pointsList { list-style: none; padding: 0; @include flex-col; gap: 6px;
@@ -24,10 +23,10 @@
 .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); flex-shrink: 0; }
 .applyLink { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; margin-top: auto; padding-top: 12px; opacity: 0.9; }
 
-.actions { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; opacity: 0; transition: opacity $transition-fast; .card:hover & { opacity: 1; } }
-.editBtn, .deleteBtn { @include flex-center; width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer; transition: all $transition-fast; }
+.actions { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; opacity: 1; transition: opacity $transition-fast; .card:hover & { opacity: 1; } }
+.editBtn, .deleteBtn { @include flex-center; width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer; transition: all $transition-fast;background: black !important;color: "white"; }
 .editBtn { background: rgba(255,255,255,0.25); color: white; &:hover { background: rgba(255,255,255,0.4); } }
-.deleteBtn { background: rgba(255,255,255,0.25); color: white; &:hover { background: rgba($danger, 0.8); } }
+.deleteBtn { background: rgba(255,255,255,0.25); color: white; &:hover { background: rgba(239, 68, 68, 0.8); } }
 
 // Modal form
 .form { @include flex-col; gap: 16px;

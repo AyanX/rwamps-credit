@@ -45,11 +45,11 @@ const ProductsPage = () => {
     try {
       if (editItem) {
         const res = await api.put.product(editItem.id, form);
-        setProducts((prev) => prev.map((p) => (p.id === editItem.id ? (res.data || { ...editItem, ...form }) : p)));
+        setProducts((prev) => prev.map((p) => (p.id === editItem.id ? (res.data?.data || { ...editItem, ...form }) : p)  ));
         toast.success(res.data?.message || 'Product updated!');
       } else {
         const res = await api.post.product(form);
-        setProducts((prev) => [...prev, res.data || { id: Date.now(), ...form }]);
+        setProducts((prev) => [...prev, res.data?.data || { id: Date.now(), ...form }]);
         toast.success(res.data?.message || 'Product added!');
       }
       setModal(false);
@@ -74,8 +74,9 @@ const ProductsPage = () => {
       setDeleteId(null);
     }
   };
+  
+  const DummyLoader = () => <SkeletonLoader count={3} height="250px" />;
 
-  if (dataLoading) return <SkeletonLoader count={3} height="250px" />;
 
   return (
     <div className={styles.page}>
@@ -89,17 +90,20 @@ const ProductsPage = () => {
         )}
       </div>
 
+      {dataLoading || products.length < 1 ? <DummyLoader /> : null}
+
+
       <div className={styles.grid}>
-        {products.map((product) => (
+        {products?.map((product) => (
           <div key={product.id} className={styles.card} style={{ background: product.bg_color }}>
             <div className={styles.cardInner}>
               <div className={styles.cardIcon}>
-                <DynamicIcon name={product.icon} size={28} />
+                <DynamicIcon name={product.icon} size={28} color='white'/>
               </div>
               <h3 className={styles.cardTitle}>{product.title}</h3>
               <p className={styles.cardDesc}>{product.content}</p>
               <ul className={styles.pointsList}>
-                {product.points?.map((point, i) => (
+                {product?.points?.map((point, i) => (
                   <li key={i}><span className={styles.dot} />{point}</li>
                 ))}
               </ul>

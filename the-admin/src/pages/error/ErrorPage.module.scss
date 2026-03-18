@@ -9,5 +9,5 @@
 }
 .code { font-family: $font-display; font-size: 6rem; font-weight: 700; color: $green-brand; line-height: 1; margin-bottom: 16px; }
 .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.homeBtn { @include btn-primary; background: $green-brand; text-decoration: none; &:hover { background: darken($green-brand, 8%); } }
+.homeBtn { @include btn-primary; background: $green-brand; text-decoration: none; &:hover { background: $green-brand-hover; } }
 .backBtn { @include btn-outline; }

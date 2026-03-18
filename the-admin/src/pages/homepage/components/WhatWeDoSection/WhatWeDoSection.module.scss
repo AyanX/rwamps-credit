@@ -1,0 +1,143 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.section {
+  @include card;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.sectionHeader {
+  @include flex-between;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-family: $font-display;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.addBtn {
+  @include btn-primary;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  background: $green-brand;
+  &:hover:not(:disabled) { background: $green-brand-hover; }
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  @include mobile { grid-template-columns: repeat(2, 1fr); }
+  @include small-mobile { grid-template-columns: 1fr; }
+}
+
+.whatWeDoCard {
+  position: relative;
+  border-radius: $radius;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+
+  > img:not(.blurPlaceholder) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.blurPlaceholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(10px);
+  z-index: 0;
+}
+
+.whatWeDoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  z-index: 2;
+}
+
+.whatWeDoLabel {
+  color: white;
+  font-family: $font-display;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(0,0,0,0.3);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.cardActions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity $transition-fast;
+  z-index: 3;
+  .whatWeDoCard:hover & { opacity: 1; }
+}
+
+.editBtn {
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-fast;
+  background: rgba(255,255,255,0.9);
+  color: $secondary;
+  &:hover { background: $secondary; color: white; }
+}
+
+.deleteBtn {
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-fast;
+  background: rgba(255,255,255,0.9);
+  color: $danger;
+  &:hover { background: $danger; color: white; }
+}
+
+// Modal form
+.modalForm { @include flex-col; gap: 16px; }
+.fieldGroup {
+  @include flex-col;
+  gap: 6px;
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+.input { @include input-base; }
+.preview {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: $radius-sm;
+  margin-top: 8px;
+}
+.saveBtn { @include btn-success; }

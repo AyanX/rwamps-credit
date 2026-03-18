@@ -36,11 +36,11 @@ const LoansPage = () => {
     try {
       if (editItem?.id) {
         const res = await api.put.loan(editItem.id, form);
-        setLoans((prev) => prev.map((l) => (l.id === editItem.id ? (res.data || { ...editItem, ...form }) : l)));
+        setLoans((prev) => prev.map((l) => (l.id === editItem.id ? (res.data?.data || { ...editItem, ...form }) : l)));
         toast.success(res.data?.message || 'Loan updated!');
       } else {
         const res = await api.post.loan(form);
-        setLoans((prev) => [...prev, res.data || { id: Date.now(), ...form }]);
+        setLoans((prev) => [...prev, res.data?.data || { id: Date.now(), ...form }]);
         toast.success(res.data?.message || 'Loan added!');
       }
       setModal(false);
@@ -59,7 +59,9 @@ const LoansPage = () => {
     finally { setDeleting(false); setDeleteId(null); }
   };
 
-  if (dataLoading) return <SkeletonLoader count={2} height="300px" />;
+  const Loading = () => { 
+    return<SkeletonLoader count={2} height="300px" /> 
+  };
 
   const LoanCard = ({ title, content, amountStart, amountEnd, durationStart, durationEnd, eligibility, bgColor, textColor }: Record<string, string>) => (
     <div className={styles.loanCard} style={{ background: bgColor, color: textColor }}>
@@ -83,8 +85,9 @@ const LoansPage = () => {
         </div>
         <button className={styles.addBtn} onClick={openAdd}><Plus size={18} /> Add Loan Section</button>
       </div>
+    { (dataLoading || loans.length === 0) ? <Loading /> : null }
 
-      {loans.map((loan) => (
+      {loans?.map((loan) => (
         <section key={loan.id} className={styles.loanSection}>
           <div className={styles.loanSidebar}>
             <span className={styles.tag}>{loan.title}</span>
@@ -92,7 +95,7 @@ const LoansPage = () => {
             <p>{loan.content}</p>
             <div className={styles.sectionActions}>
               <button className={styles.editSectionBtn} onClick={() => openEdit(loan)}><Pencil size={16} /> Edit</button>
-              {loans.length > 2 && (
+              {loans.length > 0 && (
                 <button className={styles.deleteSectionBtn} onClick={() => setDeleteId(loan.id!)}><Trash2 size={16} /> Delete</button>
               )}
             </div>
@@ -103,7 +106,7 @@ const LoansPage = () => {
           </div>
         </section>
       ))}
-
+    
       <Modal isOpen={modal} onClose={() => setModal(false)} title={editItem ? 'Edit Loan Section' : 'Add Loan Section'} maxWidth="680px">
         <form onSubmit={saveLoan} className={styles.form}>
           <h4 className={styles.formSection}>Section Info</h4>

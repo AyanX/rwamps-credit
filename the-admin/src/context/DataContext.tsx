@@ -2,8 +2,8 @@ import { createContext, useContext, useState, useEffect, type ReactNode } from '
 import { api } from '../api/api';
 import {
   dummyStats, dummyWhatWeDo, dummyTestimonies, dummyPartners,
-  dummyFooterSocials, dummyProducts, dummyBranches, dummyFaqs,
-  dummyMessages, dummyAbout, dummyServices, dummyLoans, dummySettings,
+  dummyFooterSocials,dummyBranches,
+  dummyMessages, dummyAbout, dummyServices,  dummySettings,
 } from '../data/dummyData';
 import { toast } from '../components/Toast';
 
@@ -70,13 +70,13 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [testimonies, setTestimonies] = useState<Testimony[]>(dummyTestimonies);
   const [partners, setPartners] = useState<Partner[]>(dummyPartners);
   const [footerSocials, setFooterSocials] = useState<FooterSocials>(dummyFooterSocials);
-  const [products, setProducts] = useState<Product[]>(dummyProducts);
+  const [products, setProducts] = useState<Product[]>([]);
   const [branches, setBranches] = useState<Branch[]>(dummyBranches);
-  const [faqs, setFaqs] = useState<Faq[]>(dummyFaqs);
+  const [faqs, setFaqs] = useState<Faq[]>([]);
   const [messages, setMessages] = useState<Message[]>(dummyMessages);
   const [about, setAbout] = useState<AboutSection>(dummyAbout);
   const [services, setServices] = useState<Service[]>(dummyServices);
-  const [loans, setLoans] = useState<Loan[]>(dummyLoans);
+  const [loans, setLoans] = useState<Loan[]>([]);
   const [settingsEmail, setSettingsEmail] = useState(dummySettings.email);
   const [settingsUsername, setSettingsUsername] = useState(dummySettings.username);
   const [dataLoading, setDataLoading] = useState(true);
@@ -105,21 +105,21 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
       ]);
 
       // use fetched data if available, otherwise keep dummy fallback
-      if (statsRes?.data) setStats(statsRes.data);
-      if (whatWeDoRes?.data) setWhatWeDo(whatWeDoRes.data);
-      if (testimoniesRes?.data) setTestimonies(testimoniesRes.data);
-      if (partnersRes?.data) setPartners(partnersRes.data);
-      if (footerSocialsRes?.data) setFooterSocials(footerSocialsRes.data);
-      if (productsRes?.data) setProducts(productsRes.data);
-      if (branchesRes?.data) setBranches(branchesRes.data);
-      if (faqsRes?.data) setFaqs(faqsRes.data);
-      if (messagesRes?.data) setMessages(messagesRes.data);
-      if (aboutRes?.data) setAbout(aboutRes.data);
-      if (servicesRes?.data) setServices(servicesRes.data);
-      if (loansRes?.data) setLoans(loansRes.data);
+      if (statsRes?.data) setStats(statsRes.data.data || statsRes.data);
+      if (whatWeDoRes?.data) setWhatWeDo(whatWeDoRes.data.data || whatWeDoRes.data);
+      if (testimoniesRes?.data) setTestimonies(testimoniesRes.data.data || testimoniesRes.data);
+      if (partnersRes?.data) setPartners(partnersRes.data.data || partnersRes.data);
+      if (footerSocialsRes?.data) setFooterSocials(footerSocialsRes.data.data || footerSocialsRes.data);
+      if (productsRes?.data) setProducts(productsRes.data.data || productsRes.data);
+      if (branchesRes?.data) setBranches(branchesRes.data.data || branchesRes.data);
+      if (faqsRes?.data) setFaqs(faqsRes.data.data || faqsRes.data);
+      if (messagesRes?.data) setMessages(messagesRes.data.data || messagesRes.data  );
+      if (aboutRes?.data) setAbout(aboutRes.data.data || aboutRes.data);
+      if (servicesRes?.data) setServices(servicesRes.data.data || servicesRes.data);
+      if (loansRes?.data) setLoans(loansRes.data.data || loansRes.data);
       if (settingsRes?.data) {
-        setSettingsEmail(settingsRes.data?.email || dummySettings.email);
-        setSettingsUsername(settingsRes.data?.username || dummySettings.username);
+        setSettingsEmail(settingsRes.data?.data?.email || dummySettings.email);
+        setSettingsUsername(settingsRes.data?.data?.username || dummySettings.username);
       }
     } catch {
       toast.error('Failed to fetch data. Using fallback data.');

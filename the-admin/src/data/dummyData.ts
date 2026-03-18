@@ -41,12 +41,7 @@ export const dummyFooterSocials = {
   email: 'info@rwampsfc.com',
 };
 
-export const dummyProducts = [
-  { id: 1, icon: 'Wheat', title: 'Crop Production Loans', content: 'Finance your planting seasons with flexible crop production loans.', points: ['Flexible repayment aligned with harvest cycles', 'Competitive interest rates', 'Quick disbursement', 'No collateral for small amounts'], bg_color: '#22C55E' },
-  { id: 2, icon: 'Beef', title: 'Livestock Financing', content: 'Grow your livestock business with our tailored financing solutions.', points: ['Dairy farming support', 'Poultry enterprise loans', 'Cattle ranching finance', 'Veterinary cost coverage'], bg_color: '#0F172A' },
-  { id: 3, icon: 'Tractor', title: 'Agricultural Equipment Loans', content: 'Modernize your farming operations with equipment financing.', points: ['Tractor financing', 'Irrigation systems', 'Processing equipment', 'Flexible terms up to 36 months'], bg_color: '#6B8E6B' },
-  { id: 4, icon: 'Building2', title: 'Farm Infrastructure Loans', content: 'Build the foundation for agricultural success.', points: ['Storage facilities', 'Greenhouse construction', 'Water harvesting systems', 'Fencing & security'], bg_color: '#EA580C' },
-];
+
 
 export const dummyBranches = [
   {
@@ -59,14 +54,6 @@ export const dummyBranches = [
     phone_number: '+256 779 135 953', email: 'info@rwampscreditfinance.com', website: 'www.rwampscreditfinance.com',
     open_time: '09:00', close_time: '21:00',
   },
-];
-
-export const dummyFaqs = [
-  { id: 1, title: 'What documents do I need to apply for a loan?', content: 'You need a valid national ID, proof of income or business registration, and a completed loan application form.' },
-  { id: 2, title: 'How long does loan approval take?', content: 'Most loans are approved within 24-48 hours of submitting a complete application.' },
-  { id: 3, title: 'What interest rates do you offer?', content: 'Our interest rates vary depending on the loan type and duration. Contact us for specific rates.' },
-  { id: 4, title: 'Can I repay my loan early?', content: 'Yes, early repayment is allowed with no additional penalties.' },
-  { id: 5, title: 'Do you offer group loans?', content: 'Yes, we offer group lending for farmer cooperatives and business groups.' },
 ];
 
 export const dummyMessages = [
@@ -87,32 +74,7 @@ export const dummyServices = [
   { id: 4, image: 'https://images.pexels.com/photos/7821487/pexels-photo-7821487.jpeg?auto=compress&cs=tinysrgb&w=800', blur_image: '', title: 'Agent Banking', content: 'Banking services for deposits, tax payments, bills and utilities.', icon: 'Landmark', points: ['Equity Bank', 'KCB', 'Diamond Trust', 'Stanbic'] },
 ];
 
-export const dummyLoans = [
-  {
-    id: 1, title: 'Business Loans', 'sub-title': 'Fueling Your Entrepreneurial Dreams',
-    content: 'Ugandan entrepreneurs are driving economic growth, and we\'re here to support them.',
-    card_one_title: 'ChapChap (Individual)', card_one_content: 'Empowering established business owners with flexible financing.',
-    card_one_loan_amount_start: 'UGX 500,000', card_one_loan_amount_end: 'UGX 10,000,000',
-    card_one_duration_start: '3', card_one_duration_end: '12', card_one_eligibility: 'Business must be in operation for at least 6 months.',
-    card_one_bg_color: '#22C55E', card_one_text_color: '#FFFFFF',
-    card_two_title: 'Bespoke Business Loan', card_two_content: 'Large-scale financing for established business owners.',
-    card_two_loan_amount_start: 'UGX 10,000,000', card_two_loan_amount_end: 'UGX 200,000,000',
-    card_two_duration_start: '1', card_two_duration_end: '6', card_two_eligibility: 'Business must be in operation for at least 12 months.',
-    card_two_bg_color: '#0F172A', card_two_text_color: '#FFFFFF',
-  },
-  {
-    id: 2, title: 'Agricultural Loans', 'sub-title': 'Financing Growth from the Ground Up',
-    content: 'Farming is the backbone of Uganda\'s economy.',
-    card_one_title: 'Crop Production Loan', card_one_content: 'Empowering individual farmers to scale up operations.',
-    card_one_loan_amount_start: 'UGX 200,000', card_one_loan_amount_end: 'UGX 10,000,000',
-    card_one_duration_start: '3', card_one_duration_end: '12', card_one_eligibility: 'Active farmer with proof of land access.',
-    card_one_bg_color: '#22C55E', card_one_text_color: '#FFFFFF',
-    card_two_title: 'Livestock Financing', card_two_content: 'Supporting dairy, poultry, and cattle farmers.',
-    card_two_loan_amount_start: 'UGX 500,000', card_two_loan_amount_end: 'UGX 20,000,000',
-    card_two_duration_start: '3', card_two_duration_end: '18', card_two_eligibility: 'Existing livestock farmer or verified new entrant.',
-    card_two_bg_color: '#6B8E6B', card_two_text_color: '#FFFFFF',
-  },
-];
+
 
 export const dummySettings = {
   email: 'admin@rwampsfc.com',
