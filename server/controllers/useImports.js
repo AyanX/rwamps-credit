@@ -1,10 +1,18 @@
-const {productsTable, loansTable, faqsTable}= require("../models/schema");
+const {
+  productsTable,
+  loansTable,
+  faqsTable,
+  contactBranchesTable,
+  aboutUsTable,
+} = require("../models/schema");
 
-const db=require("../db/db")
+const db = require("../db/db");
 
 module.exports = {
-    productsTable,
-    loansTable,
-    faqsTable,
-    db
-}
+  productsTable,
+  contactBranchesTable,
+  aboutUsTable,
+  loansTable,
+  faqsTable,
+  db,
+};

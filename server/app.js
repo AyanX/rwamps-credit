@@ -5,6 +5,8 @@ const loansRouter = require('./routers/loans/loans.router');
 const app = express();
 const cors = require('cors');
 const faqsRouter = require('./routers/faqs/faqs.router');
+const branchesRouter = require('./routers/branches/branches.router');
+const aboutRouter = require('./routers/about/about.router');
 
 app.use(cors({
   origin: ["http://localhost:3000", "http://localhost:8080"],
@@ -20,5 +22,10 @@ app.use("/api/products", productsRouter);
 app.use("/api/loans", loansRouter);
 
 app.use("/api/contacts/faqs", faqsRouter);
+
+app.use("/api/contacts/branches", branchesRouter);
+
+app.use("/api/about", aboutRouter);
+
 
 module.exports = app;

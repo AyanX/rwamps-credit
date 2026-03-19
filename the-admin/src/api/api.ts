@@ -84,5 +84,6 @@ export const api = {
     message: async (id: number) => http.delete(`http://localhost:9000/messages/delete/${id}`),
     service: async (id: number) => http.delete(`/services/${id}`),
     loan: async (id: number) => http.delete(`/loans/${id}`),
+    about: async (id: number) => http.delete(`/about/${id}`),
   },
 };

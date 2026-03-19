@@ -43,29 +43,13 @@ export const dummyFooterSocials = {
 
 
 
-export const dummyBranches = [
-  {
-    id: 1, branch_name: 'Kampala Branch', location: 'Block Number 245, Plot Number 508\nKansanga Ggaba Road\nNext to Hostel, Opposite Kinderkare School',
-    phone_number: '+256 792 602 205', email: 'info@rwampscreditfinance.com', website: 'www.rwampscreditfinance.com',
-    open_time: '09:00', close_time: '21:00',
-  },
-  {
-    id: 2, branch_name: 'Mbarara Branch', location: 'Buremba Road\nMbarara, Uganda',
-    phone_number: '+256 779 135 953', email: 'info@rwampscreditfinance.com', website: 'www.rwampscreditfinance.com',
-    open_time: '09:00', close_time: '21:00',
-  },
-];
+
 
 export const dummyMessages = [
   { id: 1, email: 'john@example.com', subject: 'Loan inquiry', message: 'I would like to inquire about your crop production loans. What are the requirements?', phone_number: '+256700000001', isRead: false, isDeleted: false },
   { id: 2, email: 'mary@example.com', subject: 'Partnership proposal', message: 'We are interested in partnering with Rwamps FC for our agricultural project in Western Uganda.', phone_number: '+256700000002', isRead: true, isDeleted: false },
   { id: 3, email: 'peter@example.com', subject: 'Branch visit', message: 'I plan to visit the Mbarara branch next week. What are the operating hours?', phone_number: '+256700000003', isRead: false, isDeleted: false },
 ];
-
-export const dummyAbout = {
-  mission: { id: 1, icon: 'Target', title: 'Our Mission', content: 'To empower small and medium-sized enterprises and farmers in Uganda by providing accessible and affordable credit solutions, fostering economic growth, and improving livelihoods.', bg_color: '#22C55E' },
-  vision: { id: 2, icon: 'Telescope', title: 'Our Vision', content: 'To be the leading credit finance provider in Uganda, known for our commitment to customer satisfaction, community development, and sustainable economic impact.', bg_color: '#0F172A' },
-};
 
 export const dummyServices = [
   { id: 1, image: 'https://images.pexels.com/photos/210574/pexels-photo-210574.jpeg?auto=compress&cs=tinysrgb&w=800', blur_image: '', title: 'Foreign Exchange', content: 'Seamless foreign currency exchange services for all major global currencies.', icon: 'DollarSign', points: ['Competitive Rates', 'Fast and Efficient Service', 'Convenient Locations', 'All Major Currencies'] },

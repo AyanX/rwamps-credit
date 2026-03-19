@@ -2,8 +2,8 @@ import { createContext, useContext, useState, useEffect, type ReactNode } from '
 import { api } from '../api/api';
 import {
   dummyStats, dummyWhatWeDo, dummyTestimonies, dummyPartners,
-  dummyFooterSocials,dummyBranches,
-  dummyMessages, dummyAbout, dummyServices,  dummySettings,
+  dummyFooterSocials,
+  dummyMessages, dummyServices,  dummySettings,
 } from '../data/dummyData';
 import { toast } from '../components/Toast';
 
@@ -23,7 +23,8 @@ export interface Product { id: number; icon: string; title: string; content: str
 export interface Branch { id: number; branch_name: string; location: string; phone_number: string; email: string; website: string; open_time: string; close_time: string; }
 export interface Faq { id: number; title: string; content: string; }
 export interface Message { id: number; email: string; subject: string; message: string; phone_number: string; isRead: boolean; isDeleted: boolean; }
-export interface AboutSection { mission: { id: number; icon: string; title: string; content: string; bg_color: string; }; vision: { id: number; icon: string; title: string; content: string; bg_color: string; }; }
+export interface AboutItem { id: number; name: string; icon: string; title: string; content: string; bg_color: string; }
+export type AboutSection = AboutItem[];
 export interface Service { id: number; image: string; blur_image: string; title: string; content: string; icon: string; points: string[]; }
 export interface Loan {
   id?: number; title: string; 'sub-title': string; content: string;
@@ -71,10 +72,10 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [partners, setPartners] = useState<Partner[]>(dummyPartners);
   const [footerSocials, setFooterSocials] = useState<FooterSocials>(dummyFooterSocials);
   const [products, setProducts] = useState<Product[]>([]);
-  const [branches, setBranches] = useState<Branch[]>(dummyBranches);
+  const [branches, setBranches] = useState<Branch[]>([]);
   const [faqs, setFaqs] = useState<Faq[]>([]);
   const [messages, setMessages] = useState<Message[]>(dummyMessages);
-  const [about, setAbout] = useState<AboutSection>(dummyAbout);
+  const [about, setAbout] = useState<AboutSection>([]);
   const [services, setServices] = useState<Service[]>(dummyServices);
   const [loans, setLoans] = useState<Loan[]>([]);
   const [settingsEmail, setSettingsEmail] = useState(dummySettings.email);

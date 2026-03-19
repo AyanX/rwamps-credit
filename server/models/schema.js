@@ -1,3 +1,4 @@
+const { is } = require("drizzle-orm");
 const {
   mysqlTable,
   int,
@@ -56,8 +57,36 @@ const faqsTable = mysqlTable("faqs", {
 });
 
 
+const contactBranchesTable = mysqlTable("contact_branches", {
+  id: int("id").primaryKey().autoincrement(),
+  branch_name: varchar("branch_name", { length: 255 }).notNull(),
+  location: varchar("location", { length: 255 }).notNull(),
+  phone_number: varchar("phone_number", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  website: varchar("website", { length: 255 }).notNull(),
+  open_time: varchar("open_time", { length: 255 }).notNull(),
+  close_time: varchar("close_time", { length: 255 }).notNull(),
+  isDeleted: boolean("isDeleted").default(false),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().onUpdateNow(),
+});
+
+const aboutUsTable = mysqlTable("about_us", {
+  id: int("id").primaryKey().autoincrement(),
+  name: varchar("name", { length: 255 }).notNull(),
+  icon: varchar("icon", { length: 255 }).notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  content: text("content").notNull(),
+  bg_color: varchar("bg_color", { length: 255 }).notNull(),
+  isDeleted: boolean("isDeleted").default(false),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().onUpdateNow(),
+});
+
 module.exports = {
   productsTable,
   loansTable,
     faqsTable,
+    contactBranchesTable,
+    aboutUsTable,
 };

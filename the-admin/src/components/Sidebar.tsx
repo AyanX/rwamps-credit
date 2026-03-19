@@ -40,7 +40,7 @@ const Sidebar = () => {
 
       <aside className={`${styles.sidebar} ${mobileOpen ? styles.open : ''}`}>
         <div className={styles.brand}>
-          <img src={logo} alt="Logo" className={styles.logo} />
+          <div className={styles.logoContainer}><img src={logo} alt="Logo" className={styles.logo} /></div>
           <button className={styles.closeBtn} onClick={() => setMobileOpen(false)}>
             <X size={20} />
           </button>
