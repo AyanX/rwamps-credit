@@ -20,6 +20,11 @@ const ServicesPage = () => {
   const [saving, setSaving] = useState(false);
   const [deleteId, setDeleteId] = useState<number | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState<Record<number, boolean>>({});
+
+  const handleImageLoad = (serviceId: number) => {
+    setImageLoaded((prev) => ({ ...prev, [serviceId]: true }));
+  };
 
   const openEdit = (service: Service) => {
     setEditItem(service);
@@ -44,15 +49,17 @@ const ServicesPage = () => {
       formData.append('content', form.content);
       formData.append('icon', form.icon);
       formData.append('points', JSON.stringify(form.points));
+      formData.append('blur_image', form.blur_image);
+      formData.append('image_url', form.image);
       if (imageFile) formData.append('image', imageFile);
 
       if (editItem) {
         const res = await api.put.service(editItem.id, formData);
-        setServices((prev) => prev.map((s) => (s.id === editItem.id ? (res.data || { ...editItem, ...form }) : s)));
+        setServices((prev) => prev.map((s) => (s.id === editItem.id ? (res.data.data || { ...editItem, ...form }) : s)));
         toast.success(res.data?.message || 'Service updated!');
       } else {
         const res = await api.post.service(formData);
-        setServices((prev) => [...prev, res.data || { id: Date.now(), ...form }]);
+        setServices((prev) => [res.data.data || { id: Date.now(), ...form }, ...prev]);
         toast.success(res.data?.message || 'Service added!');
       }
       setModal(false);
@@ -74,7 +81,9 @@ const ServicesPage = () => {
     finally { setDeleting(false); setDeleteId(null); }
   };
 
-  if (dataLoading) return <SkeletonLoader count={2} height="200px" />;
+  const DummyLoader = () => <SkeletonLoader count={2} height="200px" />;
+
+  if (dataLoading) return <DummyLoader />;
 
   return (
     <div className={styles.page}>
@@ -86,13 +95,26 @@ const ServicesPage = () => {
         <button className={styles.addBtn} onClick={openAdd}><Plus size={18} /> Add Service</button>
       </div>
 
+     {services.length < 1 && <DummyLoader/>}
+
+
       <div className={styles.serviceList}>
         {services.map((service, idx) => (
           <div key={service.id} className={`${styles.serviceRow} ${idx % 2 !== 0 ? styles.reversed : ''}`}>
             <div className={styles.imageCol}>
-              {service.blur_image && <img src={service.blur_image} alt="" className={styles.blurPlaceholder} width={400} height={300} />}
-              <img src={service.image} alt={service.title || 'Service image'} loading="lazy" width={400} height={300} />
-              <div className={styles.imageBadge}><DynamicIcon name={service.icon} size={16} /> {service.title}</div>
+              {service.blur_image && !imageLoaded[service.id] && (
+              <img src={service.blur_image} alt="" className={styles.blurPlaceholder} width={400} height={300} />
+            )}
+            <img
+              src={service.image}
+              alt={service.title || 'Service image'}
+              loading="lazy"
+              width={400}
+              height={300}
+              onLoad={() => handleImageLoad(service.id)}
+              className={imageLoaded[service.id] ? styles.realImage : styles.realImageLoading}
+            />
+            <div className={styles.imageBadge}><DynamicIcon name={service.icon} size={16} /> {service.title}</div>
             </div>
             <div className={styles.textCol}>
               <DynamicIcon name={service.icon} size={24} />
@@ -120,8 +142,19 @@ const ServicesPage = () => {
           </div>
           <div className={styles.fieldGroup}><label>Title</label><input type="text" value={form.title} onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))} required /></div>
           <div className={styles.fieldGroup}><label>Description</label><textarea value={form.content} onChange={(e) => setForm((prev) => ({ ...prev, content: e.target.value }))} rows={3} required /></div>
-          <div className={styles.fieldGroup}><label>Image</label><input type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files?.[0] || null)} />
-            {(editItem?.image || form.image) && <img src={editItem?.image || form.image} alt="Preview" className={styles.preview} />}
+          <div className={styles.fieldGroup}>
+            <label>Image</label>
+            <input type="file" accept="image/*" placeholder='noop'  onChange={(e) => setImageFile(e.target.files?.[0] || null)} />
+            <small style={{ color: '#6b7280', fontSize: '0.8rem' }}>
+              {imageFile ? 'Image file selected' : editItem?.image || form.image ? 'Image already selected' : 'No image selected'}
+            </small>
+            {(imageFile || editItem?.image || form.image) && (
+              <img
+                src={imageFile ? URL.createObjectURL(imageFile) : editItem?.image || form.image}
+                alt="Preview"
+                className={styles.preview}
+              />
+            )}
           </div>
           <div className={styles.fieldGroup}>
             <label>Points</label>

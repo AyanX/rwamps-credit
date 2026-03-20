@@ -3,7 +3,7 @@ import { api } from '../api/api';
 import {
   dummyStats, dummyWhatWeDo, dummyTestimonies, dummyPartners,
   dummyFooterSocials,
-  dummyMessages, dummyServices,  dummySettings,
+  dummyMessages,  dummySettings,
 } from '../data/dummyData';
 import { toast } from '../components/Toast';
 
@@ -22,7 +22,7 @@ export interface FooterSocials { twitter: string; linkedin: string; facebook: st
 export interface Product { id: number; icon: string; title: string; content: string; points: string[]; bg_color: string; }
 export interface Branch { id: number; branch_name: string; location: string; phone_number: string; email: string; website: string; open_time: string; close_time: string; }
 export interface Faq { id: number; title: string; content: string; }
-export interface Message { id: number; email: string; subject: string; message: string; phone_number: string; isRead: boolean; isDeleted: boolean; }
+export interface Message { id: number; name: string; email: string; subject: string; message: string; phone_number: string; isRead: boolean; isDeleted: boolean; }
 export interface AboutItem { id: number; name: string; icon: string; title: string; content: string; bg_color: string; }
 export type AboutSection = AboutItem[];
 export interface Service { id: number; image: string; blur_image: string; title: string; content: string; icon: string; points: string[]; }
@@ -76,7 +76,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [faqs, setFaqs] = useState<Faq[]>([]);
   const [messages, setMessages] = useState<Message[]>(dummyMessages);
   const [about, setAbout] = useState<AboutSection>([]);
-  const [services, setServices] = useState<Service[]>(dummyServices);
+  const [services, setServices] = useState<Service[]>([]);
   const [loans, setLoans] = useState<Loan[]>([]);
   const [settingsEmail, setSettingsEmail] = useState(dummySettings.email);
   const [settingsUsername, setSettingsUsername] = useState(dummySettings.username);

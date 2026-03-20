@@ -37,7 +37,7 @@ const MessagesPage = () => {
 
   if (dataLoading) return <SkeletonLoader count={3} height="200px" />;
 
-  const visibleMessages = messages.filter((m) => !m.isDeleted);
+  const visibleMessages = messages
 
   return (
     <div className={styles.page}>
@@ -57,7 +57,7 @@ const MessagesPage = () => {
                 {/* green dot for unread */}
                 {!message.isRead && <span className={styles.unreadDot} />}
                 <div className={styles.messagePreview}>
-                  <div className={styles.messageSender}>{message.email?.split('@')[0]}</div>
+                  <div className={styles.messageSender}>{message.name}</div>
                   <div className={styles.messageSubject}>{message.subject}</div>
                 </div>
               </div>

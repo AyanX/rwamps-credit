@@ -46,16 +46,9 @@ export const dummyFooterSocials = {
 
 
 export const dummyMessages = [
-  { id: 1, email: 'john@example.com', subject: 'Loan inquiry', message: 'I would like to inquire about your crop production loans. What are the requirements?', phone_number: '+256700000001', isRead: false, isDeleted: false },
-  { id: 2, email: 'mary@example.com', subject: 'Partnership proposal', message: 'We are interested in partnering with Rwamps FC for our agricultural project in Western Uganda.', phone_number: '+256700000002', isRead: true, isDeleted: false },
-  { id: 3, email: 'peter@example.com', subject: 'Branch visit', message: 'I plan to visit the Mbarara branch next week. What are the operating hours?', phone_number: '+256700000003', isRead: false, isDeleted: false },
-];
-
-export const dummyServices = [
-  { id: 1, image: 'https://images.pexels.com/photos/210574/pexels-photo-210574.jpeg?auto=compress&cs=tinysrgb&w=800', blur_image: '', title: 'Foreign Exchange', content: 'Seamless foreign currency exchange services for all major global currencies.', icon: 'DollarSign', points: ['Competitive Rates', 'Fast and Efficient Service', 'Convenient Locations', 'All Major Currencies'] },
-  { id: 2, image: 'https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg?auto=compress&cs=tinysrgb&w=800', blur_image: '', title: 'Money Transfers', content: 'Global money remittance via Western Union, MoneyGram and more.', icon: 'Send', points: ['Bank Transfer', 'MoneyGram', 'Western Union', 'Global Coverage'] },
-  { id: 3, image: 'https://images.pexels.com/photos/6963944/pexels-photo-6963944.jpeg?auto=compress&cs=tinysrgb&w=800', blur_image: '', title: 'Mobile Money', content: 'Convenient Airtel Money, Mpesa and MTN Mobile Money services.', icon: 'Smartphone', points: ['MTN Mobile Money', 'Airtel Money', 'Mpesa', 'Instant Deposits & Withdrawals'] },
-  { id: 4, image: 'https://images.pexels.com/photos/7821487/pexels-photo-7821487.jpeg?auto=compress&cs=tinysrgb&w=800', blur_image: '', title: 'Agent Banking', content: 'Banking services for deposits, tax payments, bills and utilities.', icon: 'Landmark', points: ['Equity Bank', 'KCB', 'Diamond Trust', 'Stanbic'] },
+  { id: 1, name: 'John Doe', email: 'john@example.com', subject: 'Loan inquiry', message: 'I would like to inquire about your crop production loans. What are the requirements?', phone_number: '+256700000001', isRead: false, isDeleted: false },
+  { id: 2, name: 'Mary Jane', email: 'mary@example.com', subject: 'Partnership proposal', message: 'We are interested in partnering with Rwamps FC for our agricultural project in Western Uganda.', phone_number: '+256700000002', isRead: true, isDeleted: false },
+  { id: 3, name: 'Peter Smith', email: 'peter@example.com', subject: 'Branch visit', message: 'I plan to visit the Mbarara branch next week. What are the operating hours?', phone_number: '+256700000003', isRead: false, isDeleted: false },
 ];
 
 
