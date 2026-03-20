@@ -31,7 +31,7 @@ const fileFilter = (_req, file, cb) => {
 
 const multerUpload = multer({
   storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+ limits: { fileSize: 10 * 1024 * 1024 }, // 10MB size cap
   fileFilter,
 }).single("image");
 
@@ -45,6 +45,7 @@ const upload = (req, res, next) => {
     }
 
     if (!req.file) {
+      req.fileUrl = null // No file uploaded
       return next(); // No file uploaded, continue to next middleware
     }
 
