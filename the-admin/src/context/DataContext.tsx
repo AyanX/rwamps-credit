@@ -1,9 +1,7 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { api } from '../api/api';
-import {
-  dummyStats, dummyWhatWeDo, dummyTestimonies, dummyPartners,
-  dummyFooterSocials,
-  dummyMessages,  dummySettings,
+import {dummyWhatWeDo, dummyTestimonies, dummyPartners,
+  dummyFooterSocials, dummySettings,
 } from '../data/dummyData';
 import { toast } from '../components/Toast';
 
@@ -66,7 +64,7 @@ export const useData = () => {
 };
 
 export const DataProvider = ({ children }: { children: ReactNode }) => {
-  const [stats, setStats] = useState<Stats>(dummyStats);
+  const [stats, setStats] = useState<Stats>();
   const [whatWeDo, setWhatWeDo] = useState<WhatWeDoItem[]>(dummyWhatWeDo);
   const [testimonies, setTestimonies] = useState<Testimony[]>(dummyTestimonies);
   const [partners, setPartners] = useState<Partner[]>(dummyPartners);
@@ -74,7 +72,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [branches, setBranches] = useState<Branch[]>([]);
   const [faqs, setFaqs] = useState<Faq[]>([]);
-  const [messages, setMessages] = useState<Message[]>(dummyMessages);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [about, setAbout] = useState<AboutSection>([]);
   const [services, setServices] = useState<Service[]>([]);
   const [loans, setLoans] = useState<Loan[]>([]);
