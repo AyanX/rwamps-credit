@@ -1,8 +1,6 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { api } from '../api/api';
-import {dummyWhatWeDo, dummyTestimonies, dummyPartners,
-  dummyFooterSocials, dummySettings,
-} from '../data/dummyData';
+
 import { toast } from '../components/Toast';
 
 // types for our data
@@ -65,10 +63,10 @@ export const useData = () => {
 
 export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [stats, setStats] = useState<Stats>();
-  const [whatWeDo, setWhatWeDo] = useState<WhatWeDoItem[]>(dummyWhatWeDo);
-  const [testimonies, setTestimonies] = useState<Testimony[]>(dummyTestimonies);
-  const [partners, setPartners] = useState<Partner[]>(dummyPartners);
-  const [footerSocials, setFooterSocials] = useState<FooterSocials>(dummyFooterSocials);
+  const [whatWeDo, setWhatWeDo] = useState<WhatWeDoItem[]>([]);
+  const [testimonies, setTestimonies] = useState<Testimony[]>([]);
+  const [partners, setPartners] = useState<Partner[]>([]);
+  const [footerSocials, setFooterSocials] = useState<FooterSocials>();
   const [products, setProducts] = useState<Product[]>([]);
   const [branches, setBranches] = useState<Branch[]>([]);
   const [faqs, setFaqs] = useState<Faq[]>([]);
@@ -76,8 +74,8 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [about, setAbout] = useState<AboutSection>([]);
   const [services, setServices] = useState<Service[]>([]);
   const [loans, setLoans] = useState<Loan[]>([]);
-  const [settingsEmail, setSettingsEmail] = useState(dummySettings.email);
-  const [settingsUsername, setSettingsUsername] = useState(dummySettings.username);
+  const [settingsEmail, setSettingsEmail] = useState("");
+  const [settingsUsername, setSettingsUsername] = useState("");
   const [dataLoading, setDataLoading] = useState(true);
 
   const fetchAll = async () => {
@@ -117,8 +115,8 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
       if (servicesRes?.data) setServices(servicesRes.data.data || servicesRes.data);
       if (loansRes?.data) setLoans(loansRes.data.data || loansRes.data);
       if (settingsRes?.data) {
-        setSettingsEmail(settingsRes.data?.data?.email || dummySettings.email);
-        setSettingsUsername(settingsRes.data?.data?.username || dummySettings.username);
+        setSettingsEmail(settingsRes.data?.email);
+        setSettingsUsername(settingsRes.data?.data?.username );
       }
     } catch {
       toast.error('Failed to fetch data. Using fallback data.');

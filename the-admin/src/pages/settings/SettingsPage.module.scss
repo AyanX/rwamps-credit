@@ -7,8 +7,61 @@
 .card { @include card; padding: 32px; margin-bottom: 20px;
   h2 { font-family: $font-display; font-size: 1.1rem; font-weight: 700; color: $text-primary; margin-bottom: 16px; }
 }
-.form { @include flex-col; gap: 16px; input { @include input-base; } }
-.fieldGroup { @include flex-col; gap: 6px;
-  label { font-size: 0.8rem; font-weight: 600; color: $text-muted; text-transform: uppercase; letter-spacing: 0.5px; }
+.form {
+  @include flex-col;
+  gap: 16px;
+
+  input {
+    @include input-base;
+  }
 }
-.saveBtn { @include btn-success; align-self: flex-start; }
+
+.fieldGroup {
+  @include flex-col;
+  gap: 6px;
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.saveBtn {
+  @include btn-success;
+  align-self: flex-start;
+}
+
+.eyeBtn {
+  @include btn-outline;
+  align-self: flex-end;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputWrap input {
+  width: 100%;
+}
+
+.inputWrap .eyeBtn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30px;
+  min-width: 30px;
+  padding: 0;
+}
+

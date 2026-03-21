@@ -1,12 +1,12 @@
-const { desc } = require("drizzle-orm");
+const { desc, eq } = require("drizzle-orm");
 const {testimoniesTable, db}= require("../useImports");
-const { validTestimonyToClient, validTestimony } = require("./testimony.utils");
+const { validTestimonyToClient, validTestimony, validTestimonyToServer } = require("./testimony.utils");
 
 class testimonyController {
     static async getTestimonies(req, res) {
         try {
-            const testimonies = await db.select().from(testimoniesTable).orderBy(desc(testimoniesTable.created_at)).where(testimoniesTable.isDeleted, false);
-           
+            const testimonies = await db.select().from(testimoniesTable).where(eq(testimoniesTable.isDeleted, false)).orderBy(desc(testimoniesTable.created_at))
+        
             if (!testimonies || testimonies.length === 0) {
                 return res.status(404).json({ message: "No testimonies found." });
             }
@@ -52,10 +52,10 @@ class testimonyController {
 
             const updatedTestimonyData = validTestimonyToServer(req.body);
 
-            await db.update(testimoniesTable).set(updatedTestimonyData).where(testimoniesTable.id, id);
+            await db.update(testimoniesTable).set(updatedTestimonyData).where(eq(testimoniesTable.id, id));
 
             // fetch the updated testimony to return in the response
-            const updatedTestimony = await db.select().from(testimoniesTable).where(testimoniesTable.id, id);
+            const updatedTestimony = await db.select().from(testimoniesTable).where(eq(testimoniesTable.id, id));
 
             return res.status(200).json({ message: "Testimony updated successfully.", data: validTestimonyToClient(updatedTestimony)[0] });
             
@@ -72,7 +72,7 @@ class testimonyController {
                 return res.status(400).json({ message: "Testimony ID is required." });
             }
 
-            await db.update(testimoniesTable).set({isDeleted: true}).where(testimoniesTable.id, id);
+            await db.update(testimoniesTable).set({isDeleted: true}).where(eq(testimoniesTable.id, id));
 
             return res.status(200).json({ message: "Testimony deleted successfully." });
             

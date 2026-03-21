@@ -25,6 +25,7 @@
 .fieldGroup {
   @include flex-col;
   gap: 6px;
+
   label {
     font-size: 0.8rem;
     font-weight: 600;
@@ -32,6 +33,16 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
+
+  input {
+    @include input-base;
+  }
 }
-.input { @include input-base; }
-.saveBtn { @include btn-success; }
+
+.saveBtn {
+  @include btn-success;
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 8px;
+  width: fit-content;
+}

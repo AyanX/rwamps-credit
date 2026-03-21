@@ -16,8 +16,8 @@ const ResetPasswordPage = () => {
   useEffect(() => {
     const storedToken = sessionStorage.getItem('reset_token');
     if (!storedToken) {
-      toast.error('No reset token found. Please verify your PIN first.');
-      navigate('/forgot-password');
+      toast.error('Please verify your PIN first.');
+      navigate('/login');
       return;
     }
     setToken(storedToken);

@@ -7,18 +7,32 @@ const {
   servicesTable,
   messagesTable,
   statsTable,
-  testimoniesTable
+  whatWeDoTable,
+  socialsTable,
+  testimoniesTable,
+  partnersTable,
+  adminEmail,
+  adminUsername,
+  adminPassword,
+  adminPin,
 } = require("../models/schema");
 
 const db = require("../db/db");
 
 module.exports = {
+  adminEmail,
+  adminUsername,
+  adminPassword,
+  adminPin,
   productsTable,
   contactBranchesTable,
+  whatWeDoTable,
   statsTable,
   aboutUsTable,
   loansTable,
+  socialsTable,
   messagesTable,
+  partnersTable,
   servicesTable,
   testimoniesTable,
   faqsTable,

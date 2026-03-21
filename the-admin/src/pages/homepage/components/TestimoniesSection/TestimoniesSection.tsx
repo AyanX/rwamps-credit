@@ -34,11 +34,11 @@ const TestimoniesSection = () => {
     try {
       if (editItem) {
         const res = await api.put.testimony(editItem.id, form);
-        setTestimonies((prev) => prev.map((t) => (t.id === editItem.id ? (res.data || { ...editItem, ...form }) : t)));
+        setTestimonies((prev) => prev.map((t) => (t.id === editItem.id ? (res.data.data || { ...editItem, ...form }) : t)));
         toast.success(res.data?.message || 'Testimony updated!');
       } else {
         const res = await api.post.testimony(form);
-        setTestimonies((prev) => [...prev, res.data || { id: Date.now(), ...form }]);
+        setTestimonies((prev) => [...prev, res.data.data || { id: Date.now(), ...form }]);
         toast.success(res.data?.message || 'Testimony added!');
       }
       setModalOpen(false);
@@ -103,10 +103,7 @@ const TestimoniesSection = () => {
             <label>Name</label>
             <input type="text" value={form.name} onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))} className={styles.input} required />
           </div>
-          <div className={styles.fieldGroup}>
-            <label>Initials</label>
-            <input type="text" value={form.initials} maxLength={2} onChange={(e) => setForm((prev) => ({ ...prev, initials: e.target.value.toUpperCase() }))} className={styles.input} required />
-          </div>
+          
           <div className={styles.fieldGroup}>
             <label>Occupation</label>
             <input type="text" value={form.occupation} onChange={(e) => setForm((prev) => ({ ...prev, occupation: e.target.value }))} className={styles.input} required />

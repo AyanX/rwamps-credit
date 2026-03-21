@@ -157,9 +157,75 @@ const testimoniesTable = mysqlTable("testimonies", {
 })
 
 
+const partnersTable = mysqlTable("partners", {
+  id: int("id").primaryKey().autoincrement(),
+  client: varchar("client", { length: 255 }).notNull(),
+  isDeleted: boolean("isDeleted").default(false),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().onUpdateNow(),
+})
+
+const whatWeDoTable = mysqlTable("what_we_do", {
+  id: int("id").primaryKey().autoincrement(),
+  image: varchar("image", { length: 255 }).notNull(),
+  blur_image: varchar("blur_image", { length: 255 }),
+  fake_id: varchar("fake_id", { length: 255 }).notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  isDeleted: boolean("isDeleted").default(false),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().onUpdateNow(),
+})   
+
+const socialsTable = mysqlTable("socials", {
+  id: int("id").primaryKey().autoincrement(),
+  email: varchar("email", { length: 255 }).notNull(),
+  linkedin: varchar("linkedin", { length: 255 }).notNull(),
+  twitter: varchar("twitter", { length: 255 }).notNull(),
+  facebook: varchar("facebook", { length: 255 }).notNull(),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().onUpdateNow(),
+})
+
+const adminEmail = mysqlTable("admin_email" , {
+  id: int("id").primaryKey().autoincrement(),
+  email: varchar("email", { length: 255 }).notNull(),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().onUpdateNow(),
+})
+
+adminUsername = mysqlTable("admin_username" , {
+  id: int("id").primaryKey().autoincrement(),
+  username: varchar("username", { length: 255 }).notNull(),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().onUpdateNow(),
+})
+
+adminPassword = mysqlTable("admin_password" , {
+  id: int("id").primaryKey().autoincrement(),
+  password: varchar("password", { length: 255 }).notNull(),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().onUpdateNow(),
+})
+
+adminPin = mysqlTable("admin_pin" , {
+  id: int("id").primaryKey().autoincrement(),
+  pin: varchar("pin", { length: 255 }).notNull(),
+  token:text("token"),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().onUpdateNow(),
+})
+
+
 module.exports = {
+  adminEmail,
+  adminUsername,
+  adminPassword,
+  adminPin,
   productsTable,
+  socialsTable,
   loansTable,
+  whatWeDoTable,
+  partnersTable,
   servicesTable,
     faqsTable,
     messagesTable,

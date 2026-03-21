@@ -1,5 +1,8 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { api } from '../api/api';
+import { toast } from '@/components/Toast';
+import { redirect, useNavigate } from 'react-router-dom';
+import { nav } from 'framer-motion/client';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -8,6 +11,9 @@ interface AuthContextType {
   logout: () => void;
   loading: boolean;
 }
+
+
+
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -21,36 +27,40 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+ 
 
-  // check if user was already logged in
   useEffect(() => {
-    const token = sessionStorage.getItem('auth_token');
-    const email = sessionStorage.getItem('auth_email');
-    if (token && email) {
-      setIsAuthenticated(true);
-      setUserEmail(email);
-    }
-    setLoading(false);
+    const checkAuth = async () => {
+      try {
+        const res = await api.get.email();
+        if (res.status === 200 && res.data?.email) {
+          setIsAuthenticated(true);
+        }
+        redirect("/login");
+      } catch {
+        // Not authenticated
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAuth();
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
+      setLoading(true);
       const res = await api.post.login(email, password);
       if (res.status === 200) {
-        sessionStorage.setItem('auth_token', 'authenticated');
-        sessionStorage.setItem('auth_email', email);
         setIsAuthenticated(true);
-        setUserEmail(email);
         return true;
       }
       return false;
+    
     } catch {
-      // hardcoded fallback for development
-      sessionStorage.setItem('auth_token', 'authenticated');
-      sessionStorage.setItem('auth_email', email);
-      setIsAuthenticated(true);
-      setUserEmail(email);
-      return true;
+      toast.error('Login failed. Please try again.');
+      return false;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -58,12 +68,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       await api.post.logout();
     } catch {
-      // silent — clear local state regardless
+      toast.error('Logout failed. Please try again.');
     }
-    sessionStorage.removeItem('auth_token');
-    sessionStorage.removeItem('auth_email');
     setIsAuthenticated(false);
-    setUserEmail(null);
   };
 
   return (

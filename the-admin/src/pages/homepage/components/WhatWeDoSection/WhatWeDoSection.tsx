@@ -37,15 +37,19 @@ const WhatWeDoSection = () => {
     try {
       const formData = new FormData();
       formData.append('title', form.title);
-      if (file) formData.append('image', file);
+      if (file){ 
+        formData.append('image', file)
+      }else{
+        formData.append('image_url', form.image);
+      }
 
       if (editItem) {
         const res = await api.put.whatWeDo(editItem.id, formData);
-        setWhatWeDo((prev) => prev.map((w) => (w.id === editItem.id ? (res.data || { ...w, ...form }) : w)));
+        setWhatWeDo((prev) => prev.map((w) => (w.id === editItem.id ? (res.data.data || { ...w, ...form }) : w)));
         toast.success(res.data?.message || 'Card updated!');
       } else {
         const res = await api.post.whatWeDo(formData);
-        setWhatWeDo((prev) => [...prev, res.data || { id: Date.now(), ...form }]);
+        setWhatWeDo((prev) => [res.data.data || { id: Date.now(), ...form }, ...prev]);
         toast.success(res.data?.message || 'Card added!');
       }
       setModalOpen(false);
@@ -105,8 +109,25 @@ const WhatWeDoSection = () => {
           </div>
           <div className={styles.fieldGroup}>
             <label>Image</label>
-            <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} className={styles.input} />
-            {(editItem?.image || form.image) && <img src={editItem?.image || form.image} alt="Preview" className={styles.preview} />}
+            <input
+              type="file"
+              id="imageInput"
+              accept="image/*"
+              onChange={(e) => setFile(e.target.files?.[0] || null)}
+              style={{ display: file || editItem?.image || form.image ? 'none' : 'block' }}
+            />
+            {(file || editItem?.image || form.image) && (
+              <label htmlFor="imageInput" style={{color:"white"}} className={styles.changeImageLabel}>
+                {file ? 'Image selected - click to change' : 'Change Image'}
+              </label>
+            )}
+            {(file || editItem?.image || form.image) && (
+              <img
+                src={file ? URL.createObjectURL(file) : editItem?.image || form.image}
+                alt="Preview"
+                className={styles.preview}
+              />
+            )}
           </div>
           <button type="submit" className={styles.saveBtn} disabled={saving}>
             {saving ? 'Saving...' : 'Save'}

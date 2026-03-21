@@ -3,7 +3,7 @@ const {
   verifyRefreshToken,
   verifyToken,
   generateRefreshToken,
-} = require("../../utils/jwt/jwt");
+} = require("../jwt/jwt");
 
 const verifyRefreshTokenFunc = async (req, res, next) => {
   const refreshToken = req.cookies.refreshToken;
@@ -19,8 +19,8 @@ console.log("Verifying refresh token:", refreshToken);
 
     if (decoded) {
      // generate new access token
-      const newAccessToken = generateToken({ id: decoded.id, email: decoded.email});
-      const newRefreshToken = generateRefreshToken({ id: decoded.id, email: decoded.email});
+      const newAccessToken = generateToken({ email: decoded.email});
+      const newRefreshToken = generateRefreshToken({ email: decoded.email});
       res.cookie("token", newAccessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
@@ -48,7 +48,6 @@ console.log("Verifying refresh token:", refreshToken);
 const useAuth = async (req, res, next) => {
   try {
     const token = req.cookies.token;
-
     if (!token) {
         console.error("No token provided, checking refresh token");
       //check refresh token
@@ -62,7 +61,7 @@ const useAuth = async (req, res, next) => {
       }
     }
     console.error("Invalid token");
-    return res.status(401).json({ error: "Unauthorized" });
+    verifyRefreshTokenFunc(req, res, next)
   } catch (error) {
     console.error("Authentication error:", error);
     return res.status(401).json({ error: "Unauthorized" });

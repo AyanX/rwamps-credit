@@ -14,6 +14,12 @@ const messagesRouter = require('./routers/messages/messages.router');
 const path = require('path');
 const statsRouter = require('./routers/homepage/stats/stats.router');
 const testimonyRouter = require('./routers/homepage/testimony/testimony.router');
+const partnersRouter = require('./routers/homepage/partners/partners.router');
+const whatWeDoRouter = require('./routers/homepage/whar-we-do/what-we-do.router');
+const socialsRouter = require('./routers/homepage/socials/socials.router');
+const authRouter = require('./routers/auth/auth.router');
+const cookieParser = require('cookie-parser');
+const useAuth = require('./utils/middlewares/useAuth');
 app.use(cors({
   origin: ["http://localhost:3000", "http://localhost:8080"],
   credentials: true,
@@ -32,6 +38,8 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+app.use(cookieParser());
+
 app.use("/api/products", productsRouter);
 app.use("/api/loans", loansRouter);
 
@@ -47,5 +55,16 @@ app.use("/api/messages", messagesRouter);
 app.use("/api/homepage/stats",statsRouter);
 
 app.use("/api/homepage/testimonies", testimonyRouter)
+
+app.use("/api/homepage/partners", partnersRouter)
+
+app.use("/api/homepage/footer-socials", socialsRouter)
+
+app.use("/api/homepage/what-we-do", whatWeDoRouter)
+
+app.use(useAuth)
+app.use("/api/auth", authRouter);
+
+app.use((err, req, res, next) => {});
 
 module.exports = app;

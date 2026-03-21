@@ -1,11 +1,12 @@
 
 const express = require("express");
 const AboutController = require("../../controllers/about/about.controller");
+const useAuth = require("../../utils/middlewares/useAuth");
 const aboutRouter = express.Router();
 
 aboutRouter.get("/",  AboutController.getAboutUsInfo);
-aboutRouter.post("/",  AboutController.createAboutUsInfo);
-aboutRouter.put("/",  AboutController.updateAboutUsInfo);
-aboutRouter.delete("/:id",  AboutController.deleteAboutUsInfo);
+aboutRouter.post("/", useAuth, AboutController.createAboutUsInfo);
+aboutRouter.put("/", useAuth, AboutController.updateAboutUsInfo);
+aboutRouter.delete("/:id", useAuth, AboutController.deleteAboutUsInfo);
 
 module.exports =aboutRouter

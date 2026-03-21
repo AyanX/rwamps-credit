@@ -56,7 +56,6 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@rwampsfc.com"
-                autoComplete="email"
               />
             </div>
           </div>

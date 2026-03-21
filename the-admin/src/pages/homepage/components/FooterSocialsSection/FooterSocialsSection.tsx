@@ -29,11 +29,11 @@ const FooterSocialsSection = () => {
       <form onSubmit={handleSave} className={styles.socialsForm}>
         <div className={styles.fieldGroup}>
           <label>Email</label>
-          <input type="email" value={form.email || ''} onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))} className={styles.input} placeholder="contact@example.com" />
+          <input type="email" value={form.email || ''} onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))} placeholder="contact@example.com" />
         </div>
         <div className={styles.fieldGroup}>
           <label>Twitter</label>
-          <input type="url" value={form.twitter} onChange={(e) => setForm((prev) => ({ ...prev, twitter: e.target.value }))} className={styles.input} />
+          <input type="url" value={form.twitter} onChange={(e) => setForm((prev) => ({ ...prev, twitter: e.target.value }))} />
         </div>
         <div className={styles.fieldGroup}>
           <label>LinkedIn</label>
@@ -43,7 +43,7 @@ const FooterSocialsSection = () => {
           <label>Facebook</label>
           <input type="url" value={form.facebook} onChange={(e) => setForm((prev) => ({ ...prev, facebook: e.target.value }))} className={styles.input} />
         </div>
-        <button type="submit" className={styles.saveBtn} disabled={saving}>
+        <button type="submit" style={{marginTop:"15px"}} className={styles.saveBtn} disabled={saving}>
           {saving ? 'Saving...' : 'Save Socials'}
         </button>
       </form>

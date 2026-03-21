@@ -87,10 +87,9 @@
   right: 8px;
   display: flex;
   gap: 6px;
-  opacity: 0;
+  opacity: 1;
   transition: opacity $transition-fast;
   z-index: 3;
-  .whatWeDoCard:hover & { opacity: 1; }
 }
 
 .editBtn {
@@ -133,6 +132,20 @@
   }
 }
 .input { @include input-base; }
+.changeImageLabel {
+  display: inline-block;
+  padding: 8px 16px;
+  background: $secondary;
+  color: white;
+  border-radius: $radius-sm;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-fast;
+  &:hover {
+    background: darken($secondary, 10%);
+  }
+}
 .preview {
   width: 100%;
   max-height: 160px;

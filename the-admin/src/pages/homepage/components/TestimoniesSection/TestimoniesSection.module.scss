@@ -67,7 +67,6 @@
   right: 8px;
   display: flex;
   gap: 6px;
-  opacity: 0;
   transition: opacity $transition-fast;
   z-index: 3;
   .testimonyCard:hover & { opacity: 1; }
@@ -81,7 +80,7 @@
   border: none;
   cursor: pointer;
   transition: all $transition-fast;
-  background: rgba(255,255,255,0.25);
+  background: black;
   color: white;
   &:hover { background: rgba(255,255,255,0.4); }
 }
@@ -94,7 +93,7 @@
   border: none;
   cursor: pointer;
   transition: all $transition-fast;
-  background: rgba(255,255,255,0.25);
+  background: rgba(239, 68, 68, 0.8); 
   color: white;
   &:hover { background: rgba(239, 68, 68, 0.8); }
 }

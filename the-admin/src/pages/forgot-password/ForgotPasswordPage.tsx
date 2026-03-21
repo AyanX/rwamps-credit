@@ -29,8 +29,8 @@ const ForgotPasswordPage = () => {
       } else {
         toast.error(res.data?.message || 'Invalid PIN');
       }
-    } catch {
-      toast.error('Request failed. Try again.');
+    } catch  {
+      toast.error( 'Request failed. Try again.');
     } finally {
       setLoading(false);
     }

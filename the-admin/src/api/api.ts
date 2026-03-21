@@ -43,8 +43,8 @@ export const api = {
   post: {
     login: async (email: string, password: string) => http.post('/auth/login', { email, password }),
     logout: async () => http.post('/auth/logout'),
-    forgotPassword: async (pin: string) => http.post('/auth/forgot-password', { pin }),
-    resetPassword: async (data: { password: string; new_password: string; token: string }) => http.post('/new-password', data),
+    forgotPassword: async (pin: string) => http.post('/auth/forgot-password/pin', { pin }),
+    resetPassword: async (data: { password: string; new_password: string; token: string }) => http.post('/auth/new-password', data),
     whatWeDo: async (data: FormData) => http.post('/homepage/what-we-do', data, { headers: { 'Content-Type': 'multipart/form-data' } }),
     testimony: async (data: Record<string, unknown>) => http.post('/homepage/testimonies', data),
     partner: async (data: Record<string, unknown>) => http.post('/homepage/partners', data),

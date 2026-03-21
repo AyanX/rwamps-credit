@@ -34,11 +34,11 @@ const PartnersSection = () => {
     try {
       if (editItem) {
         const res = await api.put.partner(editItem.id, { client: name });
-        setPartners((prev) => prev.map((p) => (p.id === editItem.id ? (res.data || { ...p, client: name }) : p)));
+        setPartners((prev) => prev.map((p) => (p.id === editItem.id ? (res.data.data || { ...p, client: name }) : p)));
         toast.success(res.data?.message || 'Partner updated!');
       } else {
         const res = await api.post.partner({ client: name });
-        setPartners((prev) => [...prev, res.data || { id: Date.now(), client: name }]);
+        setPartners((prev) => [...prev, res.data.data || { id: Date.now(), client: name }]);
         toast.success(res.data?.message || 'Partner added!');
       }
       setModalOpen(false);
