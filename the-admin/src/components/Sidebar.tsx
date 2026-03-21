@@ -6,7 +6,7 @@ import { useData } from '../context/DataContext';
 import { getInitials } from '../utils/getInitials';
 import { useState } from 'react';
 import styles from './Sidebar.module.scss';
-import logo from "../assets/logo.png"
+import logo from "../assets/ll.png"
 const navItems = [
   { path: '/', label: 'Home', icon: Home },
   { path: '/products', label: 'Products', icon: Package },

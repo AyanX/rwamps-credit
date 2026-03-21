@@ -6,6 +6,7 @@ import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { toast } from '../../components/Toast';
 import { PuffLoader } from 'react-spinners';
 import styles from './Login.module.scss';
+import logo from "../../assets/ll.png"
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -42,7 +43,9 @@ const Login = () => {
     <div className={styles.page}>
       <div className={styles.card}>
         <div className={styles.header}>
-          <img src="/placeholder.svg" alt="Logo" className={styles.logo} />
+          <div>
+            <img style={{width:"120px", height:"auto"}} src={logo} alt="Logo" className={styles.logo} />
+          </div>
           <p>Admin Dashboard</p>
         </div>
 
