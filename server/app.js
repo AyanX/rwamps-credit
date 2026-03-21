@@ -62,7 +62,7 @@ app.use("/api/homepage/footer-socials", socialsRouter)
 
 app.use("/api/homepage/what-we-do", whatWeDoRouter)
 
-app.use(useAuth)
+
 app.use("/api/auth", authRouter);
 
 app.use((err, req, res, next) => {});

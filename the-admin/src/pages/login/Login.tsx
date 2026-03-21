@@ -6,13 +6,14 @@ import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { toast } from '../../components/Toast';
 import { PuffLoader } from 'react-spinners';
 import styles from './Login.module.scss';
-import logo from "../../assets/ll.png"
+import logo_blur from "../../assets/ll.png"
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -44,7 +45,21 @@ const Login = () => {
       <div className={styles.card}>
         <div className={styles.header}>
           <div>
-            <img style={{width:"120px", height:"auto"}} src={logo} alt="Logo" className={styles.logo} />
+            {!logoLoaded && (
+              <img
+                style={{ width: '120px', height: 'auto', opacity: 0.5 }}
+                src={logo_blur}
+                alt="Loading logo"
+                className={styles.logo}
+              />
+            )}
+            <img
+              style={{ width: '120px', height: 'auto', display: logoLoaded ? 'block' : 'none' }}
+              src="https://ik.imagekit.io/59p9lo9mv/rwamps%20finance/ll.png"
+              alt="Logo"
+              className={styles.logo}
+              onLoad={() => setLogoLoaded(true)}
+            />
           </div>
           <p>Admin Dashboard</p>
         </div>

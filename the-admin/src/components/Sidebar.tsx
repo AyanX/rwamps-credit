@@ -6,7 +6,7 @@ import { useData } from '../context/DataContext';
 import { getInitials } from '../utils/getInitials';
 import { useState } from 'react';
 import styles from './Sidebar.module.scss';
-import logo from "../assets/ll.png"
+import logo_blur from "../assets/ll.png"
 const navItems = [
   { path: '/', label: 'Home', icon: Home },
   { path: '/products', label: 'Products', icon: Package },
@@ -23,6 +23,7 @@ const Sidebar = () => {
   const { logout } = useAuth();
   const { settingsUsername } = useData();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
   const initials = getInitials(settingsUsername);
 
   return (
@@ -40,7 +41,23 @@ const Sidebar = () => {
 
       <aside className={`${styles.sidebar} ${mobileOpen ? styles.open : ''}`}>
         <div className={styles.brand}>
-          <div className={styles.logoContainer}><img src={logo} alt="Logo" className={styles.logo} /></div>
+          <div className={styles.logoContainer}>
+            {!logoLoaded && (
+              <img
+                style={{ width: '100%', height: '100%', objectFit: 'contain', opacity: 0.5 }}
+                src={logo_blur}
+                alt="Loading logo"
+                className={styles.logo}
+              />
+            )}
+            <img
+              style={{ width: '100%', height: '100%', objectFit: 'contain', display: logoLoaded ? 'block' : 'none' }}
+              src="https://ik.imagekit.io/59p9lo9mv/rwamps%20finance/ll.png"
+              alt="Logo"
+              className={styles.logo}
+              onLoad={() => setLogoLoaded(true)}
+            />
+          </div>
           <button className={styles.closeBtn} onClick={() => setMobileOpen(false)}>
             <X size={20} />
           </button>

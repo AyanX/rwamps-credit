@@ -359,13 +359,17 @@ class AuthController {
 
   static async logout(req, res) {
     try {
+
+      // clear the token cookie and refreshToken
       res.clearCookie("token", {
         httpOnly: true,
         sameSite: "Lax",
         secure: process.env.NODE_ENV === "production",
-      }) 
-      //TODO clear ref token
-
+      }).clearCookie("refreshToken", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Lax",
+      });
       return res.json({ message: "Logout successful" });
     } catch (error) {
       console.error("Error during logout:", error);

@@ -1,25 +1,26 @@
 const express= require('express');
 const AuthController = require('../../controllers/auth/auth.controller');
+const useAuth = require('../../utils/middlewares/useAuth');
 
 const authRouter = express.Router();
 
 //username = /
-authRouter.get("/", AuthController.getAdminUsername)
-authRouter.put("/", AuthController.setAdminUsername)
+authRouter.get("/",useAuth, AuthController.getAdminUsername)
+authRouter.put("/", useAuth, AuthController.setAdminUsername)
 
-authRouter.get("/email", AuthController.getAdminEmail)
-authRouter.post("/email", AuthController.setAdminEmail)
+authRouter.get("/email", useAuth, AuthController.getAdminEmail)
+authRouter.post("/email", useAuth, AuthController.setAdminEmail)
 
-authRouter.put("/reset-password", AuthController.setAdminPassword)
+authRouter.put("/reset-password", useAuth, AuthController.setAdminPassword)
 
-authRouter.post("/forgot-password/pin", AuthController.checkPin)
+authRouter.post("/forgot-password/pin", useAuth, AuthController.checkPin)
 
-authRouter.put("/pin", AuthController.setAdminPin)
+authRouter.put("/pin", useAuth, AuthController.setAdminPin)
 
-authRouter.post("/new-password", AuthController.setNewPasswordWithPin)
+authRouter.post("/new-password", useAuth, AuthController.setNewPasswordWithPin)
 
 authRouter.post("/login", AuthController.login)
 
-authRouter.post("/logout", AuthController.logout)
+authRouter.post("/logout", useAuth, AuthController.logout)
 
 module.exports = authRouter;
