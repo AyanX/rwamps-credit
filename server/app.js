@@ -24,6 +24,9 @@ app.use(cors({
   origin: ["http://localhost:5173", "http://localhost:8080", "http://localhost:8081"],
   credentials: true,
 }));
+const helmet = require('helmet');
+const { ne } = require('drizzle-orm');
+app.use(helmet());
 
 
 app.use(
@@ -62,9 +65,12 @@ app.use("/api/homepage/footer-socials", socialsRouter)
 
 app.use("/api/homepage/what-we-do", whatWeDoRouter)
 
-
 app.use("/api/auth", authRouter);
 
-app.use((err, req, res, next) => {});
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Something went wrong!' });
+  next();
+});
 
 module.exports = app;
