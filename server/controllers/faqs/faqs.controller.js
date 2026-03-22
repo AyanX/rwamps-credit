@@ -4,7 +4,7 @@ const { faqsToClientFormat, validToDbFormat,faqsValidatorAllFieldsRequired } = r
 class faqsController {
   static async getAllFaqs(req, res) {
     try {
-      const faqs = await db.select().from(faqsTable).orderBy(desc(faqsTable.created_at));
+      const faqs = await db.select().from(faqsTable).where(eq(faqsTable.isDeleted, false))
       const formattedFaqs = faqsToClientFormat(faqs);
       return res.json({
         data: formattedFaqs,

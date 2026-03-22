@@ -22,6 +22,7 @@ const AboutPage = () => {
     title: "",
     content: "",
     bg_color: "#22C55E",
+    text_color: "#FFFFFF",
   });
   const [saving, setSaving] = useState(false);
 
@@ -38,6 +39,7 @@ const AboutPage = () => {
     title: string;
     content: string;
     bg_color: string;
+    text_color: string;
   }) => {
     setEditItemId(item.id);
     setForm({ ...item });
@@ -105,8 +107,8 @@ setSaving(true);
             <div className={styles.cardIcon}>
               <DynamicIcon name={item.icon || "Target"} size={28} />
             </div>
-            <h3>{item.title}</h3>
-            <p>{item.content}</p>
+            <h3 style={{ color: item.text_color || '#FFFFFF' }}>{item.title}</h3>
+            <p style={{ color: item.text_color || '#FFFFFF' }}>{item.content}</p>
             <div className={styles.btnActions}>
               <button
                 type="button"
@@ -186,6 +188,19 @@ setSaving(true);
                 }
               />
               <span>{form.bg_color}</span>
+            </div>
+          </div>
+          <div className={styles.fieldGroup}>
+            <label>Text Color</label>
+            <div className={styles.colorRow}>
+              <input
+                type="color"
+                value={form.text_color}
+                onChange={(e) =>
+                  setForm((prev) => ({ ...prev, text_color: e.target.value }))
+                }
+              />
+              <span>{form.text_color}</span>
             </div>
           </div>
           <button type="submit" className={styles.saveBtn} disabled={saving}>

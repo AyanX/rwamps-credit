@@ -61,6 +61,9 @@ export const testimonies = [
     loan_purpose: "Agribusiness",
     initials: "SN",
     card_color: "linear-gradient(135deg, hsl(130,60%,35%), hsl(130,50%,65%))",
+    text_color: "#ffffff",
+    loan_purpose_text_color: "#ffffff",
+    initials_bg_color: "#0a5f39",
   },
   {
     id: 2,
@@ -70,6 +73,9 @@ export const testimonies = [
     loan_purpose: "Trade Finance",
     initials: "DO",
     card_color: "linear-gradient(135deg, #1a3a8a, #3b72e2)",
+    text_color: "#ffffff",
+    loan_purpose_text_color: "#ffffff",
+    initials_bg_color: "#1d4ed8",
   },
   {
     id: 3,
@@ -79,6 +85,9 @@ export const testimonies = [
     loan_purpose: "Growth Loan",
     initials: "GA",
     card_color: "linear-gradient(135deg, #7a2d08, #e8732a)",
+    text_color: "#ffffff",
+    loan_purpose_text_color: "#ffffff",
+    initials_bg_color: "#7c2d12",
   },
   {
     id: 4,
@@ -88,6 +97,9 @@ export const testimonies = [
     loan_purpose: "Venture",
     initials: "JK",
     card_color: "linear-gradient(135deg, #2a6e1a, #5aaa2a)",
+    text_color: "#ffffff",
+    loan_purpose_text_color: "#ffffff",
+    initials_bg_color: "#20520f",
   },
 ];
 
@@ -179,6 +191,7 @@ export const aboutMissionVision = {
     title: "Our Mission",
     content: "To empower small and medium-sized enterprises and farmers in Uganda by providing accessible and affordable credit solutions, fostering economic growth, and improving livelihoods.",
     bg_color: "missionPrimary",
+    text_color: "#ffffff",
   },
   vision: {
     id: 2,
@@ -186,6 +199,7 @@ export const aboutMissionVision = {
     title: "Our Vision",
     content: "To be the leading credit finance provider in Uganda, known for our commitment to customer satisfaction, community development, and sustainable economic impact.",
     bg_color: "missionNavy",
+    text_color: "#ffffff",
   },
 };
 

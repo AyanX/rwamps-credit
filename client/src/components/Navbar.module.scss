@@ -17,18 +17,26 @@
 }
 
 .logo {
-  position: relative;
-  div{
-    display: flex;
-    align-items: center;
-    gap: $space-2;
-    width: 60px;
-    img{
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      z-index: 10;
-    }
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.logoImg {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: $radius-full;
+  object-fit: cover;
+}
+
+.logoText {
+  font-family: $font-poppins;
+  font-size: $text-lg;
+  font-weight: 700;
+  color: $foreground;
+  em {
+    font-style: normal;
+    color: $primary;
   }
 }
 
@@ -36,10 +44,7 @@
   display: none;
   align-items: center;
   gap: $space-8;
-
-  @include lg {
-    display: flex;
-  }
+  @include lg { display: flex; }
 }
 
 .link {
@@ -47,10 +52,7 @@
   font-weight: 500;
   color: rgba($foreground, 0.8);
   transition: $transition-colors;
-
-  &:hover {
-    color: $primary;
-  }
+  &:hover { color: $primary; }
 }
 
 .actions {
@@ -68,14 +70,8 @@
   color: $primary-foreground;
   transition: $transition-opacity;
   display: none;
-
-  @include sm {
-    display: inline-flex;
-  }
-
-  &:hover {
-    opacity: 0.9;
-  }
+  @include sm { display: inline-flex; }
+  &:hover { opacity: 0.9; }
 }
 
 .hamburger {
@@ -87,23 +83,16 @@
   cursor: pointer;
   color: $foreground;
   padding: $space-1;
-
-  @include lg {
-    display: none;
-  }
+  @include lg { display: none; }
 }
 
-// Mobile menu
 .mobileMenu {
   display: flex;
   flex-direction: column;
   padding: $space-4 $space-6 $space-6;
   background: $background;
   border-bottom: 1px solid $border;
-
-  @include lg {
-    display: none;
-  }
+  @include lg { display: none; }
 }
 
 .mobileLink {
@@ -113,10 +102,7 @@
   color: $foreground;
   border-bottom: 1px solid $border;
   transition: $transition-colors;
-
-  &:hover {
-    color: $primary;
-  }
+  &:hover { color: $primary; }
 }
 
 .mobileCta {

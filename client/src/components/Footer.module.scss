@@ -21,10 +21,7 @@
 
 .grid {
   @include grid(1, $space-10);
-
-  @include md {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  @include md { grid-template-columns: repeat(4, 1fr); }
 }
 
 .logo {
@@ -32,12 +29,18 @@
   font-size: $text-2xl;
   font-weight: 700;
   color: $foreground;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: $space-2;
   margin-bottom: $space-4;
+  em { font-style: normal; color: $primary; }
+}
 
-  span {
-    color: $primary;
-  }
+.logoImg {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-full;
+  object-fit: cover;
 }
 
 .desc {
@@ -47,10 +50,7 @@
   margin-bottom: $space-6;
 }
 
-.socials {
-  display: flex;
-  gap: $space-3;
-}
+.socials { display: flex; gap: $space-3; }
 
 .socialIcon {
   width: 2.5rem;
@@ -61,11 +61,7 @@
   color: $muted-foreground;
   font-size: $text-sm;
   transition: $transition-colors;
-
-  &:hover {
-    background: $primary;
-    color: $primary-foreground;
-  }
+  &:hover { background: $primary; color: $primary-foreground; }
 }
 
 .colTitle {
@@ -78,11 +74,7 @@
   margin-bottom: $space-5;
 }
 
-.linkList {
-  display: flex;
-  flex-direction: column;
-  gap: $space-3;
-}
+.linkList { display: flex; flex-direction: column; gap: $space-3; }
 
 .linkItem {
   font-size: $text-sm;
@@ -105,9 +97,7 @@
   &:hover { text-decoration: underline; }
 }
 
-.bottom {
-  border-top: 1px solid $border;
-}
+.bottom { border-top: 1px solid $border; }
 
 .bottomInner {
   @include container;
@@ -115,23 +105,12 @@
   padding-bottom: $space-5;
   @include flex-col;
   gap: $space-4;
-
-  @include md {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
+  @include md { flex-direction: row; justify-content: space-between; align-items: center; }
 }
 
-.copyright {
-  color: $muted-foreground;
-  font-size: $text-sm;
-}
+.copyright { color: $muted-foreground; font-size: $text-sm; }
 
-.legalLinks {
-  display: flex;
-  gap: $space-6;
-}
+.legalLinks { display: flex; gap: $space-6; }
 
 .legalLink {
   font-size: $text-sm;

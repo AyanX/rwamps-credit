@@ -114,12 +114,12 @@
 }
 
 .right {
-  display: none;
+ 
   width: 380px;
   @include flex-col;
   gap: $space-4;
-
-  @include lg {
+ display: none;
+  @media (min-width: 1020px) {
     display: flex;
   }
 }

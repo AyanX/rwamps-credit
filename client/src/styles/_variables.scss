@@ -1,36 +1,38 @@
 // ============================================================
-// Design Tokens — Rwamps FC
+// Design Tokens — Rwamps FC (Gold & Green theme)
 // ============================================================
 
 // ─── Colors ───────────────────────────────────────────────
-$background:          hsl(80, 20%, 95%);
+$background:          hsl(45, 30%, 96%);
 $foreground:          hsl(210, 30%, 15%);
 $card:                hsl(210, 30%, 18%);
 $card-foreground:     hsl(0, 0%, 95%);
 $popover:             hsl(0, 0%, 100%);
 $popover-foreground:  hsl(210, 30%, 15%);
-$primary:             hsl(130, 60%, 35%);
+$primary:             hsl(145, 63%, 32%);
 $primary-foreground:  hsl(0, 0%, 100%);
-$secondary:           hsl(130, 15%, 92%);
+$secondary:           hsl(45, 25%, 93%);
 $secondary-foreground:hsl(210, 30%, 15%);
-$muted:               hsl(130, 10%, 90%);
+$muted:               hsl(45, 15%, 90%);
 $muted-foreground:    hsl(210, 10%, 45%);
-$accent:              hsl(130, 55%, 40%);
+$accent:              hsl(145, 55%, 38%);
 $accent-foreground:   hsl(0, 0%, 100%);
 $destructive:         hsl(0, 84.2%, 60.2%);
 $destructive-foreground: hsl(210, 40%, 98%);
-$border:              hsl(80, 10%, 85%);
-$input:               hsl(80, 10%, 85%);
-$ring:                hsl(130, 60%, 35%);
+$border:              hsl(45, 15%, 85%);
+$input:               hsl(45, 15%, 85%);
+$ring:                hsl(145, 63%, 32%);
 
 // Brand
 $navy:       hsl(210, 40%, 15%);
-$green:      hsl(130, 60%, 35%);
-$lime:       hsl(130, 50%, 65%);
-$sage:       hsl(140, 15%, 35%);
+$green:      hsl(145, 63%, 32%);
+$lime:       hsl(80, 50%, 55%);
+$sage:       hsl(150, 20%, 35%);
 $dark-bg:    hsl(210, 30%, 14%);
 $dark-surface: hsl(210, 25%, 18%);
 $orange:     hsl(25, 80%, 50%);
+$gold:       hsl(42, 75%, 50%);
+$gold-light: hsl(42, 60%, 70%);
 $white:      #ffffff;
 $black:      #000000;
 

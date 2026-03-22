@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import s from "./Navbar.module.scss";
+
 const navLinks = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about" },
@@ -18,9 +19,12 @@ const Navbar = () => {
     <nav className={s.nav}>
       <div className={s.inner}>
         <Link to="/" className={s.logo}>
-          <div>
-            kjjh
-          </div>
+          <img
+            src="https://ik.imagekit.io/59p9lo9mv/rwamps%20finance/ll.png"
+            alt="Rwamps Credit Finance"
+            className={s.logoImg}
+          />
+          <span className={s.logoText}>Rwamps <em>FC</em></span>
         </Link>
         <div className={s.links}>
           {navLinks.map((item) => (

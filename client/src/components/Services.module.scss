@@ -134,7 +134,7 @@
 
 .agri {
   @extend .card;
-  padding: 0;
+  padding: 0px;
   min-height: 280px;
   position: relative;
 
@@ -143,12 +143,13 @@
     grid-row: span 2;
   }
 
-  img {
+  &>img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: absolute;
     inset: 0;
+    bottom: 50px;
   }
 }
 

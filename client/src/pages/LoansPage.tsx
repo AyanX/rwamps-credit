@@ -1,7 +1,7 @@
-import Navbar from "../components/Navbar";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowRight } from "lucide-react";
-import { loansData } from "@/data/siteData";
+import { useData } from "@/context/DataContext";
 import s from "./LoansPage.module.scss";
 
 const whyChoose = [
@@ -21,10 +21,18 @@ type LoanCardData = {
   duration_end: string;
   eligibility: string;
   bg_color: string;
+  text_color: string;
 };
 
 const LoanCard = ({ card }: { card: LoanCardData }) => (
-  <div className={`${s.loanCard} ${s[card.bg_color as keyof typeof s]}`}>
+  <div
+    className={s.loanCard}
+    style={{
+      backgroundColor: card.bg_color || "000000",
+      color: card.text_color || "ffffff",
+    }}
+    data-bg={card.bg_color}
+  >
     <div>
       <h3 className={s.loanCardTitle}>{card.title}</h3>
       <p className={s.loanCardDesc}>{card.content}</p>
@@ -52,96 +60,102 @@ const LoanCard = ({ card }: { card: LoanCardData }) => (
   </div>
 );
 
-const LoansPage = () => (
-  <div className={s.page}>
-    <Navbar />
+const LoansPage = () => {
+  const { loans } = useData();
 
-    <section className={s.hero}>
-      <img className={s.heroBgImg} src="https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Lush green agricultural field" loading="eager" />
-      <div className={s.heroOverlay} />
-      <div className={s.heroContent}>
-        <div className={s.heroBadge}>
-          <span className={s.badgeDot} />
-          Loan Products
-        </div>
-        <h1 className={s.heroTitle}>Transform Your<br /><span>Future.</span></h1>
-        <p className={s.heroSubtitle}>Rwamps FC is committed to helping individuals, businesses, and farmers across Uganda achieve their dreams through affordable, flexible, and easy-to-access financing.</p>
-        <div className={s.heroButtons}>
-          <a href="/contact" className={s.btnPrimary}>Apply for Loan →</a>
-          <a href="#loans" className={s.btnOutline}>Explore Loans</a>
-        </div>
-      </div>
-    </section>
+  return (
+    <div className={s.page}>
+      <Navbar />
 
-    <div id="loans" className={s.loansWrapper}>
-      {loansData.map((section, i) => (
-        <section key={i} className={s.loanSection}>
-          <div className={s.loanInner}>
-            <div className={s.loanSidebar}>
-              <div className={s.sectionTag}>{section.title}</div>
-              <h2 className={s.loanTitle}>{section.subtitle}</h2>
-              <div className={s.underline} />
-              <p className={s.loanDesc}>{section.content}</p>
-            </div>
-            <div>
-              <div className={s.loanGrid}>
-                <LoanCard card={{
-                  title: section.card_one_title,
-                  content: section.card_one_content,
-                  amount_start: section.card_one_loan_amount_start,
-                  amount_end: section.card_one_loan_amount_end,
-                  duration_start: section.card_one_duration_start,
-                  duration_end: section.card_one_duration_end,
-                  eligibility: section.card_one_eligibility,
-                  bg_color: section.card_one_bg_color,
-                }} />
-                <LoanCard card={{
-                  title: section.card_two_title,
-                  content: section.card_two_content,
-                  amount_start: section.card_two_loan_amount_start,
-                  amount_end: section.card_two_loan_amount_end,
-                  duration_start: section.card_two_duration_start,
-                  duration_end: section.card_two_duration_end,
-                  eligibility: section.card_two_eligibility,
-                  bg_color: section.card_two_bg_color,
-                }} />
+      <section className={s.hero}>
+        <img className={s.heroBgImg} src="https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Lush green agricultural field" loading="eager" />
+        <div className={s.heroOverlay} />
+        <div className={s.heroContent}>
+          <div className={s.heroBadge}>
+            <span className={s.badgeDot} />
+            Loan Products
+          </div>
+          <h1 className={s.heroTitle}>Transform Your<br /><span>Future.</span></h1>
+          <p className={s.heroSubtitle}>Rwamps FC is committed to helping individuals, businesses, and farmers across Uganda achieve their dreams through affordable, flexible, and easy-to-access financing.</p>
+          <div className={s.heroButtons}>
+            <a href="/contact" className={s.btnPrimary}>Apply for Loan →</a>
+            <a href="#loans" className={s.btnOutline}>Explore Loans</a>
+          </div>
+        </div>
+      </section>
+
+      <div id="loans" className={s.loansWrapper}>
+        {loans.map((section, i) => (
+          <section key={i} className={s.loanSection}>
+            <div className={s.loanInner}>
+              <div className={s.loanSidebar}>
+                <div className={s.sectionTag}>{section.title}</div>
+                <h2 className={s.loanTitle}>{section["sub-title"]}</h2>
+                <div className={s.underline} />
+                <p className={s.loanDesc}>{section.content}</p>
+              </div>
+              <div>
+                <div className={s.loanGrid}>
+                  <LoanCard card={{
+                    title: section.card_one_title,
+                    content: section.card_one_content,
+                    amount_start: section.card_one_loan_amount_start,
+                    amount_end: section.card_one_loan_amount_end,
+                    duration_start: section.card_one_duration_start,
+                    duration_end: section.card_one_duration_end,
+                    eligibility: section.card_one_eligibility,
+                    bg_color: section.card_one_bg_color,
+                    text_color: section.card_one_text_color,
+                  }} />
+                  <LoanCard card={{
+                    title: section.card_two_title,
+                    content: section.card_two_content,
+                    amount_start: section.card_two_loan_amount_start,
+                    amount_end: section.card_two_loan_amount_end,
+                    duration_start: section.card_two_duration_start,
+                    duration_end: section.card_two_duration_end,
+                    eligibility: section.card_two_eligibility,
+                    bg_color: section.card_two_bg_color,
+                    text_color: section.card_two_text_color,
+                  }} />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      ))}
-    </div>
-
-    <section className={s.whySection}>
-      <div className={s.sectionCenter}>
-        <div className={s.sectionTag}>Why Choose Us</div>
-        <h2 className={s.sectionTitle}>Why Rwamps FC?</h2>
-        <div className={s.underlineCenter} />
-      </div>
-      <div className={s.whyGrid}>
-        {whyChoose.map((item) => (
-          <div key={item.title} className={s.whyCard}>
-            <div className={s.whyEmoji}>{item.icon}</div>
-            <h3 className={s.whyTitle}>{item.title}</h3>
-            <p className={s.whyDesc}>{item.desc}</p>
-          </div>
+          </section>
         ))}
       </div>
-    </section>
 
-    <section className={s.cta}>
-      <div className={s.ctaInner}>
-        <h2>Ready to Get Started?</h2>
-        <p>Apply for a loan today and let us support your journey to financial growth and prosperity.</p>
-        <div className={s.ctaButtons}>
-          <a href="/contact" className={s.ctaBtnWhite}>Apply Now →</a>
-          <a href="tel:+256779135953" className={s.ctaBtnOutline}>Call Us Today</a>
+      <section className={s.whySection}>
+        <div className={s.sectionCenter}>
+          <div className={s.sectionTag}>Why Choose Us</div>
+          <h2 className={s.sectionTitle}>Why Rwamps FC?</h2>
+          <div className={s.underlineCenter} />
         </div>
-      </div>
-    </section>
+        <div className={s.whyGrid}>
+          {whyChoose.map((item) => (
+            <div key={item.title} className={s.whyCard}>
+              <div className={s.whyEmoji}>{item.icon}</div>
+              <h3 className={s.whyTitle}>{item.title}</h3>
+              <p className={s.whyDesc}>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-    <Footer />
-  </div>
-);
+      <section className={s.cta}>
+        <div className={s.ctaInner}>
+          <h2>Ready to Get Started?</h2>
+          <p>Apply for a loan today and let us support your journey to financial growth and prosperity.</p>
+          <div className={s.ctaButtons}>
+            <a href="/contact" className={s.ctaBtnWhite}>Apply Now →</a>
+            <a href="tel:+256779135953" className={s.ctaBtnOutline}>Call Us Today</a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
 
 export default LoansPage;

@@ -12,14 +12,14 @@ export interface Stats {
   total_clients: number; total_clients_initials: string;
 }
 export interface WhatWeDoItem { id: number; image: string; blur_image: string; title: string; }
-export interface Testimony { id: number; name: string; bio: string; occupation: string; loan_purpose: string; initials: string; card_color: string; }
+export interface Testimony { id: number; name: string; bio: string; occupation: string; loan_purpose: string; initials: string; card_color: string; text_color: string; loan_purpose_text_color: string; initials_bg_color: string; }
 export interface Partner { id: number; client: string; }
 export interface FooterSocials { twitter: string; linkedin: string; facebook: string; email: string; }
-export interface Product { id: number; icon: string; title: string; content: string; points: string[]; bg_color: string; }
+export interface Product { id: number; icon: string; title: string; content: string; points: string[]; bg_color: string; text_color: string; }
 export interface Branch { id: number; branch_name: string; location: string; phone_number: string; email: string; website: string; open_time: string; close_time: string; }
 export interface Faq { id: number; title: string; content: string; }
 export interface Message { id: number; name: string; email: string; subject: string; message: string; phone_number: string; isRead: boolean; isDeleted: boolean; }
-export interface AboutItem { id: number; name: string; icon: string; title: string; content: string; bg_color: string; }
+export interface AboutItem { id: number; name: string; icon: string; title: string; content: string; bg_color: string; text_color: string; }
 export type AboutSection = AboutItem[];
 export interface Service { id: number; image: string; blur_image: string; title: string; content: string; icon: string; points: string[]; }
 export interface Loan {

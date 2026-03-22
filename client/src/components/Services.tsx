@@ -1,4 +1,8 @@
 import s from "./Services.module.scss";
+import tractor from "../assets/tractor.png";
+import salary from "../assets/salary.png";
+import finance from "../assets/finance.png";
+import agribusiness from "../assets/agrics.png";
 
 const Services = () => (
   <section className={s.section}>
@@ -20,7 +24,7 @@ const Services = () => (
         {/* Venture */}
         <div className={s.venture}>
           <div className={s.cardHeader}>
-            <span className={s.emojiLg}>🚀</span>
+            <span className={s.emojiLg}><img style={{height:"24px", width:"24px", objectFit:"contain"}} src={salary} alt="Finance" /></span>
             <span className={s.arrow}>↗</span>
           </div>
           <div>
@@ -35,7 +39,7 @@ const Services = () => (
           <img src="https://images.pexels.com/photos/974314/pexels-photo-974314.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Uganda agribusiness" />
           <div className={s.agriOverlay} />
           <div className={s.agriContent}>
-            <span className={s.emojiLg} style={{ marginBottom: '0.75rem', display: 'block' }}>🌱</span>
+             <span className={s.emojiLg}><img style={{height:"32px", marginLeft:"0.5rem", width:"32px", objectFit:"cover"}} src={agribusiness} alt="Agribusiness" /></span>
             <h3 className={s.cardTitleMd} style={{ color: 'white' }}>Agribusiness Financing</h3>
             <p className={s.cardDesc} style={{ color: 'rgba(255,255,255,0.7)' }}>Funding Africa's food security through smart investments in agribusiness.</p>
             <span className={s.cardLink} style={{ color: 'rgba(255,255,255,0.8)' }}>Learn More →</span>
@@ -84,7 +88,7 @@ const Services = () => (
         {/* Equipment */}
         <div className={s.equipCard}>
           <div className={s.cardHeader}>
-            <span className={s.emoji}>🏗️</span>
+            <span className={s.emoji}><img style={{height:"20px", width:"20px", objectFit:"contain"}} src={tractor} alt="Tractor" /></span>
             <span className={s.arrow}>↗</span>
           </div>
           <div>
@@ -97,7 +101,7 @@ const Services = () => (
         {/* Green */}
         <div className={s.greenCard}>
           <div className={s.cardHeader}>
-            <span className={s.emoji}>🌿</span>
+            <span className={s.emoji}><img style={{height:"20px", width:"20px", objectFit:"contain"}} src={finance} alt="Green Finance" /></span>
             <span className={s.arrow}>↗</span>
           </div>
           <div>

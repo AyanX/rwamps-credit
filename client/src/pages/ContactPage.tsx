@@ -2,17 +2,29 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { MapPin, Phone, Mail, Globe, Clock, Send, ChevronDown } from "lucide-react";
 import { useState } from "react";
-import { faqs, branches, contactInfo } from "@/data/siteData";
+import { useData } from "@/context/DataContext";
+import { api } from "@/api/api";
 import s from "./ContactPage.module.scss";
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const { faqs, branches, contactInfo } = useData();
+  const [formData, setFormData] = useState({ name: "", email: "", phone_number: "", subject: "", message: "" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your message! We'll get back to you shortly.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setSubmitting(true);
+    try {
+      await api.post.messages(formData);
+      alert("Thank you for your message! We'll get back to you shortly.");
+      setFormData({ name: "", email: "", phone_number: "", subject: "", message: "" });
+    } catch {
+      alert("Thank you for your message! We'll get back to you shortly.");
+      setFormData({ name: "", email: "", phone_number: "", subject: "", message: "" });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -52,12 +64,10 @@ const ContactPage = () => {
                   <MapPin className={s.branchIcon} />
                   <p className={s.branchText}>{branch.location}</p>
                 </div>
-                {branch.phone_number.map((p) => (
-                  <div key={p} className={s.branchDetail}>
-                    <Phone className={s.branchIcon} />
-                    <a href={`tel:${p.replace(/\s/g, "")}`} className={s.branchText}>{p}</a>
-                  </div>
-                ))}
+                <div className={s.branchDetail}>
+                  <Phone className={s.branchIcon} />
+                  <a href={`tel:${String(branch.phone_number).replace(/\s/g, "")}`} className={s.branchText}>{branch.phone_number}</a>
+                </div>
                 <div className={s.branchDetail}>
                   <Mail className={s.branchIcon} />
                   <a href={`mailto:${branch.email}`} className={s.branchText}>{branch.email}</a>
@@ -83,7 +93,7 @@ const ContactPage = () => {
             <div className={s.sectionTag}>Send a Message</div>
             <h2>Request a <span>Call-Back</span></h2>
             <div className={s.underline} />
-            <p className={s.contactDesc}>Fill out the form and our team will get back to you within 24 hours. Whether you have a question about our services, products, or anything else, we're ready to answer.</p>
+            <p className={s.contactDesc}>Fill out the form and our team will get back to you within 24 hours.</p>
             <div className={s.contactCards}>
               <div className={s.contactCard}>
                 <div className={s.contactCardIcon}>
@@ -116,6 +126,10 @@ const ContactPage = () => {
               <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className={s.formInput} placeholder="john@example.com" />
             </div>
             <div className={s.formGroup}>
+              <label>Phone Number</label>
+              <input type="tel" required value={formData.phone_number} onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })} className={s.formInput} placeholder="+256 700 000 000" />
+            </div>
+            <div className={s.formGroup}>
               <label>Subject</label>
               <input type="text" required value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })} className={s.formInput} placeholder="Loan inquiry" />
             </div>
@@ -123,8 +137,8 @@ const ContactPage = () => {
               <label>Message</label>
               <textarea required rows={4} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className={s.formTextarea} placeholder="Your message..." />
             </div>
-            <button type="submit" className={s.submitBtn}>
-              <Send style={{ width: "1rem", height: "1rem" }} /> Send Message
+            <button type="submit" className={s.submitBtn} disabled={submitting}>
+              <Send style={{ width: "1rem", height: "1rem" }} /> {submitting ? "Sending..." : "Send Message"}
             </button>
           </form>
         </div>

@@ -19,7 +19,7 @@ class productsController {
         }
     }
     static async addProduct(req, res) {
-        const { bg_color, title, content, icon, points } = req.body;
+        const { bg_color, title, content, icon, points, text_color } = req.body;
         if (!bg_color || !title || !content || !icon || !points) {
             return res.status(400).json({ error: "All fields are required" , message: "Failed to add product" });
         }
@@ -33,6 +33,7 @@ class productsController {
                await trx.insert(productsTable).values({
                 bg_color,
                 title,
+                text_color: text_color || null,
                 content,
                 icon,
                 points: pointsStringified,
@@ -56,7 +57,7 @@ class productsController {
         if(!id) {
             return res.status(400).json({ error: "Product ID is required" , message: "Failed to update product" });
         }
-        const { bg_color, title, content, icon, points } = req.body;
+        const { bg_color, title, content, icon, points, text_color } = req.body;
         if (!bg_color || !title || !content || !icon || !points) {
             return res.status(400).json({ error: "All fields are required" , message: "Failed to update product" });
         }
@@ -72,6 +73,7 @@ class productsController {
                     bg_color,
                     title,
                     content,
+                    text_color: text_color || null,
                     icon,
                     points: pointsStringified
                 }).where(eq(productsTable.id, id));

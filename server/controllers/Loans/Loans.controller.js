@@ -92,7 +92,6 @@ class LoansController {
       const loans = await db
         .select()
         .from(loansTable)
-        .orderBy(desc(loansTable.created_at))
         .where(eq(loansTable.isDeleted, false));
 
       if (loans.length === 0) {

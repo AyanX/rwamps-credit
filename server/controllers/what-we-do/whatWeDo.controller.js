@@ -10,7 +10,6 @@ class whatWeDoController {
       const whatWeDo = await db
         .select()
         .from(whatWeDoTable)
-        .orderBy(desc(whatWeDoTable.created_at))
         .where(eq(whatWeDoTable.isDeleted, false));
 
       return res.json({ data: validWhatWeDoToClient(whatWeDo) });

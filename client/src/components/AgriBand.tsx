@@ -1,22 +1,30 @@
-import { agriBandCards } from "@/data/siteData";
+import { useData } from "@/context/DataContext";
 import s from "./AgriBand.module.scss";
 
-const AgriBand = () => (
-  <section className={s.section}>
-    <div className={s.inner}>
-      <div className={`reveal ${s.grid}`}>
-        {agriBandCards.map((c, i) => (
-          <div key={c.id} className={`${s.card} ${i === 0 ? s.tall : ""}`}>
-            <img src={c.image} alt={c.title} />
-            <div className={s.cardOverlay} />
-            <div className={s.cardLabel}>
-              <span className={s.labelBadge}>{c.title}</span>
+const AgriBand = () => {
+  const { whatWeDo } = useData();
+
+  return (
+    <section className={s.section}>
+      <div className={s.inner}>
+        <div className={`reveal ${s.grid}`}>
+          {whatWeDo.map((c, i) => (
+            <div key={c.id} className={`${s.card} ${i === 0 ? s.tall : ""}`}>
+              <img
+                src={c.image}
+                alt={c.title}
+                style={{ background: `url(${c.blur_image}) center/cover no-repeat` }}
+              />
+              <div className={s.cardOverlay} />
+              <div className={s.cardLabel}>
+                <span className={s.labelBadge}>{c.title}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default AgriBand;

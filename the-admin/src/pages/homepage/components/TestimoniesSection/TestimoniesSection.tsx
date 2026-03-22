@@ -11,20 +11,20 @@ const TestimoniesSection = () => {
   const { testimonies, setTestimonies } = useData();
   const [modalOpen, setModalOpen] = useState(false);
   const [editItem, setEditItem] = useState<Testimony | null>(null);
-  const [form, setForm] = useState<Omit<Testimony, 'id'>>({ name: '', bio: '', occupation: '', loan_purpose: '', initials: '', card_color: '#22C55E' });
+  const [form, setForm] = useState<Omit<Testimony, 'id'>>({ name: '', bio: '', occupation: '', loan_purpose: '', initials: '', card_color: '#22C55E', text_color: '#FFFFFF', loan_purpose_text_color: '#FFFFFF', initials_bg_color: '#FFFFFF' });
   const [saving, setSaving] = useState(false);
   const [deleteId, setDeleteId] = useState<number | null>(null);
   const [deleting, setDeleting] = useState(false);
 
   const openEdit = (t: Testimony) => {
     setEditItem(t);
-    setForm({ name: t.name, bio: t.bio, occupation: t.occupation, loan_purpose: t.loan_purpose, initials: t.initials, card_color: t.card_color });
+    setForm({ name: t.name, bio: t.bio, occupation: t.occupation, loan_purpose: t.loan_purpose, initials: t.initials, card_color: t.card_color, text_color: t.text_color || '#FFFFFF', loan_purpose_text_color: t.loan_purpose_text_color || '#FFFFFF', initials_bg_color: t.initials_bg_color || '#FFFFFF' });
     setModalOpen(true);
   };
 
   const openAdd = () => {
     setEditItem(null);
-    setForm({ name: '', bio: '', occupation: '', loan_purpose: '', initials: '', card_color: '#22C55E' });
+    setForm({ name: '', bio: '', occupation: '', loan_purpose: '', initials: '', card_color: '#22C55E', text_color: '#FFFFFF', loan_purpose_text_color: '#FFFFFF', initials_bg_color: '#FFFFFF' });
     setModalOpen(true);
   };
 
@@ -77,11 +77,11 @@ const TestimoniesSection = () => {
           <div key={testimony.id} className={styles.testimonyCard} style={{ background: testimony.card_color || '#22C55E' }}>
             <div className={styles.testimonyHeader}>
               <span className={styles.quoteIcon}>"</span>
-              <span className={styles.loanBadge}>{testimony.loan_purpose}</span>
+              <span className={styles.loanBadge} style={{ color: testimony.loan_purpose_text_color || '#FFFFFF', border: `1px solid ${testimony.loan_purpose_text_color || '#FFFFFF'}` }}>{testimony.loan_purpose}</span>
             </div>
-            <p className={styles.testimonyBio}>{testimony.bio}</p>
+            <p className={styles.testimonyBio} style={{ color: testimony.text_color || '#FFFFFF' }}>{testimony.bio}</p>
             <div className={styles.testimonyAuthor}>
-              <div className={styles.avatar}>{testimony.initials}</div>
+              <div className={styles.avatar} style={{ backgroundColor: testimony.initials_bg_color || '#FFFFFF', width: '40px', height: '40px' }}>{testimony.initials}</div>
               <div>
                 <div className={styles.authorName}>{testimony.name}</div>
                 <div className={styles.authorOccupation}>{testimony.occupation}</div>
@@ -121,6 +121,27 @@ const TestimoniesSection = () => {
             <div className={styles.colorPicker}>
               <input type="color" value={form.card_color} onChange={(e) => setForm((prev) => ({ ...prev, card_color: e.target.value }))} />
               <span>{form.card_color}</span>
+            </div>
+          </div>
+          <div className={styles.fieldGroup}>
+            <label>Text Color</label>
+            <div className={styles.colorPicker}>
+              <input type="color" value={form.text_color} onChange={(e) => setForm((prev) => ({ ...prev, text_color: e.target.value }))} />
+              <span>{form.text_color}</span>
+            </div>
+          </div>
+          <div className={styles.fieldGroup}>
+            <label>Loan Purpose Text Color</label>
+            <div className={styles.colorPicker}>
+              <input type="color" value={form.loan_purpose_text_color} onChange={(e) => setForm((prev) => ({ ...prev, loan_purpose_text_color: e.target.value }))} />
+              <span>{form.loan_purpose_text_color}</span>
+            </div>
+          </div>
+          <div className={styles.fieldGroup}>
+            <label>Initials Background Color</label>
+            <div className={styles.colorPicker}>
+              <input type="color" value={form.initials_bg_color} onChange={(e) => setForm((prev) => ({ ...prev, initials_bg_color: e.target.value }))} />
+              <span>{form.initials_bg_color}</span>
             </div>
           </div>
           <button type="submit" className={styles.saveBtn} disabled={saving}>

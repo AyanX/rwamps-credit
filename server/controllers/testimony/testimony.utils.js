@@ -5,6 +5,9 @@ const validTestimony = (testimony) => {
     !testimony.bio ||
     !testimony.loan_purpose ||
     !testimony.card_color
+    || !testimony.text_color
+    || !testimony.loan_purpose_text_color
+    || !testimony.initials_bg_color
   ) {
     return false;
   }
@@ -21,6 +24,9 @@ const validTestimonyToClient = (testimonies) => {
       loan_purpose: testimony.loan_purpose,
       initials: testimony.initials,
       card_color: testimony.card_color,
+      text_color: testimony.text_color,
+      loan_purpose_text_color: testimony.loan_purpose_text_color,
+      initials_bg_color: testimony.initials_bg_color,
     };
   });
 };
@@ -43,6 +49,9 @@ const validTestimonyToServer = (testimony) => {
     loan_purpose: testimony.loan_purpose,
     initials: getInitials(testimony.name),
     card_color: testimony.card_color,
+    text_color: testimony.text_color,
+    loan_purpose_text_color: testimony.loan_purpose_text_color,
+    initials_bg_color: testimony.initials_bg_color,
   };
 };
 

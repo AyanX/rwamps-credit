@@ -6,6 +6,7 @@
 
 
 const loansValidatorAllFieldsRequired = (data) => {
+
   if (
     !data.title ||
     !data.sub_title ||

@@ -1,6 +1,6 @@
 
 const aboutCardValidator=(about)=>{
-    const { name,icon ,title,content, bg_color} = about;
+    const { name,icon ,title,content, bg_color, text_color} = about;
     if (!name || !icon || !title || !content || !bg_color) {
       return false; 
     }
@@ -11,6 +11,7 @@ const aboutCardToClientFormat=(about)=>{
     return {
         id: about.id,
         name: about.name,
+        text_color: about.text_color,
         icon: about.icon,
         title: about.title,
         content: about.content,
@@ -21,6 +22,7 @@ const aboutCardToClientFormat=(about)=>{
 const aboutCardToDbFormat=(about)=>{
     return {
         name: about.name,
+        text_color: about.text_color,
         icon: about.icon,
         title: about.title,
         content: about.content,

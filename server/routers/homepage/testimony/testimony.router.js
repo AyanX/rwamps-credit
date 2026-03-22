@@ -2,15 +2,16 @@ const express = require('express');
 
 const testimonyRouter = express.Router();
 
-const testimonyController = require("../../../controllers/testimony/testimony.controller")
+const testimonyController = require("../../../controllers/testimony/testimony.controller");
+const useAuth = require('../../../utils/middlewares/useAuth');
 
 testimonyRouter.get("/", testimonyController.getTestimonies);
 
-testimonyRouter.post("/", testimonyController.createTestimony);
+testimonyRouter.post("/", useAuth, testimonyController.createTestimony);
 
-testimonyRouter.put("/:id", testimonyController.updateTestimony);
+testimonyRouter.put("/:id", useAuth, testimonyController.updateTestimony);
 
-testimonyRouter.delete("/:id", testimonyController.deleteTestimony);
+testimonyRouter.delete("/:id", useAuth, testimonyController.deleteTestimony);
 
 
 
