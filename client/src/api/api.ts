@@ -1,6 +1,3 @@
-// ============================================================
-// API Client — Rwamps FC
-// ============================================================
 
 import type {
   Stats,
@@ -17,6 +14,7 @@ import type {
   ContactMessage,
 } from "./types";
 
+// const BASE_URL = "https://api.rwampscreditfinance.com/api";
 const BASE_URL = "http://localhost:9000/api";
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {

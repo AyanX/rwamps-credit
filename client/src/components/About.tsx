@@ -1,5 +1,6 @@
 import { useData } from "@/context/DataContext";
 import s from "./About.module.scss";
+import { Link } from "react-router-dom";
 
 
 
@@ -22,7 +23,9 @@ const About = () => {
             <p className={s.text}>
               Our innovative approach combines traditional microfinance with modern technology to reach farmers and enterprises across Uganda, supporting sustainable agriculture and inclusive growth.
             </p>
-            <a href="#" className={s.link}>Discover Our Story →</a>
+            <Link to="/about" className={s.link}>
+              Discover Our Story →
+            </Link>
           </div>
 
           <div className={s.rightCol}>

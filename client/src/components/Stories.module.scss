@@ -84,7 +84,7 @@
   padding: $space-1 $space-3;
   border-radius: $radius-full;
   background: rgba($primary, 0.2);
-  color: $primary;
+  border: 1px solid rgba($primary, 0.3);
   font-size: 10px;
   font-weight: 600;
 }
@@ -109,7 +109,8 @@
 }
 
 .normalQuote {
-  color: rgba($foreground, 0.8);
+  color: inherit;
+  opacity: 0.8;
 }
 
 .author {
@@ -149,19 +150,21 @@
 }
 
 .featuredName {
-  color: $card-foreground;
+  color: inherit;
 }
 
 .featuredBiz {
-  color: rgba($card-foreground, 0.6);
+  color: inherit;
+  opacity: 0.6;
 }
 
 .normalName {
-  color: $foreground;
+  color: #ffffff;
 }
 
 .normalBiz {
-  color: $muted-foreground;
+  color: #ffffff;
+  opacity: 0.8;
 }
 
 // Regular card

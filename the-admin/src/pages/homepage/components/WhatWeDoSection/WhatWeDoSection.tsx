@@ -40,7 +40,7 @@ const WhatWeDoSection = () => {
       if (file){ 
         formData.append('image', file)
       }else{
-        formData.append('image_url', form.image);
+       
       }
 
       if (editItem) {

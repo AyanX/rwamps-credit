@@ -57,16 +57,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h4 className={s.colTitle}>Legal</h4>
-            <ul className={s.linkList}>
-              {legalLinks.map((link) => (
-                <li key={link}>
-                  <a href="#" className={s.linkItem}>{link}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
 
           <div>
             <h4 className={s.colTitle}>Contact</h4>
@@ -89,7 +79,9 @@ const Footer = () => {
           </p>
           <div className={s.legalLinks}>
             {["Privacy", "Terms", "Cookies"].map((l) => (
-              <a key={l} href="#" className={s.legalLink}>{l}</a>
+              <Link key={l} to="#" className={s.legalLink}>
+                {l}
+              </Link>
             ))}
           </div>
         </div>
