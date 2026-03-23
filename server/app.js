@@ -19,19 +19,25 @@ const whatWeDoRouter = require('./routers/homepage/whar-we-do/what-we-do.router'
 const socialsRouter = require('./routers/homepage/socials/socials.router');
 const authRouter = require('./routers/auth/auth.router');
 const cookieParser = require('cookie-parser');
-const useAuth = require('./utils/middlewares/useAuth');
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:8080", "http://localhost:8081"],
+  origin: ["http://localhost:5173", "http://localhost:8080", "http://localhost:8081", "https://admin.rwampscreditfinance.com", "https://testing.rwampscreditfinance.com/"],
   credentials: true,
 }));
+
+
 const helmet = require('helmet');
-const { ne } = require('drizzle-orm');
-app.use(helmet());
-
-
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  })
+);
 app.use(
   "/uploads",
-  express.static(path.join(__dirname, "public/uploads"))
+  (req, res, next) => {
+    res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+    next();
+  },
+  express.static("public/uploads")
 );
 
 app.use(express.json({ limit: "10mb" }));
