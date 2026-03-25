@@ -1,18 +1,46 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+ 
 import { ArrowRight, Check } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { useData } from "@/context/DataContext";
 import s from "./ServicesPage.module.scss";
+import { HashLink } from 'react-router-hash-link';
+import { Link } from "react-router-dom";
+import servicesBlur from "../assets/services-blur.jpg"
 
 const ServicesPage = () => {
-  const { services } = useData();
+  const { services , branches} = useData();
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete) {
+      setImageLoaded(true);
+    }
+  }, []);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
   return (
-    <div className={s.page}>
-      <Navbar />
-
+    <div className={s.page}> 
       <section className={s.hero}>
-        <img className={s.heroBgImg} src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Business meeting" loading="eager" />
+        <img 
+          ref={imgRef}
+          className={s.heroBgImg} 
+          src="https://ik.imagekit.io/59p9lo9mv/rwamps%20finance/services.jpg" 
+          alt="Business meeting" 
+          loading="eager" 
+          onLoad={handleImageLoad}
+          style={{ 
+            backgroundImage: imageLoaded ? 'none' : `url(${servicesBlur})`,
+            backgroundSize: 'cover', 
+            backgroundPosition: 'center', 
+            opacity: imageLoaded ? 1 : 0, 
+            transition: 'opacity 0.25s ease-out' 
+          }}
+        />
         <div className={s.heroOverlay} />
         <div className={s.heroContent}>
           <div className={s.heroBadge}>
@@ -27,8 +55,8 @@ const ServicesPage = () => {
             Comprehensive financial services including foreign exchange, money transfers, mobile money, and agent banking — all under one roof.
           </p>
           <div className={s.heroButtons}>
-            <a href="/contact" className={s.btnPrimary}>Get Started →</a>
-            <a href="#services" className={s.btnOutline}>Explore Services</a>
+             <Link to="/contact" className={s.btnPrimary}>Get Started →</Link> 
+            <HashLink smooth to="#services" className={s.btnOutline}>Explore Services</HashLink>
           </div>
         </div>
       </section>
@@ -56,8 +84,11 @@ const ServicesPage = () => {
                     </div>
                   ))}
                 </div>
-                <button className={s.serviceBtn}>
-                  Learn More <ArrowRight style={{ width: "1rem", height: "1rem" }} />
+                <button >
+                  <HashLink smooth to="/contact" className={s.btnPrimary} >
+                  Contact Us
+                  <ArrowRight className={s.arrowIcon} />
+                  </HashLink>
                 </button>
               </div>
             </div>
@@ -70,13 +101,12 @@ const ServicesPage = () => {
           <h2>Need Our Services?</h2>
           <p>Visit any of our branches or contact us to get started with our financial services.</p>
           <div className={s.ctaButtons}>
-            <a href="/contact" className={s.ctaBtnWhite}>Contact Us →</a>
-            <a href="tel:+256779135953" className={s.ctaBtnOutline}>Call +256 779 135 953</a>
+            <Link to="/contact" className={s.ctaBtnWhite}>Contact Us →</Link>
+            <a href={`tel:${branches[0]?.phone_number}`} className={s.ctaBtnOutline}>Call {branches[0]?.phone_number}</a>
           </div>
         </div>
       </section>
-
-      <Footer />
+ 
     </div>
   );
 };

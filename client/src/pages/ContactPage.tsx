@@ -1,16 +1,32 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { MapPin, Phone, Mail, Globe, Clock, Send, ChevronDown } from "lucide-react";
-import { useState } from "react";
+ 
+import { MapPin, Phone, Mail, Globe, Clock, Send, ChevronDown} from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { useData } from "@/context/DataContext";
 import { api } from "@/api/api";
 import s from "./ContactPage.module.scss";
+import { HashLink } from 'react-router-hash-link';
+import { Link } from "react-router-dom";
+import heroBlur from "../assets/finance-contact-blur.jpg"
+
 
 const ContactPage = () => {
   const { faqs, branches, contactInfo } = useData();
   const [formData, setFormData] = useState({ name: "", email: "", phone_number: "", subject: "", message: "" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete) {
+      setImageLoaded(true);
+    }
+  }, []);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,10 +45,23 @@ const ContactPage = () => {
 
   return (
     <div className={s.page}>
-      <Navbar />
 
       <section className={s.hero}>
-        <img className={s.heroBgImg} src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Team collaboration" loading="eager" />
+        <img 
+          ref={imgRef}
+          className={s.heroBgImg} 
+          src="https://ik.imagekit.io/59p9lo9mv/rwamps%20finance/finance-contact.jpg" 
+          alt="Team collaboration" 
+          loading="eager" 
+          onLoad={handleImageLoad} 
+          style={{ 
+            backgroundImage: imageLoaded ? 'none' : `url(${heroBlur})`,
+            backgroundSize: 'cover', 
+            backgroundPosition: 'center', 
+            opacity: imageLoaded ? 1 : 0, 
+            transition: 'opacity 0.1s ease-out' 
+          }} 
+        />
         <div className={s.heroOverlay} />
         <div className={s.heroContent}>
           <div className={s.heroBadge}>
@@ -43,7 +72,7 @@ const ContactPage = () => {
           <p className={s.heroSubtitle}>Contact us to schedule a one-on-one session with one of our experts. We're here to help you grow.</p>
           <div className={s.heroButtons}>
             <a href={`tel:${contactInfo.phone.replace(/\s/g, "")}`} className={s.btnPrimary}>Call Us Now →</a>
-            <a href="#contact-form" className={s.btnOutline}>Send a Message</a>
+            <HashLink smooth to="#contact-form" className={s.btnOutline}>Send a Message</HashLink>
           </div>
         </div>
       </section>
@@ -74,7 +103,7 @@ const ContactPage = () => {
                 </div>
                 <div className={s.branchDetail}>
                   <Globe className={s.branchIcon} />
-                  <a href={`https://${branch.website}`} className={s.branchText}>{branch.website}</a>
+                  <Link to="/" className={s.branchText}>{branch.website}</Link>
                 </div>
                 <div className={s.branchDetail}>
                   <Clock className={s.branchIcon} />
@@ -166,7 +195,6 @@ const ContactPage = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

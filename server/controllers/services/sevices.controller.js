@@ -119,7 +119,7 @@ class servicesController {
 
         const updatedService = await db.select().from(servicesTable).where(eq(servicesTable.id, id)).limit(1);
 
-        res.json({message: "Service updated successfully", imageUrl: imgUrl, data: validServiceToClient(updatedService)[0]});
+        res.json({message: "Service updated successfully", imageUrl: imgUrl,  data: validServiceToClient(updatedService)[0]});
 
         //if no req.fileUrl but we have req.body.image_url,  image was never changed , no need to generate blur image again, we can return early
         if(!req.fileUrl && req.body.image_url){

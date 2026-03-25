@@ -18,7 +18,6 @@ const Tech = () => (
           <p className={s.desc}>
             By leveraging mobile money, real-time loan processing and data-driven insights, Rwamps FC delivers financial services anywhere. Our tech stack fuels embedded financial services, offering access to finance through a cutting-edge digital-first approach while making it accessible to smallholder farmers across Uganda.
           </p>
-          <button className={s.btn}>Explore Our Platform →</button>
         </div>
 
         <div className={`reveal ${s.widgets}`}>

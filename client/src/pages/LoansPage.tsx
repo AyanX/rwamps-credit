@@ -1,9 +1,9 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+ 
 import { ArrowRight } from "lucide-react";
 import { useData } from "@/context/DataContext";
 import s from "./LoansPage.module.scss";
-
+import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 const whyChoose = [
   { icon: "🎯", title: "Tailored Solutions", desc: "A diverse range of loans designed to meet the unique needs of farmers, entrepreneurs, and families." },
   { icon: "📅", title: "Flexible Repayment", desc: "Loan durations that align with business and farming cycles, easing the repayment burden." },
@@ -54,9 +54,9 @@ const LoanCard = ({ card }: { card: LoanCardData }) => (
         <strong>Eligibility:</strong> {card.eligibility}
       </div>
     </div>
-    <a href="/contact" className={s.applyLink}>
+    <Link to="/contact" className={s.applyLink}>
       Apply Now <ArrowRight className={s.arrowIcon} />
-    </a>
+    </Link>
   </div>
 );
 
@@ -64,9 +64,7 @@ const LoansPage = () => {
   const { loans } = useData();
 
   return (
-    <div className={s.page}>
-      <Navbar />
-
+    <div className={s.page}> 
       <section className={s.hero}>
         <img className={s.heroBgImg} src="https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Lush green agricultural field" loading="eager" />
         <div className={s.heroOverlay} />
@@ -78,8 +76,8 @@ const LoansPage = () => {
           <h1 className={s.heroTitle}>Transform Your<br /><span>Future.</span></h1>
           <p className={s.heroSubtitle}>Rwamps FC is committed to helping individuals, businesses, and farmers across Uganda achieve their dreams through affordable, flexible, and easy-to-access financing.</p>
           <div className={s.heroButtons}>
-            <a href="/contact" className={s.btnPrimary}>Apply for Loan →</a>
-            <a href="#loans" className={s.btnOutline}>Explore Loans</a>
+            <Link to="/contact" className={s.btnPrimary}>Apply for Loan →</Link>
+            <HashLink smooth to="#loans" className={s.btnOutline}>Explore Loans</HashLink>
           </div>
         </div>
       </section>
@@ -147,13 +145,12 @@ const LoansPage = () => {
           <h2>Ready to Get Started?</h2>
           <p>Apply for a loan today and let us support your journey to financial growth and prosperity.</p>
           <div className={s.ctaButtons}>
-            <a href="/contact" className={s.ctaBtnWhite}>Apply Now →</a>
+            <Link to="/contact" className={s.ctaBtnWhite}>Apply Now →</Link>
             <a href="tel:+256779135953" className={s.ctaBtnOutline}>Call Us Today</a>
           </div>
         </div>
       </section>
-
-      <Footer />
+ 
     </div>
   );
 };

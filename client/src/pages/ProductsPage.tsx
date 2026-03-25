@@ -1,9 +1,9 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+ 
 import { ArrowRight, Wheat, Beef, Tractor, Building2, Briefcase, Package } from "lucide-react";
 import { useData } from "@/context/DataContext";
 import s from "./ProductsPage.module.scss";
-
+import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 const iconMap: Record<string, React.ElementType> = { Wheat, Beef, Tractor, Building2, Briefcase, Package };
 
 const ventureProducts = [
@@ -17,9 +17,7 @@ const ProductsPage = () => {
   const { products } = useData();
 
   return (
-    <div className={s.page}>
-      <Navbar />
-
+    <div className={s.page}> 
       <section className={s.hero}>
         <img className={s.heroBgImg} src="https://images.pexels.com/photos/974314/pexels-photo-974314.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Agricultural landscape" loading="eager" />
         <div className={s.heroOverlay} />
@@ -31,8 +29,8 @@ const ProductsPage = () => {
           <h1 className={s.heroTitle}>Agricultural<br /><span>Loan Products.</span></h1>
           <p className={s.heroSubtitle}>Comprehensive financing solutions designed specifically for Uganda's agricultural sector and growing enterprises.</p>
           <div className={s.heroButtons}>
-            <a href="/contact" className={s.btnPrimary}>Apply Now →</a>
-            <a href="#products" className={s.btnOutline}>View Products</a>
+            <Link to="/contact" className={s.btnPrimary}>Apply Now →</Link>
+            <HashLink smooth to="#products" className={s.btnOutline}>View Products</HashLink>
           </div>
         </div>
       </section>
@@ -98,7 +96,7 @@ const ProductsPage = () => {
               </div>
               <h3 className={s.ventureTitle}>{vp.title}</h3>
               <p className={s.ventureDesc}>{vp.desc}</p>
-              <a href="/contact" className={s.ventureLink}>Apply Now →</a>
+              <Link to="/contact" className={s.ventureLink}>Apply Now →</Link>
             </div>
           ))}
         </div>
@@ -109,13 +107,12 @@ const ProductsPage = () => {
           <h2>Ready to Grow Your Business?</h2>
           <p>Apply for a loan today and let us support your agricultural or business ambitions.</p>
           <div className={s.ctaButtons}>
-            <a href="/contact" className={s.ctaBtnWhite}>Apply Now →</a>
+            <Link to="/contact" className={s.ctaBtnWhite}>Apply Now →</Link>
             <a href="tel:+256779135953" className={s.ctaBtnOutline}>Call Us Today</a>
           </div>
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

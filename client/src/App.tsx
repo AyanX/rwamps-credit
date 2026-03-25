@@ -1,13 +1,30 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { DataProvider } from "./context/DataContext";
 import Index from "./pages/Index.tsx";
-import AboutPage from "./pages/AboutPage.tsx";
-import ServicesPage from "./pages/ServicesPage.tsx";
-import ProductsPage from "./pages/ProductsPage.tsx";
-import ContactPage from "./pages/ContactPage.tsx";
-import LoansPage from "./pages/LoansPage.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import { lazy, Suspense } from "react";
+//lazy loaded pages
+const AboutPage =lazy(() => import("./pages/AboutPage.tsx"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage.tsx"));
+const ProductsPage = lazy(() => import("./pages/ProductsPage.tsx"));
+const ContactPage = lazy(() => import("./pages/ContactPage.tsx"));
+const LoansPage = lazy(() => import("./pages/LoansPage.tsx"));
+const NotFound = lazy(() => import("./pages/NotFound.tsx"));
+
+import Loader from "./components/Loader.tsx";
+
+import ScrollToTop from "./components/ScrollToTop.tsx";
+import Navbar from "./components/Navbar.tsx";
+import Footer from "./components/Footer.tsx";
+
+const Layout = () => (
+  <div>
+    <Navbar/>
+    {<Outlet/>}
+    <Footer/>
+  </div>
+);
+
 
 const queryClient = new QueryClient();
 
@@ -15,15 +32,19 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <DataProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/loans" element={<LoansPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <ScrollToTop>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<Suspense fallback={<Loader />}><AboutPage /></Suspense>} />
+              <Route path="/services" element={<Suspense fallback={<Loader />}><ServicesPage /></Suspense>} />
+              <Route path="/products" element={<Suspense fallback={<Loader />}><ProductsPage /></Suspense>} />
+              <Route path="/loans" element={<Suspense fallback={<Loader />}><LoansPage /></Suspense>} />
+              <Route path="/contact" element={<Suspense fallback={<Loader />}><ContactPage /></Suspense>} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </ScrollToTop>
       </BrowserRouter>
     </DataProvider>
   </QueryClientProvider>

@@ -2,7 +2,7 @@ import axios from 'axios';
 // "https://api.rwampscreditfinance.com/api",
 // base axios instance with credentials
 const http = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:9000/api",
+  baseURL: import.meta.env.VITE_API_URL || "https://api.rwampscreditfinance.com/api",
   withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
 });

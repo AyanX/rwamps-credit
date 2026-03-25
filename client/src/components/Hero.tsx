@@ -1,16 +1,42 @@
 import { useData } from "@/context/DataContext";
 import s from "./Hero.module.scss";
+import { Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import heroBlur from "../assets/hero-home.jpeg"
+
 
 const Hero = () => {
   const { stats } = useData();
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete) {
+      setImageLoaded(true);
+    }
+  }, []);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
   return (
     <section className={s.hero}>
       <img
+        ref={imgRef}
         className={s.bgImg}
-        src="https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        src="https://ik.imagekit.io/59p9lo9mv/rwamps%20finance/herr.jpeg"
         alt="Lush green agricultural field"
         loading="eager"
+        onLoad={handleImageLoad}
+        style={{
+          backgroundImage: imageLoaded ? 'none' : `url(${heroBlur})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: imageLoaded ? 1 : 0,
+          transition: 'opacity 0.1s ease-out',
+        }}
       />
       <div className={s.overlay} />
 
@@ -32,9 +58,10 @@ const Hero = () => {
           </p>
 
           <div className={s.buttons}>
-            <button className={s.btnPrimary}>Get Started →</button>
-            <button className={s.btnOutline}>Learn More</button>
+            <Link to="/products" className={s.btnPrimary}>Explore Products →</Link>
+            <Link to="/contact" className={s.btnOutline}>Contact Us</Link>
           </div>
+          
 
           <div className={s.statsBar}>
             {[

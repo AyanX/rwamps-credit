@@ -20,7 +20,7 @@ const socialsRouter = require('./routers/homepage/socials/socials.router');
 const authRouter = require('./routers/auth/auth.router');
 const cookieParser = require('cookie-parser');
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:8080", "http://localhost:8081", "https://admin.rwampscreditfinance.com", "https://testing.rwampscreditfinance.com/"],
+  origin: ["http://localhost:5173", "http://localhost:8080", "http://localhost:8081", "https://admin.rwampscreditfinance.com", "https://test.rwampscreditfinance.com/"],
   credentials: true,
 }));
 

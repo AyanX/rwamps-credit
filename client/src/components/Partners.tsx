@@ -1,5 +1,6 @@
 import { useData } from "@/context/DataContext";
 import s from "./Partners.module.scss";
+import { Link } from "react-router-dom";
 
 const Partners = () => {
   const { partners } = useData();
@@ -11,7 +12,7 @@ const Partners = () => {
           <div className={s.textCol}>
             <h2>Our Investors & Partners</h2>
             <p>Join a network of investors and financial institutions shaping Africa's future.</p>
-            <button className={s.btn}>Become a Partner</button>
+            <Link to="/contact" className={s.btnPrimary}><button className={s.btn}>Become a Partner</button></Link>
           </div>
 
           <div className={s.logoGrid}>

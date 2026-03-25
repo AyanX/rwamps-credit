@@ -1,11 +1,12 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 import { Users, Clock, Shield, Lightbulb, Heart, Award, Target, Telescope } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { useData } from "@/context/DataContext";
 import s from "./AboutPage.module.scss";
 import missionLogo from "../assets/mission.png";
 import visionLogo from "../assets/vision.png";
-
+import { Link } from "react-router-dom";
+import aboutBlur from "../assets/finace-about-blur.jpeg"
 
 const values = [
   { icon: Users, title: "Team Work", desc: "Collaborative approach to solving financial challenges together." },
@@ -27,13 +28,39 @@ const reasons = [
 
 const AboutPage = () => {
   const { stats, about } = useData();
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete) {
+      setImageLoaded(true);
+    }
+  }, []);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
   return (
     <div className={s.page}>
-      <Navbar />
 
       <section className={s.hero}>
-        <img className={s.heroBgImg} src="https://images.pexels.com/photos/2518861/pexels-photo-2518861.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="African farmer in field" loading="eager" />
+        <img 
+          ref={imgRef}
+          className={s.heroBgImg} 
+          src="https://ik.imagekit.io/59p9lo9mv/rwamps%20finance/finace-about.jpeg" 
+          alt="African farmer in field" 
+          loading="eager" 
+          onLoad={handleImageLoad}
+          style={{ 
+            backgroundImage: imageLoaded ? 'none' : `url(${aboutBlur})`,
+            backgroundSize: 'cover', 
+            backgroundPosition: 'center', 
+            opacity: imageLoaded ? 1 : 0, 
+            transition: 'opacity 0.45s ease-out' 
+          }}
+        />
         <div className={s.heroOverlay} />
         <div className={s.heroContent}>
           <div className={s.heroBadge}>
@@ -49,8 +76,8 @@ const AboutPage = () => {
             Transforming the financial landscape for MSMEs and farmers in Western Uganda since inception.
           </p>
           <div className={s.heroButtons}>
-            <a href="/contact" className={s.btnPrimary}>Get Started →</a>
-            <a href="#about-content" className={s.btnOutline}>Learn More</a>
+            <Link to="/contact" className={s.btnPrimary}>Get Started →</Link>
+            <Link to="/about" className={s.btnOutline}>Learn More</Link>
           </div>
           <div className={s.heroStats}>
             {[
@@ -167,11 +194,10 @@ const AboutPage = () => {
         <div className={s.ctaInner}>
           <h2>Ready to Start Your Journey?</h2>
           <p>Join thousands of farmers and entrepreneurs who trust Rwamps FC for their financial growth.</p>
-          <button className={s.ctaBtn}>Apply Now →</button>
+          <Link to="/contact" className={s.ctaBtnPrimary}><button className={s.ctaBtn}>Apply Now →</button></Link>
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

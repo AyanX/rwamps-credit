@@ -14,7 +14,6 @@ import s from "./Index.module.scss";
 
 const Index = () => (
   <div className={s.page}>
-    <Navbar />
     <Hero />
     <MarqueeBand />
     <About />
@@ -25,7 +24,6 @@ const Index = () => (
     <Channels />
     <Stories />
     <Partners />
-    <Footer />
   </div>
 );
 
