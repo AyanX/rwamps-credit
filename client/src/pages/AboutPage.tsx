@@ -7,6 +7,7 @@ import missionLogo from "../assets/mission.png";
 import visionLogo from "../assets/vision.png";
 import { Link } from "react-router-dom";
 import aboutBlur from "../assets/finace-about-blur.jpeg"
+import { AboutHelmet } from "@/helmet";
 
 const values = [
   { icon: Users, title: "Team Work", desc: "Collaborative approach to solving financial challenges together." },
@@ -43,6 +44,8 @@ const AboutPage = () => {
   };
 
   return (
+    <>
+    <AboutHelmet/>
     <div className={s.page}>
 
       <section className={s.hero}>
@@ -198,7 +201,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-    </div>
+    </div></>
   );
 };
 

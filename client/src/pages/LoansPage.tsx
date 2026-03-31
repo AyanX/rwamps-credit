@@ -4,6 +4,7 @@ import { useData } from "@/context/DataContext";
 import s from "./LoansPage.module.scss";
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
+import { LoansHelmet } from "@/helmet";
 const whyChoose = [
   { icon: "🎯", title: "Tailored Solutions", desc: "A diverse range of loans designed to meet the unique needs of farmers, entrepreneurs, and families." },
   { icon: "📅", title: "Flexible Repayment", desc: "Loan durations that align with business and farming cycles, easing the repayment burden." },
@@ -64,6 +65,8 @@ const LoansPage = () => {
   const { loans } = useData();
 
   return (
+    <>
+    <LoansHelmet/>
     <div className={s.page}> 
       <section className={s.hero}>
         <img className={s.heroBgImg} src="https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Lush green agricultural field" loading="eager" />
@@ -151,7 +154,7 @@ const LoansPage = () => {
         </div>
       </section>
  
-    </div>
+    </div></>
   );
 };
 

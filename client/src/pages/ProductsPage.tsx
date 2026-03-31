@@ -4,6 +4,7 @@ import { useData } from "@/context/DataContext";
 import s from "./ProductsPage.module.scss";
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
+import { ProductsHelmet } from "@/helmet";
 const iconMap: Record<string, React.ElementType> = { Wheat, Beef, Tractor, Building2, Briefcase, Package };
 
 const ventureProducts = [
@@ -17,6 +18,8 @@ const ProductsPage = () => {
   const { products } = useData();
 
   return (
+    <>
+    <ProductsHelmet/>
     <div className={s.page}> 
       <section className={s.hero}>
         <img className={s.heroBgImg} src="https://images.pexels.com/photos/974314/pexels-photo-974314.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Agricultural landscape" loading="eager" />
@@ -113,7 +116,7 @@ const ProductsPage = () => {
         </div>
       </section>
 
-    </div>
+    </div></>
   );
 };
 

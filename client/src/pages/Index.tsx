@@ -11,9 +11,11 @@ import Stories from "@/components/Stories";
 import Partners from "@/components/Partners";
 import Footer from "@/components/Footer";
 import s from "./Index.module.scss";
+import { HomepageHelmet } from "@/helmet";
 
 const Index = () => (
   <div className={s.page}>
+    <HomepageHelmet/>
     <Hero />
     <MarqueeBand />
     <About />

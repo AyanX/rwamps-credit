@@ -6,6 +6,7 @@ import s from "./ServicesPage.module.scss";
 import { HashLink } from 'react-router-hash-link';
 import { Link } from "react-router-dom";
 import servicesBlur from "../assets/services-blur.jpg"
+import { ServicesHelmet } from "@/helmet";
 
 const ServicesPage = () => {
   const { services , branches} = useData();
@@ -24,6 +25,8 @@ const ServicesPage = () => {
   };
 
   return (
+    <>
+    <ServicesHelmet/>
     <div className={s.page}> 
       <section className={s.hero}>
         <img 
@@ -107,7 +110,7 @@ const ServicesPage = () => {
         </div>
       </section>
  
-    </div>
+    </div></>
   );
 };
 

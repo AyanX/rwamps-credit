@@ -7,6 +7,7 @@ import s from "./ContactPage.module.scss";
 import { HashLink } from 'react-router-hash-link';
 import { Link } from "react-router-dom";
 import heroBlur from "../assets/finance-contact-blur.jpg"
+import { ContactHelmet } from "@/helmet";
 
 
 const ContactPage = () => {
@@ -44,6 +45,8 @@ const ContactPage = () => {
   };
 
   return (
+    <>
+    <ContactHelmet/>
     <div className={s.page}>
 
       <section className={s.hero}>
@@ -195,7 +198,7 @@ const ContactPage = () => {
         </div>
       </section>
 
-    </div>
+    </div></>
   );
 };
 
