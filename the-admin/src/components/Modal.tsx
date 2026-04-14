@@ -1,4 +1,4 @@
-// Reusable modal component
+
 import { useEffect, type ReactNode } from 'react';
 import { X } from 'lucide-react';
 import styles from './Modal.module.scss';
@@ -12,16 +12,6 @@ interface ModalProps {
 }
 
 const Modal = ({ isOpen, onClose, title, children, maxWidth = '560px' }: ModalProps) => {
-  // close on escape key
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    if (isOpen) document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
-  }, [isOpen, onClose]);
-
-  // prevent body scroll when open
   useEffect(() => {
     if (isOpen) document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = ''; };

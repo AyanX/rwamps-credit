@@ -1,4 +1,4 @@
-// custom toast notification component — replaces sonner
+
 import { useState, useEffect, useCallback } from 'react';
 import { X, CheckCircle, AlertCircle, Info } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -12,7 +12,6 @@ interface ToastItem {
   type: ToastType;
 }
 
-// global state for toasts
 let toastListeners: ((toasts: ToastItem[]) => void)[] = [];
 let toasts: ToastItem[] = [];
 let nextId = 1;
@@ -22,7 +21,6 @@ const updateToasts = (newToasts: ToastItem[]) => {
   toastListeners.forEach((listener) => listener(toasts));
 };
 
-// public toast API — use this to show toasts from anywhere
 export const toast = {
   success: (message: string) => {
     const id = nextId++;
@@ -41,14 +39,12 @@ export const toast = {
   },
 };
 
-// icon based on toast type
 const ToastIcon = ({ type }: { type: ToastType }) => {
   if (type === 'success') return <CheckCircle size={18} />;
   if (type === 'error') return <AlertCircle size={18} />;
   return <Info size={18} />;
 };
 
-// toast container — render once in App
 const ToastContainer = () => {
   const [items, setItems] = useState<ToastItem[]>([]);
 

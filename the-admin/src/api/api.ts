@@ -1,42 +1,33 @@
 import axios from 'axios';
-// "https://api.rwampscreditfinance.com/api",
-// base axios instance with credentials
+
 const http = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://api.rwampscreditfinance.com/api",
+  baseURL: import.meta.env.VITE_API_URL||  "https://api.rwampscreditfinance.com/api",
   withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
 });
 
 export const api = {
   get: {
-    // homepage data
     stats: async () => http.get('/homepage/stats'),
     whatWeDo: async () => http.get('/homepage/what-we-do'),
     testimonies: async () => http.get('/homepage/testimonies'),
     partners: async () => http.get('/homepage/partners'),
     footerSocials: async () => http.get('/homepage/footer-socials'),
 
-    // products
     products: async () => http.get('/products'),
 
-    // contacts
     branches: async () => http.get('/contacts/branches'),
     faqs: async () => http.get('/contacts/faqs'),
     messages: async () => http.get('/messages'),
 
-    // about
     about: async () => http.get('/about'),
 
-    // services
     services: async () => http.get('/services'),
 
-    // loans
     loans: async () => http.get('/loans'),
 
-    // settings — returns { email, username }
     settings: async () => http.get('/auth'),
 
-    // email settings
     email: async () => http.get('/auth/email'),
   },
 

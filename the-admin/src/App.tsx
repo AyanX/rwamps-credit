@@ -9,7 +9,6 @@ import HomePage from './pages/homepage/HomePage';
 import Login from './pages/login/Login';
 import ErrorPage from './pages/error/ErrorPage';
 
-// lazy load all pages except homepage
 const ProductsPage = lazy(() => import('./pages/products/ProductsPage'));
 const ContactsPage = lazy(() => import('./pages/contacts/ContactsPage'));
 const MessagesPage = lazy(() => import('./pages/messages/MessagesPage'));
@@ -20,14 +19,12 @@ const SettingsPage = lazy(() => import('./pages/settings/SettingsPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/forgot-password/ForgotPasswordPage'));
 const ResetPasswordPage = lazy(() => import('./pages/reset-password/ResetPasswordPage'));
 
-// spinner for lazy loaded pages
 const PageLoader = () => (
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
     <PuffLoader color="#22C55E" size={60} />
   </div>
 );
 
-// protects routes — redirects to login if not authenticated
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, loading } = useAuth();
   if (loading) return <PageLoader />;
@@ -35,7 +32,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
-// wrap lazy pages with suspense
 const LazyWrap = ({ children }: { children: React.ReactNode }) => (
   <Suspense fallback={<PageLoader />}>{children}</Suspense>
 );

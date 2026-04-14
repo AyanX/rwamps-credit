@@ -1,4 +1,3 @@
-// extract initials from a name string
 export const getInitials = (name?: string | null): string => {
   if (!name) return 'AD';
   const parts = name.trim().split(/\s+/);

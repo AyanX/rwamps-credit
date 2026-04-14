@@ -1,4 +1,4 @@
-// Sidebar navigation for admin dashboard
+ 
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Package, Mail, MessageSquare, Info, Wrench, Banknote, Settings, LogOut, Menu, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -28,7 +28,6 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* mobile hamburger + initials */}
       <div className={styles.mobileTopBar}>
         <button className={styles.hamburger} onClick={() => setMobileOpen(true)} aria-label="Open menu">
           <Menu size={22} />
@@ -36,7 +35,6 @@ const Sidebar = () => {
         <div className={styles.mobileInitials}>{initials}</div>
       </div>
 
-      {/* overlay for mobile */}
       {mobileOpen && <div className={styles.overlay} onClick={() => setMobileOpen(false)} />}
 
       <aside className={`${styles.sidebar} ${mobileOpen ? styles.open : ''}`}>
@@ -77,7 +75,6 @@ const Sidebar = () => {
           ))}
         </nav>
 
-        {/* user initials badge */}
         <div className={styles.userBadge}>
           <div className={styles.initialsCircle}>{initials}</div>
           <span className={styles.userName}>{settingsUsername || 'Admin'}</span>

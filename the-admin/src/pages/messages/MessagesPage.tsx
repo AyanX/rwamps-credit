@@ -1,4 +1,3 @@
-// Messages admin — inbox with master-detail view
 import { useState } from 'react';
 import { useData, type Message } from '../../context/DataContext';
 import { api } from '../../api/api';
@@ -11,7 +10,6 @@ const MessagesPage = () => {
   const { messages, setMessages, dataLoading } = useData();
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
 
-  // open a message and mark as read
   const openMessage = async (message: Message) => {
     setSelectedMessage(message);
     if (!message.isRead) {
@@ -19,7 +17,7 @@ const MessagesPage = () => {
         await api.put.messages(message.id);
         setMessages((prev) => prev.map((m) => (m.id === message.id ? { ...m, isRead: true } : m)));
       } catch {
-        // silent — not critical
+        // Silently handle if marking as read fails
       }
     }
   };

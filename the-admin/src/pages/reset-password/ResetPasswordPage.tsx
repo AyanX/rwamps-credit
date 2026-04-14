@@ -1,4 +1,4 @@
-// Reset password — set new password after PIN verification
+
 import { useState, useEffect, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { api } from '../../api/api';

@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
         redirect("/login");
       } catch {
-        // Not authenticated
+        // User is not authenticated
       } finally {
         setLoading(false);
       }

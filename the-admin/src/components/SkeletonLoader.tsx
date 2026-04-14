@@ -1,4 +1,3 @@
-// Skeleton loader for cards and content
 import styles from './SkeletonLoader.module.scss';
 
 interface SkeletonLoaderProps {

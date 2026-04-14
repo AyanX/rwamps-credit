@@ -1,4 +1,4 @@
-// Confirmation dialog for deletes
+ 
 import Modal from './Modal';
 import styles from './ConfirmDialog.module.scss';
 

@@ -3,7 +3,6 @@ import { api } from '../api/api';
 
 import { toast } from '../components/Toast';
 
-// types for our data
 export interface Stats {
   loans_disbursed: number; loans_disbursed_initials: string;
   repayment_rate: number; total_disbursed: number;
@@ -101,7 +100,6 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         api.get.settings().catch(() => null),
       ]);
 
-      // use fetched data if available, otherwise keep dummy fallback
       if (statsRes?.data) setStats(statsRes.data.data || statsRes.data);
       if (whatWeDoRes?.data) setWhatWeDo(whatWeDoRes.data.data || whatWeDoRes.data);
       if (testimoniesRes?.data) setTestimonies(testimoniesRes.data.data || testimoniesRes.data);

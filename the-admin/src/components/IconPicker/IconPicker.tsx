@@ -1,4 +1,3 @@
-// Grid-based icon picker using lucide-react
 import { useState, useMemo } from 'react';
 import { icons } from 'lucide-react';
 import type { LucideProps } from 'lucide-react';

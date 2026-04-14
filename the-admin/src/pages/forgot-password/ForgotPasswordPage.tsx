@@ -1,4 +1,4 @@
-// Forgot password — enter secret PIN
+
 import { useState, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { api } from '../../api/api';
@@ -11,7 +11,7 @@ const ForgotPasswordPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // only allow numbers, 4-10 chars
+  // Accept 4-10 digit numeric PIN
   const isValid = /^\d{4,10}$/.test(pin);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -22,7 +22,6 @@ const ForgotPasswordPage = () => {
     try {
       const res = await api.post.forgotPassword(pin);
       if (res.status === 200 && res.data?.token) {
-        // store token temporarily for reset page
         sessionStorage.setItem('reset_token', res.data.token);
         toast.success(res.data?.message || 'PIN verified!');
         navigate('/reset-password');

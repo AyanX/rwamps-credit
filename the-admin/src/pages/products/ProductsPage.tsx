@@ -1,4 +1,4 @@
-// Products admin — manage product cards with icons and colors
+
 import { useState, type FormEvent } from 'react';
 import { useData, type Product } from '../../context/DataContext';
 import { api } from '../../api/api';

@@ -1,4 +1,3 @@
-// About admin — mission & vision cards
 import { useState, type FormEvent } from "react";
 import { useData } from "../../context/DataContext";
 import { api } from "../../api/api";
@@ -26,7 +25,6 @@ const AboutPage = () => {
   });
   const [saving, setSaving] = useState(false);
 
-    //Delete handler ==========
     const [deleteTarget, setDeleteTarget] = useState<
       { id: number }
       | null

@@ -1,4 +1,4 @@
-// === Colors ===
+
 $primary: #0F172A;
 $primary-light: #1E293B;
 $secondary: #2563EB;
@@ -22,18 +22,18 @@ $border-light: #F1F5F9;
 $green-brand: #22C55E;
 $green-brand-hover: #16A34A;
 
-// === Fonts ===
+//   Fonts  
 $font-display: 'Ubuntu', sans-serif;
 $font-body: 'Poppins', sans-serif;
 
-// === Breakpoints ===
+//   Breakpoints  
 $bp-xs: 480px;
 $bp-sm: 640px;
 $bp-md: 768px;
 $bp-lg: 1024px;
 $bp-xl: 1280px;
 
-// === Spacing ===
+//   Spacing  
 $sidebar-width: 260px;
 $sidebar-collapsed: 70px;
 $header-height: 64px;
@@ -41,11 +41,11 @@ $radius: 12px;
 $radius-sm: 8px;
 $radius-xs: 6px;
 
-// === Shadows ===
+//   Shadows  
 $shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
 $shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
 $shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
 
-// === Transitions ===
+//   Transitions  
 $transition-fast: 150ms ease;
 $transition-normal: 250ms ease;

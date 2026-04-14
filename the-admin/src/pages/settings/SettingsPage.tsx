@@ -1,4 +1,4 @@
-// Settings admin — change username, email, password, and PIN
+
 import { useState, useEffect, type FormEvent } from 'react';
 import { useData } from '../../context/DataContext';
 import { api } from '../../api/api';
@@ -10,21 +10,17 @@ import styles from './SettingsPage.module.scss';
 const SettingsPage = () => {
   const { settingsEmail, setSettingsEmail, settingsUsername, setSettingsUsername, dataLoading } = useData();
 
-  // username
   const [username, setUsername] = useState('');
   const [usernameSaving, setUsernameSaving] = useState(false);
 
-  // email
   const [email, setEmail] = useState('');
   const [emailSaving, setEmailSaving] = useState(false);
 
-  // password
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordSaving, setPasswordSaving] = useState(false);
 
-  // PIN
   const [currentPin, setCurrentPin] = useState('');
   const [newPin, setNewPin] = useState('');
   const [confirmPin, setConfirmPin] = useState('');
@@ -33,7 +29,6 @@ const SettingsPage = () => {
 
   useEffect(() => { setUsername(settingsUsername); }, [settingsUsername]);
 
-  // fetch email on mount
   useEffect(() => {
     api.get.email().then((res) => {
       if (res.data?.email) {

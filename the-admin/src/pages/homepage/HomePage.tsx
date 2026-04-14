@@ -1,4 +1,3 @@
-// Homepage admin — composed from section components
 import { useData } from '../../context/DataContext';
 import SkeletonLoader from '../../components/SkeletonLoader';
 import StatsSection from './components/StatsSection/StatsSection';

@@ -1,4 +1,4 @@
-// Services admin — service cards with images and points
+
 import { useState, type FormEvent } from 'react';
 import { useData, type Service } from '../../context/DataContext';
 import { api } from '../../api/api';

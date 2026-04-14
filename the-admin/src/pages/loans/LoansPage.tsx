@@ -1,4 +1,3 @@
-// Loans admin — loan sections with dual cards
 import { useState, type FormEvent } from 'react';
 import { useData, type Loan } from '../../context/DataContext';
 import { api } from '../../api/api';

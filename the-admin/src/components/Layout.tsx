@@ -1,4 +1,4 @@
-// Main layout with sidebar
+
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import styles from './Layout.module.scss';

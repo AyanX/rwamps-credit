@@ -1,4 +1,4 @@
-// Contacts admin — branches and FAQs
+
 import { useState, type FormEvent } from "react";
 import { useData, type Branch, type Faq } from "../../context/DataContext";
 import { api } from "../../api/api";
@@ -22,7 +22,6 @@ import styles from "./ContactsPage.module.scss";
 const ContactsPage = () => {
   const { branches, setBranches, faqs, setFaqs, dataLoading } = useData();
 
-  // ========== Branches ==========
   const [branchModal, setBranchModal] = useState(false);
   const [branchEdit, setBranchEdit] = useState<Branch | null>(null);
   const [branchForm, setBranchForm] = useState<Omit<Branch, "id">>({
@@ -78,7 +77,6 @@ const ContactsPage = () => {
     }
   };
 
-  // ========== FAQs ==========
   const [faqModal, setFaqModal] = useState(false);
   const [faqEdit, setFaqEdit] = useState<Faq | null>(null);
   const [faqForm, setFaqForm] = useState({ title: "", content: "" });
@@ -119,7 +117,6 @@ const ContactsPage = () => {
     }
   };
 
-  // ========== Delete handler ==========
   const [deleteTarget, setDeleteTarget] = useState<{
     type: string;
     id: number;
