@@ -5,6 +5,7 @@ import s from "./LoansPage.module.scss";
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
 import { LoansHelmet } from "@/helmet";
+import Loader from "@/components/Loader";
 const whyChoose = [
   { icon: "🎯", title: "Tailored Solutions", desc: "A diverse range of loans designed to meet the unique needs of farmers, entrepreneurs, and families." },
   { icon: "📅", title: "Flexible Repayment", desc: "Loan durations that align with business and farming cycles, easing the repayment burden." },
@@ -64,6 +65,8 @@ const LoanCard = ({ card }: { card: LoanCardData }) => (
 const LoansPage = () => {
   const { loans } = useData();
 
+  if (loans.length === 0) return <Loader />
+
   return (
     <>
     <LoansHelmet/>
@@ -86,38 +89,38 @@ const LoansPage = () => {
       </section>
 
       <div id="loans" className={s.loansWrapper}>
-        {loans.map((section, i) => (
+        {loans?.map((section, i) => (
           <section key={i} className={s.loanSection}>
             <div className={s.loanInner}>
               <div className={s.loanSidebar}>
-                <div className={s.sectionTag}>{section.title}</div>
-                <h2 className={s.loanTitle}>{section["sub-title"]}</h2>
+                <div className={s.sectionTag}>{section?.title}</div>
+                <h2 className={s.loanTitle}>{section?.["sub-title"]}</h2>
                 <div className={s.underline} />
-                <p className={s.loanDesc}>{section.content}</p>
+                <p className={s.loanDesc}>{section?.content}</p>
               </div>
               <div>
                 <div className={s.loanGrid}>
                   <LoanCard card={{
-                    title: section.card_one_title,
-                    content: section.card_one_content,
-                    amount_start: section.card_one_loan_amount_start,
-                    amount_end: section.card_one_loan_amount_end,
-                    duration_start: section.card_one_duration_start,
-                    duration_end: section.card_one_duration_end,
-                    eligibility: section.card_one_eligibility,
-                    bg_color: section.card_one_bg_color,
-                    text_color: section.card_one_text_color,
+                    title: section?.card_one_title,
+                    content: section?.card_one_content,
+                    amount_start: section?.card_one_loan_amount_start,
+                    amount_end: section?.card_one_loan_amount_end,
+                    duration_start: section?.card_one_duration_start,
+                    duration_end: section?.card_one_duration_end,
+                    eligibility: section?.card_one_eligibility,
+                    bg_color: section?.card_one_bg_color,
+                    text_color: section?.card_one_text_color,
                   }} />
                   <LoanCard card={{
-                    title: section.card_two_title,
-                    content: section.card_two_content,
-                    amount_start: section.card_two_loan_amount_start,
-                    amount_end: section.card_two_loan_amount_end,
-                    duration_start: section.card_two_duration_start,
-                    duration_end: section.card_two_duration_end,
-                    eligibility: section.card_two_eligibility,
-                    bg_color: section.card_two_bg_color,
-                    text_color: section.card_two_text_color,
+                    title: section?.card_two_title,
+                    content: section?.card_two_content,
+                    amount_start: section?.card_two_loan_amount_start,
+                    amount_end: section?.card_two_loan_amount_end,
+                    duration_start: section?.card_two_duration_start,
+                    duration_end: section?.card_two_duration_end,
+                    eligibility: section?.card_two_eligibility,
+                    bg_color: section?.card_two_bg_color,
+                    text_color: section?.card_two_text_color,
                   }} />
                 </div>
               </div>

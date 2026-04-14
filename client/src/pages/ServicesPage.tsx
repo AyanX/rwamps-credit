@@ -7,9 +7,13 @@ import { HashLink } from 'react-router-hash-link';
 import { Link } from "react-router-dom";
 import servicesBlur from "../assets/services-blur.jpg"
 import { ServicesHelmet } from "@/helmet";
+import Loader from "@/components/Loader";
 
 const ServicesPage = () => {
   const { services , branches} = useData();
+
+  if (services.length === 0 || branches.length === 0) return <Loader />
+
   const [imageLoaded, setImageLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -66,21 +70,21 @@ const ServicesPage = () => {
 
       <section id="services" className={s.servicesSection}>
         <div className={s.servicesInner}>
-          {services.map((service, i) => (
-            <div key={service.id} className={i % 2 === 1 ? s.serviceRowReverse : s.serviceRow}>
+          {services?.map((service, i) => (
+            <div key={service?.id} className={i % 2 === 1 ? s.serviceRowReverse : s.serviceRow}>
               <div className={s.imageCol}>
                 <img
-                  src={service.image}
-                  alt={service.title}
-                  style={{ background: service.blur_image ? `url(${service.blur_image}) center/cover no-repeat` : undefined }}
+                  src={service?.image}
+                  alt={service?.title}
+                  style={{ background: service?.blur_image ? `url(${service?.blur_image}) center/cover no-repeat` : undefined }}
                 />
               </div>
               <div className={s.textCol}>
-                <h2 className={s.serviceTitle}>{service.title}</h2>
+                <h2 className={s.serviceTitle}>{service?.title}</h2>
                 <div className={s.underline} />
-                <p className={s.serviceDesc}>{service.content}</p>
+                <p className={s.serviceDesc}>{service?.content}</p>
                 <div className={s.featuresGrid}>
-                  {service.points.map((f) => (
+                  {service?.points?.map((f) => (
                     <div key={f} className={s.feature}>
                       <Check className={s.checkIcon} />
                       {f}
@@ -105,7 +109,7 @@ const ServicesPage = () => {
           <p>Visit any of our branches or contact us to get started with our financial services.</p>
           <div className={s.ctaButtons}>
             <Link to="/contact" className={s.ctaBtnWhite}>Contact Us →</Link>
-            <a href={`tel:${branches[0]?.phone_number}`} className={s.ctaBtnOutline}>Call {branches[0]?.phone_number}</a>
+            <a href={`tel:${branches?.[0]?.phone_number}`} className={s.ctaBtnOutline}>Call {branches?.[0]?.phone_number}</a>
           </div>
         </div>
       </section>

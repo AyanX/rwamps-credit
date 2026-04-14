@@ -17,19 +17,9 @@ import type {
 
 // Fallback data from siteData for when API is unreachable
 import {
-  siteStats as fallbackStats,
-  agriBandCards as fallbackWhatWeDo,
-  testimonies as fallbackTestimonies,
-  partners as fallbackPartners,
-  footerSocials as fallbackSocials,
-  agriculturalFinanceProducts as fallbackProducts,
-  branches as fallbackBranches,
-  faqs as fallbackFaqs,
-  aboutMissionVision,
-  servicesData as fallbackServices,
-  loansData as fallbackLoans,
   contactInfo as fallbackContactInfo,
 } from "@/data/siteData";
+import Loader from "@/components/Loader";
 
 interface DataContextType {
   stats: Stats | null;
@@ -106,43 +96,13 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         }));
       })
       .catch(() => {
-        // Fallback to local data
-        setData({
-          stats: fallbackStats as unknown as Stats,
-          whatWeDo: fallbackWhatWeDo as unknown as WhatWeDoItem[],
-          testimonies: fallbackTestimonies as unknown as Testimony[],
-          partners: fallbackPartners,
-          footerSocials: { ...fallbackSocials, email: fallbackContactInfo.email },
-          products: fallbackProducts as unknown as Product[],
-          branches: fallbackBranches.map((b) => ({
-            ...b,
-            phone_number: b.phone_number.join(", "),
-          })) as unknown as Branch[],
-          faqs: fallbackFaqs,
-          about: [
-            {
-              ...aboutMissionVision.mission,
-              name: "mission",
-              text_color: "#ffffff",
-            },
-            {
-              ...aboutMissionVision.vision,
-              name: "vision",
-              text_color: "#ffffff",
-            },
-          ] as unknown as AboutItem[],
-          services: fallbackServices as unknown as Service[],
-          loans: fallbackLoans.map((l) => ({ ...l, "sub-title": l.subtitle })) as unknown as Loan[],
-          contactInfo: fallbackContactInfo,
-          loading: false,
-          error: "Using offline data",
-        });
+        setData((prev) => ({ ...prev, loading: false, error: "Failed to load data" }));
       });
   }, []);
 
-  // if (data.loading) {
-  // loader component
-  // }
+  if (data.loading) {
+   return <Loader/>
+  }
 
   return <DataContext.Provider value={data}>{children}</DataContext.Provider>;
 };

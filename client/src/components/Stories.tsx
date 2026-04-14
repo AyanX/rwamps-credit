@@ -1,9 +1,10 @@
 import { useData } from "@/context/DataContext";
 import s from "./Stories.module.scss";
+import Loader from "./Loader";
 
 const Stories = () => {
   const { testimonies } = useData();
-  if (!testimonies.length) return null;
+  if (testimonies.length === 0) return <Loader />;
 
   return (
     <section className={s.section}>
@@ -26,8 +27,8 @@ const Stories = () => {
           <div
             className={s.featured}
             style={{
-              background: testimonies[0].card_color,
-              color: testimonies[0].text_color || "#ffffff",
+              background: testimonies?.[0]?.card_color,
+              color: testimonies?.[0]?.text_color || "#ffffff",
             }}
           >
             <div>
@@ -36,16 +37,16 @@ const Stories = () => {
                 <span
                   className={s.tagBadge}
                   style={{
-                    color: testimonies[0].loan_purpose_text_color || "#ffffff",
+                    color: testimonies?.[0]?.loan_purpose_text_color || "#ffffff",
                     borderColor:
-                      testimonies[0].loan_purpose_text_color || "#ffffff",
+                      testimonies?.[0]?.loan_purpose_text_color || "#ffffff",
                   }}
                 >
-                  {testimonies[0].loan_purpose}
+                  {testimonies?.[0]?.loan_purpose}
                 </span>
               </div>
-              <p  style={{color: `${testimonies[0].text_color}`}}  className={`${s.quoteText} ${s.featuredQuote}`}>
-                {testimonies[0].bio}
+              <p  style={{color: `${testimonies?.[0]?.text_color}`}}  className={`${s.quoteText} ${s.featuredQuote}`}>
+                {testimonies?.[0]?.bio}
               </p>
             </div>
             <div className={s.author}>
@@ -53,31 +54,31 @@ const Stories = () => {
                 className={s.avatar}
                 style={{
                   background:
-                    testimonies[0].initials_bg_color ||
-                    testimonies[0].card_color,
+                    testimonies?.[0]?.initials_bg_color ||
+                    testimonies?.[0]?.card_color,
                     color: "#ffffff",
                 }}
               >
-                {testimonies[0].initials}
+                {testimonies?.[0]?.initials}
               </div>
               <div>
                 <div style={{color:"white"}}   className={`${s.authorName} ${s.featuredName}`}>
-                  {testimonies[0].name}
+                  {testimonies?.[0]?.name}
                 </div>
                 <div style={{color:"white"}}  className={`${s.authorBiz} ${s.featuredBiz}`}>
-                  {testimonies[0].occupation}
+                  {testimonies?.[0]?.occupation}
                 </div>
               </div>
             </div>
           </div>
 
-          {testimonies.slice(1).map((story) => (
+          {testimonies?.slice(1).map((story) => (
             <div
-              key={story.id}
+              key={story?.id}
               className={s.card}
               style={{
-                color: story.text_color || "#ffffff",
-                background: story.card_color,
+                color: story?.text_color || "#ffffff",
+                background: story?.card_color,
               }}
             >
               <div>
@@ -86,31 +87,31 @@ const Stories = () => {
                   <span
                     className={s.tagBadgeOutline}
                     style={{
-                      color: story.loan_purpose_text_color || "#000000",
-                      borderColor: story.loan_purpose_text_color || "#000000",
+                      color: story?.loan_purpose_text_color || "#000000",
+                      borderColor: story?.loan_purpose_text_color || "#000000",
                     }}
                   >
-                    {story.loan_purpose}
+                    {story?.loan_purpose}
                   </span>
                 </div>
-                <p className={`${s.quoteText} ${s.normalQuote}`}>{story.bio}</p>
+                <p className={`${s.quoteText} ${s.normalQuote}`}>{story?.bio}</p>
               </div>
               <div className={s.authorNormal}>
                 <div
                   className={s.avatar}
                   style={{
-                    background: story.initials_bg_color || story.card_color,
+                    background: story?.initials_bg_color || story?.card_color,
                     color: "#ffffff",
                   }}
                 >
-                  {story.initials}
+                  {story?.initials}
                 </div>
                 <div>
                   <div className={`${s.authorName} ${s.normalName}`}>
-                    {story.name}
+                    {story?.name}
                   </div>
                   <div className={`${s.authorBiz} ${s.normalBiz}`}>
-                    {story.occupation}
+                    {story?.occupation}
                   </div>
                 </div>
               </div>

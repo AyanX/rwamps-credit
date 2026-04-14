@@ -3,18 +3,21 @@ import s from "./Impact.module.scss";
 import team from "../assets/team.png";
 import placeholder from "../assets/placeholder.png";
 import woman from "../assets/woman.png";
+import Loader from "./Loader";
 
 
 const Impact = () => {
   const { stats } = useData();
 
+  if (!stats) return <Loader />
+
   const statCards = [
-    { ico: "🎯", num: `${stats?.total_clients}${stats?.total_clients_initials ?? "K"   }`, label: "Farmers  Financed", variant: "cardPrimary" as const },
-    { ico: "📊", num: stats?.repayment_rate ? `${stats.repayment_rate}%` : "87%", label: "Loan Repayment Rate", variant: "cardNavy" as const },
+    { ico: "🎯", num: `${stats?.total_clients}${stats?.total_clients_initials}`, label: "Farmers  Financed", variant: "cardPrimary" as const },
+    { ico: "📊", num: `${stats?.repayment_rate}%`, label: "Loan Repayment Rate", variant: "cardNavy" as const },
     { ico: <img src={woman} alt="Woman" />, num: "45%", label: "Women Borrowers", variant: "cardSage" as const },
-    { ico: <img src={team} alt="Team" />, num: `${stats?.active_users}${stats?.active_users_initials ?? "K"   }+`, label: "Active users", variant: "cardOrange" as const },
+    { ico: <img src={team} alt="Team" />, num: `${stats?.active_users}${stats?.active_users_initials}+`, label: "Active users", variant: "cardOrange" as const },
     { ico: "💰", num: "12B+", label: "UGX Total Disbursed", variant: "cardLime" as const },
-    { ico:<img src={placeholder} alt="Placeholder" />, num: stats?.locations_served ? `${stats.locations_served}+` : "35+", label: "Districts Covered", variant: "cardSecondary" as const },
+    { ico:<img src={placeholder} alt="Placeholder" />, num: `${stats?.locations_served}+`, label: "Districts Covered", variant: "cardSecondary" as const },
   ];
 
   return (

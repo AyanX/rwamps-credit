@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
 
-// ─── Reset / Base ─────────────────────────────────────────
+ 
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -42,7 +42,7 @@ img {
   max-width: 100%;
 }
 
-// ─── Animations ───────────────────────────────────────────
+//   Animations  
 @keyframes marquee-scroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -58,7 +58,7 @@ img {
   50%      { opacity: 0.5; }
 }
 
-// ─── Utility Classes (global) ─────────────────────────────
+//   Utility Classes (global)  
 .reveal {
   animation: reveal-up 0.8s ease-out both;
 }

@@ -5,6 +5,7 @@ import s from "./ProductsPage.module.scss";
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
 import { ProductsHelmet } from "@/helmet";
+import Loader from "@/components/Loader";
 const iconMap: Record<string, React.ElementType> = { Wheat, Beef, Tractor, Building2, Briefcase, Package };
 
 const ventureProducts = [
@@ -16,6 +17,8 @@ const ventureProducts = [
 
 const ProductsPage = () => {
   const { products } = useData();
+
+  if (products.length === 0) return <Loader />
 
   return (
     <>
@@ -45,29 +48,29 @@ const ProductsPage = () => {
           <div className={s.underline} />
         </div>
         <div className={s.masonry}>
-          {products.map((product) => {
-            const IconComp = iconMap[product.icon];
-            const textColor = product.text_color || "#ffffff";
+          {products?.map((product) => {
+            const IconComp = iconMap[product?.icon];
+            const textColor = product?.text_color || "#ffffff";
             const iconColor = "#ffffff";
 
             return (
               <div
-                key={product.id}
+                key={product?.id}
                 className={s.productCard}
                 style={{
-                  backgroundColor: product.bg_color?.startsWith("#") || product.bg_color?.startsWith("hsl") || product.bg_color?.startsWith("rgb") ? product.bg_color : undefined,
+                  backgroundColor: product?.bg_color?.startsWith("#") || product?.bg_color?.startsWith("hsl") || product?.bg_color?.startsWith("rgb") ? product?.bg_color : undefined,
                   color: textColor,
                 }}
-                data-bg={product.bg_color}
+                data-bg={product?.bg_color}
               >
                 <div>
                   <div className={s.cardIconWrap}>
                     {IconComp && <IconComp size={28} color={iconColor} />}
                   </div>
-                  <h3 className={s.cardTitle} style={{ color: textColor }}>{product.title}</h3>
-                  <p className={s.cardDesc} style={{ color: textColor }}>{product.content}</p>
+                  <h3 className={s.cardTitle} style={{ color: textColor }}>{product?.title}</h3>
+                  <p className={s.cardDesc} style={{ color: textColor }}>{product?.content}</p>
                   <ul className={s.featureList}>
-                    {product.points.map((f) => (
+                    {product?.points?.map((f) => (
                       <li key={f} className={s.featureItem} style={{ color: textColor }}>
                         <span className={s.featureDot} />
                         {f}

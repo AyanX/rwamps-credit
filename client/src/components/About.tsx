@@ -1,11 +1,14 @@
 import { useData } from "@/context/DataContext";
 import s from "./About.module.scss";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 
 
 const About = () => {
   const { stats } = useData();
+
+  if (!stats) return <Loader />
 
   return (
     <section className={s.section}>
@@ -35,17 +38,17 @@ const About = () => {
                 alt="African farmer in field"
               />
               <div className={s.imageOverlay}>
-                <div className={s.overlayNum}>{stats?.total_disbursed ? `UGX ${stats.total_disbursed}B+` : "UGX 12B+"}</div>
+                <div className={s.overlayNum}>UGX {stats?.total_disbursed}B+</div>
                 <div className={s.overlayLabel}>Total Loans Disbursed</div>
               </div>
             </div>
             <div className={s.statsRow}>
               <div className={s.statCard}>
-                <div className={s.statNum}>{stats?.locations_served ? `${stats.locations_served}+` : "35+"}</div>
+                <div className={s.statNum}>{stats?.locations_served}+</div>
                 <div className={s.statLabel}>Districts served across Uganda</div>
               </div>
               <div className={s.statCard}>
-                <div className={s.statNum}>{stats?.serving_hours ?? "24"}/{stats?.serving_days ?? "7"}</div>
+                <div className={s.statNum}>{stats?.serving_hours}/{stats?.serving_days}</div>
                 <div className={s.statLabel}>Digital support always on</div>
               </div>
             </div>

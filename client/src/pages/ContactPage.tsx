@@ -8,10 +8,14 @@ import { HashLink } from 'react-router-hash-link';
 import { Link } from "react-router-dom";
 import heroBlur from "../assets/finance-contact-blur.jpg"
 import { ContactHelmet } from "@/helmet";
+import Loader from "@/components/Loader";
 
 
 const ContactPage = () => {
   const { faqs, branches, contactInfo } = useData();
+
+  if (faqs.length === 0 || branches.length === 0) return <Loader />
+
   const [formData, setFormData] = useState({ name: "", email: "", phone_number: "", subject: "", message: "" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -74,7 +78,7 @@ const ContactPage = () => {
           <h1 className={s.heroTitle}>Get In<br /><span>Touch.</span></h1>
           <p className={s.heroSubtitle}>Contact us to schedule a one-on-one session with one of our experts. We're here to help you grow.</p>
           <div className={s.heroButtons}>
-            <a href={`tel:${contactInfo.phone.replace(/\s/g, "")}`} className={s.btnPrimary}>Call Us Now →</a>
+            <a href={`tel:${contactInfo?.phone?.replace(/\s/g, "")}`} className={s.btnPrimary}>Call Us Now →</a>
             <HashLink smooth to="#contact-form" className={s.btnOutline}>Send a Message</HashLink>
           </div>
         </div>
@@ -88,29 +92,29 @@ const ContactPage = () => {
           <div className={s.underline} />
         </div>
         <div className={s.branchGrid}>
-          {branches.map((branch) => (
-            <div key={branch.id} className={s.branchCard}>
-              <h3 className={s.branchName}>{branch.branch_name}</h3>
+          {branches?.map((branch) => (
+            <div key={branch?.id} className={s.branchCard}>
+              <h3 className={s.branchName}>{branch?.branch_name}</h3>
               <div className={s.branchDetails}>
                 <div className={s.branchDetail}>
                   <MapPin className={s.branchIcon} />
-                  <p className={s.branchText}>{branch.location}</p>
+                  <p className={s.branchText}>{branch?.location}</p>
                 </div>
                 <div className={s.branchDetail}>
                   <Phone className={s.branchIcon} />
-                  <a href={`tel:${String(branch.phone_number).replace(/\s/g, "")}`} className={s.branchText}>{branch.phone_number}</a>
+                  <a href={`tel:${String(branch?.phone_number).replace(/\s/g, "")}`} className={s.branchText}>{branch?.phone_number}</a>
                 </div>
                 <div className={s.branchDetail}>
                   <Mail className={s.branchIcon} />
-                  <a href={`mailto:${branch.email}`} className={s.branchText}>{branch.email}</a>
+                  <a href={`mailto:${branch?.email}`} className={s.branchText}>{branch?.email}</a>
                 </div>
                 <div className={s.branchDetail}>
                   <Globe className={s.branchIcon} />
-                  <Link to="/" className={s.branchText}>{branch.website}</Link>
+                  <Link to="/" className={s.branchText}>{branch?.website}</Link>
                 </div>
                 <div className={s.branchDetail}>
                   <Clock className={s.branchIcon} />
-                  <span className={s.branchText}>{branch.open_time} - {branch.close_time}</span>
+                  <span className={s.branchText}>{branch?.open_time} - {branch?.close_time}</span>
                 </div>
               </div>
             </div>
@@ -133,7 +137,7 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <div className={s.contactCardTitle}>Call Us</div>
-                  <div className={s.contactCardSub}>{contactInfo.phone}</div>
+                  <div className={s.contactCardSub}>{contactInfo?.phone}</div>
                 </div>
               </div>
               <div className={s.contactCard}>
@@ -142,7 +146,7 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <div className={s.contactCardTitle}>Email Us</div>
-                  <div className={s.contactCardSub}>{contactInfo.email}</div>
+                  <div className={s.contactCardSub}>{contactInfo?.email}</div>
                 </div>
               </div>
             </div>
@@ -184,14 +188,14 @@ const ContactPage = () => {
           <div className={s.underline} />
         </div>
         <div className={s.faqList}>
-          {faqs.map((faq) => (
-            <div key={faq.id} className={s.faqItem} data-open={openFaq === faq.id}>
-              <button className={s.faqTrigger} onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}>
-                {faq.title}
+          {faqs?.map((faq) => (
+            <div key={faq?.id} className={s.faqItem} data-open={openFaq === faq?.id}>
+              <button className={s.faqTrigger} onClick={() => setOpenFaq(openFaq === faq?.id ? null : faq?.id)}>
+                {faq?.title}
                 <ChevronDown className={s.faqChevron} />
               </button>
-              {openFaq === faq.id && (
-                <div className={s.faqContent}>{faq.content}</div>
+              {openFaq === faq?.id && (
+                <div className={s.faqContent}>{faq?.content}</div>
               )}
             </div>
           ))}

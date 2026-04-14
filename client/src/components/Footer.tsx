@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { useData } from "@/context/DataContext";
 import s from "./Footer.module.scss";
-
+import Loader from "./Loader";
+import location from "../assets/map.png";
+import mail from "../assets/email.png";
+import phone from "../assets/telephone.png";
+import { Facebook, Twitter, Linkedin } from "lucide-react";
 const quickLinks = [
   { label: "Home", to: "/" },
   { label: "About Us", to: "/about" },
@@ -15,10 +19,12 @@ const legalLinks = ["Privacy Policy", "Terms & Conditions", "Licenses", "Data Po
 const Footer = () => {
   const { footerSocials, contactInfo } = useData();
 
+  if (!footerSocials) return <Loader />
+
   const socialItems = [
-    { icon: "𝕏", url: footerSocials?.twitter ?? "#" },
-    { icon: "in", url: footerSocials?.linkedin ?? "#" },
-    { icon: "f", url: footerSocials?.facebook ?? "#" },
+    { icon: <Twitter />, url: footerSocials?.twitter ?? "#" },
+    { icon: <Linkedin />, url: footerSocials?.linkedin ?? "#" },
+    { icon: <Facebook />, url: footerSocials?.facebook ?? "#" },
   ];
 
   return (
@@ -61,9 +67,9 @@ const Footer = () => {
           <div>
             <h4 className={s.colTitle}>Contact</h4>
             <ul className={s.contactList}>
-              <li>📍 {contactInfo.address}</li>
-              <li>📞 {contactInfo.phone}</li>
-              <li>✉️ {contactInfo.email}</li>
+              <li> <img src={location} alt="Location" className={s.contactIcon} /> {contactInfo?.address}</li>
+              <li> <img src={phone} alt="Phone" className={s.contactIcon} /> {contactInfo?.phone}</li>
+              <li> <img src={mail} alt="Email" className={s.contactIcon} /> {contactInfo?.email}</li>
               <li>
                 <Link to="/contact" className={s.applyLink}>Apply Now →</Link>
               </li>

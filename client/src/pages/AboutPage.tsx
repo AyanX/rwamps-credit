@@ -8,6 +8,7 @@ import visionLogo from "../assets/vision.png";
 import { Link } from "react-router-dom";
 import aboutBlur from "../assets/finace-about-blur.jpeg"
 import { AboutHelmet } from "@/helmet";
+import Loader from "@/components/Loader";
 
 const values = [
   { icon: Users, title: "Team Work", desc: "Collaborative approach to solving financial challenges together." },
@@ -29,6 +30,9 @@ const reasons = [
 
 const AboutPage = () => {
   const { stats, about } = useData();
+
+  if (!stats || about.length === 0) return <Loader />
+
   const [imageLoaded, setImageLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -84,9 +88,9 @@ const AboutPage = () => {
           </div>
           <div className={s.heroStats}>
             {[
-              { num: stats?.total_disbursed ? `UGX ${stats.total_disbursed}` : "UGX 12B+", label: "Total Disbursed" },
-              { num: stats?.loans_disbursed_initials ?? "15K+", label: "Loans Disbursed" },
-              { num: stats?.locations_served ? `${stats.locations_served}+` : "35+", label: "Districts Served" },
+              { num: `UGX ${stats?.total_disbursed}`, label: "Total Disbursed" },
+              { num: `${stats?.loans_disbursed_initials}+`, label: "Loans Disbursed" },
+              { num: `${stats?.locations_served}+`, label: "Districts Served" },
             ].map((stat) => (
               <div key={stat.label} style={{ textAlign: "center" }}>
                 <div className={s.statNum}>{stat.num}</div>
@@ -127,30 +131,24 @@ const AboutPage = () => {
 
       <section className={s.missionSection}>
         <div className={s.missionGrid}>
-          {about.length > 0 ? about.map((item) => {
+          {about?.map((item) => {
             return (
               <div
-                key={item.id}
+                key={item?.id}
                 className={s.missionCard}
                 style={{
-                  background: item.bg_color || "var(--color-secondary, #1a1f2a)",
-                  color: item.text_color || "inherit",
+                  background: item?.bg_color || "var(--color-secondary, #1a1f2a)",
+                  color: item?.text_color || "inherit",
                 }}
               >
                 <div className={s.emoji}>
-                  <img src={item.name === "mission" ? missionLogo : visionLogo} alt={item.title} style={{ width: "32px", height: "32px" }} />
+                  <img src={item?.name === "mission" ? missionLogo : visionLogo} alt={item?.title} style={{ width: "32px", height: "32px" }} />
                 </div>
-                <h3 style={{ color: item.text_color || "inherit" }}>{item.title}</h3>
-                <p style={{ color: item.text_color || "inherit", lineHeight: 1.625 }}>{item.content}</p>
+                <h3 style={{ color: item?.text_color || "inherit" }}>{item?.title}</h3>
+                <p style={{ color: item?.text_color || "inherit", lineHeight: 1.625 }}>{item?.content}</p>
               </div>
             );
-          }) : (
-            <div className={s.missionCard}>
-              <div className={s.emoji}>🎯</div>
-              <h3>Our Mission</h3>
-              <p>To empower small and medium-sized enterprises and farmers in Uganda by providing accessible and affordable credit solutions.</p>
-            </div>
-          )}
+          })}
         </div>
       </section>
 

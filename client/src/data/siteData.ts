@@ -1,8 +1,4 @@
-// ============================================================
-// Centralized Dummy Data — Rwamps FC
-// ============================================================
 
-// ─── Homepage Stats (Hero + Mission section) ─────────────
 export const siteStats = {
   loans_disbursed: "15K+",
   loans_disbursed_initials: "15K+",
@@ -17,7 +13,6 @@ export const siteStats = {
   total_clients_initials: "850+",
 };
 
-// ─── AgriBand Section ─────────────────────────────────────
 export const agriBandCards = [
   {
     id: 1,
@@ -50,8 +45,7 @@ export const agriBandCards = [
     title: "Farm Infrastructure",
   },
 ];
-
-// ─── Testimonies / Success Stories ────────────────────────
+ 
 export const testimonies = [
   {
     id: 1,
@@ -102,8 +96,7 @@ export const testimonies = [
     initials_bg_color: "#20520f",
   },
 ];
-
-// ─── Partners ─────────────────────────────────────────────
+ 
 export const partners = [
   { id: 1, client: "MCE Social Capital" },
   { id: 2, client: "MicroVest" },
@@ -115,23 +108,20 @@ export const partners = [
   { id: 8, client: "KfW" },
   { id: 9, client: "ALCB Fund" },
 ];
-
-// ─── Footer Socials ───────────────────────────────────────
+ 
 export const footerSocials = {
   twitter: "https://twitter.com/rwampsfc",
   linkedin: "https://linkedin.com/company/rwampsfc",
   facebook: "https://facebook.com/rwampsfc",
 };
-
-// ─── Contact Info (shared by Footer + ContactPage) ────────
+ 
 export const contactInfo = {
   phone: "+256 779 135 953",
   email: "info@rwampscreditfinance.com",
   address: "Mbarara, Uganda",
   website: "www.rwampscreditfinance.com",
 };
-
-// ─── Products Page — Agricultural Finance ─────────────────
+ 
 export const agriculturalFinanceProducts = [
   {
     id: 1,
@@ -182,8 +172,7 @@ export const agriculturalFinanceProducts = [
     bg_color: "bgPrimary",
   },
 ];
-
-// ─── About Page — Mission & Vision ────────────────────────
+ 
 export const aboutMissionVision = {
   mission: {
     id: 1,
@@ -202,8 +191,7 @@ export const aboutMissionVision = {
     text_color: "#ffffff",
   },
 };
-
-// ─── Services Page ────────────────────────────────────────
+ 
 export const servicesData = [
   {
     id: "forex",
@@ -242,8 +230,7 @@ export const servicesData = [
     points: ["Equity Bank", "KCB", "Diamond Trust", "Stanbic", "Tax Payments", "Bill Payments"],
   },
 ];
-
-// ─── Loans Page ───────────────────────────────────────────
+ 
 export const loansData = [
   {
     title: "Business Loans",
@@ -338,8 +325,7 @@ export const loansData = [
     card_two_text_color: "white",
   },
 ];
-
-// ─── FAQs ─────────────────────────────────────────────────
+ 
 export const faqs = [
   { id: 1, title: "What documents do I need to apply for a loan?", content: "You'll need a valid national ID or passport, proof of income or business registration, and a completed loan application form. For agricultural loans, proof of land ownership or lease agreement may also be required." },
   { id: 2, title: "How long does loan approval take?", content: "Most loan applications are processed within 24-48 hours. Once approved, funds are typically disbursed within 1-3 business days depending on the loan type and amount." },
@@ -349,8 +335,7 @@ export const faqs = [
   { id: 6, title: "What happens if I miss a payment?", content: "We understand that challenges arise. If you anticipate difficulty making a payment, contact us immediately. We work with clients to restructure repayment plans when possible to avoid penalties." },
   { id: 7, title: "Which areas do you serve?", content: "We currently serve over 35 districts across Uganda with branches in Kampala and Mbarara. Our field officers also visit rural areas to bring services closer to farmers and entrepreneurs." },
 ];
-
-// ─── Contact Page — Branches ──────────────────────────────
+ 
 export const branches = [
   {
     id: 1,

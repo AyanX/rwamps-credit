@@ -1,9 +1,12 @@
 import { useData } from "@/context/DataContext";
 import s from "./Partners.module.scss";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 const Partners = () => {
   const { partners } = useData();
+
+  if (partners.length === 0) return <Loader />
 
   return (
     <section className={s.section}>
@@ -16,9 +19,9 @@ const Partners = () => {
           </div>
 
           <div className={s.logoGrid}>
-            {partners.map((p) => (
-              <div key={p.id} className={s.logoItem}>
-                <span className={s.logoText}>{p.client}</span>
+            {partners?.map((p) => (
+              <div key={p?.id} className={s.logoItem}>
+                <span className={s.logoText}>{p?.client}</span>
               </div>
             ))}
           </div>

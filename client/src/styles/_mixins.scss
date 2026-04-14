@@ -1,13 +1,13 @@
 @use 'variables' as *;
 
-// ─── Responsive Breakpoints ───────────────────────────────
+//    Responsive Breakpoints 
 @mixin sm  { @media (min-width: $bp-sm)  { @content; } }
 @mixin md  { @media (min-width: $bp-md)  { @content; } }
 @mixin lg  { @media (min-width: $bp-lg)  { @content; } }
 @mixin xl  { @media (min-width: $bp-xl)  { @content; } }
 @mixin xxl { @media (min-width: $bp-2xl) { @content; } }
 
-// ─── Flex Helpers ─────────────────────────────────────────
+// Flex Helpers  
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@
   flex-direction: row;
 }
 
-// ─── Container ────────────────────────────────────────────
+//  Container  
 @mixin container {
   max-width: $max-w-7xl;
   margin-left: auto;
@@ -47,14 +47,14 @@
   padding-right: $space-6;
 }
 
-// ─── Grid ─────────────────────────────────────────────────
+//     Grid  
 @mixin grid($cols: 1, $gap: $space-4) {
   display: grid;
   grid-template-columns: repeat($cols, minmax(0, 1fr));
   gap: $gap;
 }
 
-// ─── Typography ───────────────────────────────────────────
+//   Typography  
 @mixin heading {
   font-family: $font-poppins;
   font-weight: 700;
@@ -87,13 +87,13 @@
   border-radius: $radius-full;
 }
 
-// ─── Cards ────────────────────────────────────────────────
+//   Cards  
 @mixin card-base {
   border-radius: $radius-2xl;
   overflow: hidden;
 }
 
-// ─── Glass Effect ─────────────────────────────────────────
+//   Glass Effect  
 @mixin glass {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(12px);
@@ -112,7 +112,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-// ─── Button Patterns ──────────────────────────────────────
+//   Button Patterns  
 @mixin btn-primary {
   display: inline-flex;
   align-items: center;
@@ -145,7 +145,7 @@
   &:hover { background: rgba(255, 255, 255, 0.1); }
 }
 
-// ─── Hero Section ─────────────────────────────────────────
+//   Hero Section  
 @mixin hero-section {
   position: relative;
   height: 100vh;
@@ -206,12 +206,12 @@
   }
 }
 
-// ─── Pulse Animation ──────────────────────────────────────
+//   Pulse Animation  
 @mixin pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-// ─── Masonry ──────────────────────────────────────────────
+//   Masonry  
 @mixin masonry($cols: 3, $gap: $space-6) {
   columns: 1;
   column-gap: $gap;
@@ -227,14 +227,14 @@
   }
 }
 
-// ─── Truncate ─────────────────────────────────────────────
+//     Truncate  
 @mixin truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-// ─── Visually Hidden ──────────────────────────────────────
+//   Visually Hidden  
 @mixin sr-only {
   position: absolute;
   width: 1px;

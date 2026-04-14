@@ -34,14 +34,14 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop>
           <Routes>
-            <Route element={<Layout />}>
+            <Route element={<Layout />} errorElement={<NotFound />}>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<Suspense fallback={<Loader />}><AboutPage /></Suspense>} />
               <Route path="/services" element={<Suspense fallback={<Loader />}><ServicesPage /></Suspense>} />
               <Route path="/products" element={<Suspense fallback={<Loader />}><ProductsPage /></Suspense>} />
               <Route path="/loans" element={<Suspense fallback={<Loader />}><LoansPage /></Suspense>} />
               <Route path="/contact" element={<Suspense fallback={<Loader />}><ContactPage /></Suspense>} />
-              <Route path="*" element={<NotFound />} />
+              <Route path="*" element={<Index/>} />
             </Route>
           </Routes>
         </ScrollToTop>

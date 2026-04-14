@@ -3,10 +3,14 @@ import s from "./Hero.module.scss";
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import heroBlur from "../assets/hero-home.jpeg"
+import Loader from "./Loader";
 
 
 const Hero = () => {
   const { stats } = useData();
+
+  if (!stats) return <Loader />
+
   const [imageLoaded, setImageLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -65,10 +69,10 @@ const Hero = () => {
 
           <div className={s.statsBar}>
             {[
-              { num: `${stats?.loans_disbursed ?? "K+"}  ${stats?.loans_disbursed_initials ?? "K"   }+`, label: "Loans Disbursed" },
-              { num: stats?.repayment_rate ? `${stats.repayment_rate}%` : "87%", label: "Repayment Rate" },
-              { num: stats?.total_disbursed ? `UGX ${stats.total_disbursed}B+` : "UGX 12B+", label: "Total Disbursed" },
-              { num: stats?.locations_served ? `${stats.locations_served}+` : "35+", label: "Districts Served" },
+              { num: `${stats?.loans_disbursed}${stats?.loans_disbursed_initials}+`, label: "Loans Disbursed" },
+              { num: `${stats?.repayment_rate}%`, label: "Repayment Rate" },
+              { num: `UGX ${stats?.total_disbursed}B+`, label: "Total Disbursed" },
+              { num: `${stats?.locations_served}+`, label: "Districts Served" },
             ].map((stat) => (
               <div key={stat.label} className={s.stat}>
                 <div className={s.statNum}>{stat.num}</div>
@@ -87,17 +91,17 @@ const Hero = () => {
             <div className={s.rightImageOverlay} />
             <div className={s.rightImageContent}>
               <span className={s.featuredBadge}>Featured</span>
-              <div className={s.featuredTitle}>{stats?.total_clients ?? "850"}+ Agribusiness Clients</div>
+              <div className={s.featuredTitle}>{stats?.total_clients}+ Agribusiness Clients</div>
             </div>
           </div>
 
           <div className={s.rightCards}>
             <div className={s.rightCard}>
-              <div className={s.rightCardNum}>{stats?.serving_hours ?? "24"}/{stats?.serving_days ?? "7"}</div>
+              <div className={s.rightCardNum}>{stats?.serving_hours}/{stats?.serving_days}</div>
               <div className={s.rightCardLabel}>Digital Support</div>
             </div>
             <div className={s.rightCard}>
-              <div className={s.rightCardNum}>{`${stats?.active_users ?? "50"}${stats?.active_users_initials ?? "K"   }+`}</div>
+              <div className={s.rightCardNum}>{`${stats?.active_users}${stats?.active_users_initials}+`}</div>
               <div className={s.rightCardLabel}>Active Users</div>
             </div>
           </div>
