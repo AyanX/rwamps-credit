@@ -4,6 +4,9 @@ build
 .env
 seed.sh
 messages.json
+public/
+
+.gitignore
 
 public
 seed.js
