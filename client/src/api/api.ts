@@ -22,7 +22,7 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
     headers: { "Content-Type": "application/json" },
     ...options,
   });
-  if (!res.ok) throw new Error(`API error: ${res.status} ${res.statusText}`);
+  if (!res.ok) throw new Error(`API error: ${res.status}`);
   const data = await res.json();
   return data.data || data; 
 }
